@@ -1,0 +1,22 @@
+# app/config/application.yml
+defaults: &defaults
+  google_analytics_id:
+  email:
+    from: "noreply@example.com"
+    server: "smtp.example.com"
+    domain: "example.com"
+    port: 25
+    login: "login"
+    password: "password"
+
+development:
+  <<: *defaults
+  email:
+    domain: "local"
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
+  google_analytics_id: "UA-1234567-8"
