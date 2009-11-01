@@ -22,6 +22,8 @@ Rails::Initializer.run do |config|
   config.gem 'settingslogic', :version => '2.0.3'
   config.gem 'haml', :version => '2.2.9'
   config.gem 'authlogic', :version => '2.1.2'
+  config.gem 'ambethia-recaptcha', :version => '0.2.2', :lib => 'recaptcha/rails', :source => 'http://gems.github.com'
+  config.gem 'whenever', :version => '0.4.0', :lib => false, :source => 'http://gemcutter.org/'
   
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
@@ -41,4 +43,6 @@ Rails::Initializer.run do |config|
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
+  config.i18n.load_path += Dir[File.join(RAILS_ROOT, 'app', 'locales', '**', '*.{rb,yml}')]
+  config.i18n.default_locale = :pt
 end
