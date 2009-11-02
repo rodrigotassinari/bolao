@@ -1,0 +1,452 @@
+body
+  :background-color #e5e5e5
+
+a
+  :color #00f
+  :text-decoration none
+  &:hover
+    :text-decoration underline
+  &.orphan
+    :color #090
+  &.feed_link
+    :background-image url(../images/feed-icon.png)
+    :background-repeat no-repeat
+    :background-position 0 1px
+    :padding-left 18px
+  &.admin
+    :color #f00
+
+.hidden
+  :display none
+
+
+p.info
+  :color #666
+
+span.info
+  :font-size 0.9em
+  :color #999
+  a
+    :color #999
+
+
+input.hint
+  :color #999
+
+
+
+span.label
+  :font-variant small-caps
+  :font-size 0.9em
+  :font-weight bold
+  :color #fff
+  :padding 0 3px
+span.event_article
+  :background-color #ff3300
+span.event_revision
+  :background-color #ff9900
+span.event_comment
+  :background-color #3366ff
+span.event_tweet
+  :background-color #669900
+
+
+span.tag
+  :font-variant small-caps
+  :font-size 0.9em
+  :font-weight bold
+  :color #fff
+  :padding 0 3px
+  :margin-left 2px
+  :background-color #ddd
+  a
+    :color #333
+
+
+#header
+  :background-color #003466
+  :color #fff
+  a
+    :color #fff
+  h1
+    :margin 0.25em 0 0.5em 0.5em
+    :padding 0
+    a
+      :color #ffcc00
+
+  #topmenu
+    :float right
+    :margin 0 1em 0 0
+
+  #menu
+    ul
+      :margin 0 0.75em
+      :padding 0
+      :list-style-type none
+    li
+      :padding 0
+      :padding-right 0.25em
+      :display inline
+      :list-style-type none
+      a
+        :background-color #939DAC
+        :padding 0
+        :padding 0.2em 1em
+        :margin 0
+        :margin-right 0.3em
+        :display block
+        :float left
+      &.selected
+        a
+          :background-color #e5e5e5
+          :color #090
+          :font-weight bold
+
+
+
+#content
+  :color #222
+
+  #main
+    :margin-top 1em
+
+    div.flash
+      :border-right 4px solid #d5d5d5
+      :padding 0.5em 1em
+      a.close
+        :font-size 0.9em
+        :float right
+    div#flash_notice
+      :background-color #ff9
+    div#flash_success
+      :background-color #9f9
+    div#flash_error
+      :background-color #f99
+    div#flash_info
+      :background-color #edf3fe
+
+    div.inner
+      :background-color #fff
+      :border-right 4px solid #d5d5d5
+      :border-bottom 4px solid #d5d5d5
+      :padding 1em
+
+
+  #sidebar
+    :margin-top 1em
+
+    div.box
+      :margin-bottom 0.75em
+
+      p, h1, h2, h3, h4, h5, h6, ul, ol, li
+        :margin 0
+        :margin-bottom 0.25em
+        :padding 0
+
+      li
+        :margin-left 1.5em
+
+    #info
+      table
+        :margin 0.5em 0.25em
+        :width 100%
+      tr
+        :border 1px solid #bbb
+      td
+        :padding 0.1em 0.25em
+        &.source
+          :padding-left 0.75em
+        &.arrow
+          :padding-right 1em
+
+
+    #comments
+      h6
+        span
+          :color #666
+      ul
+        :margin 0
+        :padding 0
+        :list-style-type none
+      li
+        :margin 0
+        :margin-bottom 0.25em
+        :padding 0
+        :padding-bottom 0.25em
+        :border-bottom 1px dotted #888
+        abbr
+          :color #666
+          :font-size 0.9em
+      form
+        :margin 0
+        :margin-top 1em
+        label
+          :font-weight bold
+
+
+#footer
+  :color #666
+  div.inner
+    :margin 0
+    :margin-top 1em
+    :padding 0
+
+
+
+#articles
+  h2
+    :margin-bottom 0.5em
+  ul
+    :margin 0.5em
+  li
+    :margin 0
+    :margin-bottom 1em
+    :list-style none
+    a.big_title
+      :font-size 1.1em
+    span.info
+      :font-size 1em
+
+
+#article, #article-form, #article-history, #author, #tag
+  #title, div.title
+    :color #111
+    h2
+      :margin-bottom 0.5em
+    a
+      :color #111
+
+  p
+    :margin-bottom 1em
+
+  p.old_revision
+    :color #666
+    :padding 0
+    :margin 0
+    :margin-bottom 0.5em
+    span
+      :float right
+
+  #body
+    table
+      :margin 0 auto 1em auto
+      tr.odd
+        :background-color transparent
+      tr.even
+        :background-color #eee
+      th
+        :border 1px solid #ccc
+        :font-weight bold
+      td
+        :border 1px solid #ccc
+        :padding 0 0.5em 0.25em 0.5em
+        &.radio
+          :padding 0
+
+  #revisions
+    table
+      tr.odd
+        :background-color transparent
+      tr.even
+        :background-color #eee
+      td
+        :padding 0 0.5em 0.25em 0.5em
+        &.radio
+          :padding 0
+
+
+
+
+ins.diffmod, ins.diffins
+  :background #d4fdd5
+  :text-decoration none
+del.diffmod, del.diffdel
+  :color #ff9999
+
+
+
+#tweets
+  ol.statuses
+    :color #333
+    :list-style none
+    :margin 0
+  li.status
+    :font-family 'Lucida Grande', sans-serif
+    :font-size 14px
+    :color #333
+    :border-top 1px dashed #d2dada
+    :border-bottom 1px dashed #d2dada
+    :padding 10px 0 8px 0
+    :margin 0
+    div.listable
+      :padding-left 5px
+      :float left
+    div.status-body
+      :margin-left 65px
+    div.entry-meta
+      :font-size 11px
+      :color #999
+      a
+        :color #999
+  li.status:hover
+    :background-color #eee
+  div#more
+    :height 36px
+    :margin-top 24px
+    :margin-bottom 12px
+    a, span.fakelink
+      :font-size 14px
+      :font-weight bold
+      :color #0084b4
+      :text-align center
+      :background-color #fff
+      :background-image url(http://static.twitter.com/images/more.gif)
+      :background-repeat repeat-x
+      :margin 0
+      :margin-bottom 6px
+      :padding 6px 0 6px 0
+      :border-width 1px
+      :border-top-color #ddd
+      :border-left-color #ddd
+      :border-bottom-color #aaa
+      :border-right-color #aaa
+      :border-style solid
+      :display block
+      &:hover
+        :background-color #ddd
+    span.fakelink
+      :color #aaa
+
+
+#loading
+  :width 100px
+  :height 100px
+  :position fixed
+  :top 50%
+  :left 50%
+  :background url(../images/spinner.gif) no-repeat center #fff
+  :text-align center
+  :padding 10px
+  :font-size 16px
+  :border 1px solid #666
+  :margin-left -50px
+  :margin-top -50px
+  :z-index 2
+  :overflow auto
+
+#home
+  h1, h2, h3, h4, h5, h6
+    :margin 0
+    :padding 0
+  ul
+    :margin 0
+    :margin-bottom 1em
+    :padding 0
+  li
+    :padding 0
+
+  #recent_activities
+    ul
+      :margin 0.25em 0.5em 1em 0.5em
+      :padding 0
+    li
+      :margin 0
+      :margin-bottom 0.25em
+      :padding 0
+      :list-style none
+
+
+
+#author
+  #title
+    h2
+      :margin 0
+    table
+      :vertical-align top
+      td
+        :padding-right 5px
+    img
+      :vertical-align top
+    p
+      a
+        :color #00f
+
+
+#tags
+  h2
+    :margin 0
+    :padding 0
+
+.tag_cloud
+  a
+    :padding 0 0.1em
+  .level1
+    :font-size 0.9em
+  .level2
+    :font-size 1em
+  .level3
+    :font-size 1.1em
+  .level4
+    :font-size 1.2em
+.big_tag_cloud
+  a
+    :padding 0 0.25em
+  .level1
+    :font-size 1.0em
+  .level2
+    :font-size 1.3em
+  .level3
+    :font-size 1.6em
+  .level4
+    :font-size 1.9em
+
+
+#preview
+  :margin 0
+  :padding 0
+  h3
+    :margin 0
+    :margin-bottom 0.5em
+    :padding 0
+    :padding-top 0.5em
+    :border-top 1px solid #ccc
+  #article
+    :margin 0 1em 1em 1em
+    :padding 0.5em
+    :border 1px dashed #aaa
+
+
+#quick_search, #search
+  form
+    :margin-bottom 0.5em
+    input#quick_search_input, input#search_input
+      :width 140px
+    input#quick_search_submit, input#search_submit
+      :display inline
+  #quick_search_results
+    table
+      :margin 0
+      :margin-bottom 0.25em
+    p
+      :margin 0
+      :margin-bottom 0.5em
+    td
+      :padding 0 4px 2px 0
+
+
+#admin
+  h6
+    :color #f00
+  a
+    :color #f00
+  form
+    :padding 0.5em
+    :border 1px dashed #ccc
+
+p.order
+  :float right
+  :font-size 0.9em
+  a
+    :padding-left 2px
+  a.selected
+    :font-weight bold

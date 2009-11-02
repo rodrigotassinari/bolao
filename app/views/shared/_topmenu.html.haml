@@ -1,0 +1,4 @@
+- if logged_in?
+  = link_to current_user.login, user_path(current_user)
+  |
+  = link_to 'logout', logout_path
