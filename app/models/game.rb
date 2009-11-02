@@ -1,5 +1,13 @@
 class Game < ActiveRecord::Base
 
+  has_many :bets
+
+  belongs_to :team_a, :class_name => "Team"
+  belongs_to :team_b, :class_name => "Team"
+
+  belongs_to :winner, :class_name => "Team"
+  belongs_to :loser,  :class_name => "Team"
+
   #attr_accessible  :stadium, :city, :played_on, :team_a_id, :team_b_id, :goals_a, :goals_b, :group_game, :penalty, :tie
 
   validates_presence_of :stadium, :city, :played_on, :team_a_id, :team_b_id

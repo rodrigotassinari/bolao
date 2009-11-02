@@ -33,6 +33,16 @@ describe Game do
     end
   end
 
+  # Associações
+
+  it { should have_many(:bets) }
+
+  it { should belong_to(:team_a, :class_name => "Team") }
+  it { should belong_to(:team_b, :class_name => "Team") }
+
+  it { should belong_to(:winner, :class_name => "Team") }
+  it { should belong_to(:loser,  :class_name => "Team") }
+
   # Validações
 
   it { should validate_presence_of(:stadium, :city, :played_on, :team_a_id, :team_b_id) }

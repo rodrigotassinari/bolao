@@ -24,6 +24,18 @@ describe Team do
     end
   end
 
+  # Associações
+
+  it { should have_many(:games_as_a, :class_name => "Game", :foreign_key => "team_a_id") }
+  it { should have_many(:games_as_b, :class_name => "Game", :foreign_key => "team_b_id") }
+  #it { should have_many(:games, :class_name => "Game", :finder_sql => 'SELECT * FROM games WHERE (games.team_a_id = #{id} OR games.team_b_id = #{id})') } # FIXME falha por falta de foreign key
+
+  it { should have_many(:winning_games, :class_name => "Game", :foreign_key => "winner_id") }
+  it { should have_many(:losing_games,  :class_name => "Game", :foreign_key => "loser_id") }
+
+  it { should have_many(:winning_bets, :class_name => "Bet", :foreign_key => "winner_id") }
+  it { should have_many(:losing_bets,  :class_name => "Bet", :foreign_key => "loser_id") }
+
   # Validações
 
   it { should validate_presence_of(:name, :acronym, :group) }

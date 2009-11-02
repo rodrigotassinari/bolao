@@ -29,6 +29,10 @@ describe User do
 
   it { should allow_mass_assignment_of(:login, :email, :name, :password, :password_confirmation) }
 
+  # Associações
+
+  it { should have_one(:bet) }
+
   # Validações
 
   it { should validate_presence_of(:email, :login, :preferences) }

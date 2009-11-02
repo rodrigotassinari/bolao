@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
 
   serialize :preferences, Hash
 
+  has_one :bet
+
   validates_presence_of :email, :login, :preferences
 
   validates_uniqueness_of :email, :login

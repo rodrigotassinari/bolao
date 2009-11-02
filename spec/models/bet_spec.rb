@@ -30,6 +30,15 @@ describe Bet do
     end
   end
 
+  # Associações
+
+  it { should belong_to(:user) }
+
+  it { should belong_to(:game) }
+
+  it { should belong_to(:winning_team, :class_name => "Team", :foreign_key => "winner_id") }
+  it { should belong_to(:losing_team,  :class_name => "Team", :foreign_key => "loser_id") }
+
   # Validações
 
 end
