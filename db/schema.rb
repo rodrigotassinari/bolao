@@ -9,7 +9,35 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091102004841) do
+ActiveRecord::Schema.define(:version => 20091102005829) do
+
+  create_table "games", :force => true do |t|
+    t.string   "stadium"
+    t.string   "city"
+    t.date     "played_on"
+    t.boolean  "group_game",      :default => false
+    t.integer  "team_a_id"
+    t.integer  "team_b_id"
+    t.integer  "goals_a",         :default => 0
+    t.integer  "goals_b",         :default => 0
+    t.boolean  "penalty",         :default => false
+    t.integer  "penalty_goals_a"
+    t.integer  "penalty_goals_b"
+    t.integer  "winner_id"
+    t.integer  "loser_id"
+    t.boolean  "tie",             :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "games", ["group_game"], :name => "index_games_on_group_game"
+  add_index "games", ["loser_id"], :name => "index_games_on_loser_id"
+  add_index "games", ["penalty"], :name => "index_games_on_penalty"
+  add_index "games", ["played_on"], :name => "index_games_on_played_on"
+  add_index "games", ["team_a_id"], :name => "index_games_on_team_a_id"
+  add_index "games", ["team_b_id"], :name => "index_games_on_team_b_id"
+  add_index "games", ["tie"], :name => "index_games_on_tie"
+  add_index "games", ["winner_id"], :name => "index_games_on_winner_id"
 
   create_table "teams", :force => true do |t|
     t.string   "name"
