@@ -3,7 +3,7 @@
 group_win:
   stadium: Maracanã
   city: Rio de Janeiro
-  played_on: 2010-06-28
+  played_at: 2010-06-28 16:00:00
   group_game: true
   team_a_id: 1
   team_b_id: 2
@@ -19,7 +19,7 @@ group_win:
 group_tie:
   stadium: Morumbi
   city: São Paulo
-  played_on: 2010-06-28
+  played_at: 2010-06-28 16:00:00
   group_game: true
   team_a_id: 3
   team_b_id: 4
@@ -35,7 +35,7 @@ group_tie:
 final:
   stadium: Maracanã
   city: Rio de Janeiro
-  played_on: 2010-07-20
+  played_at: 2010-07-20 16:00:00
   group_game: false
   team_a_id: 1
   team_b_id: 3
@@ -51,7 +51,7 @@ final:
 unplayed:
   stadium: Mineirão
   city: Belo Horizonte
-  played_on: <%= 6.months.from_now %>
+  played_at: <%= 6.months.from_now %>
   group_game: true
   team_a_id: 1
   team_b_id: 3

@@ -7,7 +7,7 @@ describe Game do
     @valid_attributes = {
       :stadium => "Engenhão",
       :city => "Rio de Janeiro",
-      :played_on => Date.new(2010, 7, 10),
+      :played_at => 4.months.from_now,
       :group_game => true,
       :team_a_id => 1,
       :team_b_id => 2,
@@ -27,7 +27,7 @@ describe Game do
   # validando as fixtures, pois são bem complexas
   describe "fixtures" do
     Game.all.each do |game|
-      it "should be valid: #{game.played_on}" do
+      it "should be valid: #{game.played_at}" do
         game.should be_valid
       end
     end
@@ -45,18 +45,18 @@ describe Game do
 
   # Validações
 
-  it { should validate_presence_of(:stadium, :city, :played_on, :team_a_id, :team_b_id) }
+  it { should validate_presence_of(:stadium, :city, :played_at, :team_a_id, :team_b_id) }
 
   it { should validate_inclusion_of(:group_game, :penalty, :tie, :in => [true, false]) }
 
-  subject { Game.new(@valid_attributes.merge(:tie => false, :played_on => 2.days.ago.to_date)) }
+  subject { Game.new(@valid_attributes.merge(:tie => false, :played_at => 2.days.ago)) }
   it {
     subject.should_not be_tie
     subject.should be_played
     should validate_presence_of(:winner_id, :loser_id)
   }
 
-  subject { Game.new(@valid_attributes.merge(:penalty => true, :played_on => 2.days.ago.to_date)) }
+  subject { Game.new(@valid_attributes.merge(:penalty => true, :played_at => 2.days.ago)) }
   it {
     subject.should be_penalty
     subject.should be_played
@@ -69,16 +69,16 @@ describe Game do
     before(:each) do
       @game = Game.new(@valid_attributes)
     end
-    it "should return false if the game's date is after today" do
-      @game.played_on = 2.days.from_now.to_date
+    it "should return false if the game's date is after now" do
+      @game.played_at = 2.days.from_now
       @game.should_not be_played
     end
-    it "should return true if the game's date is today" do
-      @game.played_on = Date.today
+    it "should return true if the game's date is now" do
+      @game.played_at = Time.current
       @game.should be_played
     end
-    it "should return true if the game's date before today" do
-      @game.played_on = 2.days.ago.to_date
+    it "should return true if the game's date before now" do
+      @game.played_at = 2.days.ago
       @game.should be_played
     end
   end

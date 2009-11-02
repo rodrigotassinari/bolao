@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091102132326) do
+ActiveRecord::Schema.define(:version => 20091102230752) do
 
   create_table "bets", :force => true do |t|
     t.integer  "user_id"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(:version => 20091102132326) do
   create_table "games", :force => true do |t|
     t.string   "stadium"
     t.string   "city"
-    t.date     "played_on"
+    t.datetime "played_at"
     t.boolean  "group_game",      :default => false
     t.integer  "team_a_id"
     t.integer  "team_b_id"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(:version => 20091102132326) do
   add_index "games", ["group_game"], :name => "index_games_on_group_game"
   add_index "games", ["loser_id"], :name => "index_games_on_loser_id"
   add_index "games", ["penalty"], :name => "index_games_on_penalty"
-  add_index "games", ["played_on"], :name => "index_games_on_played_on"
+  add_index "games", ["played_at"], :name => "index_games_on_played_on"
   add_index "games", ["team_a_id"], :name => "index_games_on_team_a_id"
   add_index "games", ["team_b_id"], :name => "index_games_on_team_b_id"
   add_index "games", ["tie"], :name => "index_games_on_tie"
