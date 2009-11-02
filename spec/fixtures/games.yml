@@ -47,3 +47,19 @@ final:
   winner_id: 1
   loser_id: 3
   tie: false
+
+unplayed:
+  stadium: Mineirão
+  city: Belo Horizonte
+  played_on: 2010-06-20
+  group_game: true
+  team_a_id: 1
+  team_b_id: 3
+  goals_a:
+  goals_b:
+  penalty: false
+  penalty_goals_a:
+  penalty_goals_b:
+  winner_id:
+  loser_id:
+  tie: false
