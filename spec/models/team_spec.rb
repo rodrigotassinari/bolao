@@ -5,9 +5,9 @@ describe Team do
 
   before(:each) do
     @valid_attributes = {
-      :name => "Alemanha",
-      :acronym => "GER",
-      :group => "C"
+      :name => "Zagreb",
+      :acronym => "ZGB",
+      :group => "Y"
     }
   end
 
