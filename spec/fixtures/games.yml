@@ -51,7 +51,7 @@ final:
 unplayed:
   stadium: Mineirão
   city: Belo Horizonte
-  played_on: 2010-06-20
+  played_on: <%= 6.months.from_now %>
   group_game: true
   team_a_id: 1
   team_b_id: 3

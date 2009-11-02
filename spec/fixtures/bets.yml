@@ -1,0 +1,27 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user_id: 1
+  game_id: 1
+  goals_a: 1
+  goals_b: 1
+  penalty: false
+  penalty_goals_a: 1
+  penalty_goals_b: 1
+  winner_id: 1
+  loser_id: 1
+  tie: false
+  points: 1
+
+two:
+  user_id: 1
+  game_id: 1
+  goals_a: 1
+  goals_b: 1
+  penalty: false
+  penalty_goals_a: 1
+  penalty_goals_b: 1
+  winner_id: 1
+  loser_id: 1
+  tie: false
+  points: 1

@@ -35,20 +35,42 @@ describe Game do
 
   # Validações
 
-  it { should validate_presence_of(:stadium, :city, :played_on, :team_a_id, :team_b_id, :goals_a, :goals_b) }
+  it { should validate_presence_of(:stadium, :city, :played_on, :team_a_id, :team_b_id) }
 
   it { should validate_inclusion_of(:group_game, :penalty, :tie, :in => [true, false]) }
 
-  subject { Game.new(@valid_attributes.merge(:tie => false)) }
+  subject { Game.new(@valid_attributes.merge(:tie => false, :played_on => 2.days.ago.to_date)) }
   it {
-    subject.tie?.should be_false
+    subject.should_not be_tie
+    subject.should be_played
     should validate_presence_of(:winner_id, :loser_id)
   }
 
-  subject { Game.new(@valid_attributes.merge(:penalty => true)) }
+  subject { Game.new(@valid_attributes.merge(:penalty => true, :played_on => 2.days.ago.to_date)) }
   it {
-    subject.penalty?.should be_true
+    subject.should be_penalty
+    subject.should be_played
     should validate_presence_of(:penalty_goals_a, :penalty_goals_b)
   }
+
+  # Métodos
+
+  describe ".played?" do
+    before(:each) do
+      @game = Game.new(@valid_attributes)
+    end
+    it "should return false if the game's date is after today" do
+      @game.played_on = 2.days.from_now.to_date
+      @game.should_not be_played
+    end
+    it "should return true if the game's date is today" do
+      @game.played_on = Date.today
+      @game.should be_played
+    end
+    it "should return true if the game's date before today" do
+      @game.played_on = 2.days.ago.to_date
+      @game.should be_played
+    end
+  end
 
 end

@@ -9,7 +9,28 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091102005829) do
+ActiveRecord::Schema.define(:version => 20091102132326) do
+
+  create_table "bets", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "game_id"
+    t.integer  "goals_a",         :default => 0
+    t.integer  "goals_b",         :default => 0
+    t.boolean  "penalty",         :default => false
+    t.integer  "penalty_goals_a"
+    t.integer  "penalty_goals_b"
+    t.integer  "winner_id"
+    t.integer  "loser_id"
+    t.boolean  "tie",             :default => false
+    t.integer  "points",          :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "bets", ["game_id"], :name => "index_bets_on_game_id"
+  add_index "bets", ["loser_id"], :name => "index_bets_on_loser_id"
+  add_index "bets", ["user_id"], :name => "index_bets_on_user_id"
+  add_index "bets", ["winner_id"], :name => "index_bets_on_winner_id"
 
   create_table "games", :force => true do |t|
     t.string   "stadium"
