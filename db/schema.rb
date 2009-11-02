@@ -9,7 +9,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091102002832) do
+ActiveRecord::Schema.define(:version => 20091102004841) do
+
+  create_table "teams", :force => true do |t|
+    t.string   "name"
+    t.string   "acronym",    :limit => 3
+    t.string   "group",      :limit => 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "teams", ["acronym"], :name => "index_teams_on_acronym"
+  add_index "teams", ["group"], :name => "index_teams_on_group"
 
   create_table "users", :force => true do |t|
     t.string   "name"

@@ -1,0 +1,12 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+brasil:
+  name: Brasil
+  acronym: BRA
+  group: A
+
+franca:
+  name: França
+  acronym: FRA
+  group: B
+
