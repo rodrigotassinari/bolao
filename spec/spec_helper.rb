@@ -8,6 +8,13 @@ require 'spec/rails'
 # Uncomment the next line to use webrat's matchers
 #require 'webrat/integrations/rspec-rails'
 
+require 'authlogic/test_case'
+
+# Adicionando o Remarkable
+require 'remarkable_rails'
+# tradução dos textos dos exemplos, via 'ruby spec/models/super_user_spec.rb -cfs' por exemplo
+#Remarkable.locale = :pt
+
 # Requires supporting files with custom matchers and macros, etc,
 # in ./support/ and its subdirectories.
 Dir[File.expand_path(File.join(File.dirname(__FILE__),'support','**','*.rb'))].each {|f| require f}
@@ -51,4 +58,11 @@ Spec::Runner.configure do |config|
   # == Notes
   #
   # For more information take a look at Spec::Runner::Configuration and Spec::Runner
+
+  # Includes a description of the test being run in 'log/test.log'.
+  # From: http://www.benmabey.com/2008/07/04/global-setup-in-rspec-or-how-to-add-logging-for-specs/
+  config.before(:each) do
+    full_example_description = "#{self.class.description} #{@method_name}"
+    Rails::logger.info("\n\n#{full_example_description}\n#{'-' * (full_example_description.length)}")
+  end
 end
