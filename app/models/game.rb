@@ -37,8 +37,8 @@ class Game < ActiveRecord::Base
 
     # validate
     def teams_must_be_on_the_same_group
-      if team_a_id && team_b_id
-        errors.add_to_base("Times devem ser do mesmo grupo") if group_game? && (team_a.group != team_b.group)
+      if team_a_id && team_b_id && group_game?
+        errors.add_to_base("Times devem ser do mesmo grupo") if team_a.group != team_b.group
       end
     end
 
