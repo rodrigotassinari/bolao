@@ -13,15 +13,14 @@ describe Game do
       :team_b_id => teams(:aus).id,
       :goals_a => 1,
       :goals_b => 2,
-      :penalty => false,
-      :winner_id => 2,
-      :loser_id => 1,
-      :tie => false
+      :penalty => false
     }
   end
 
   it "should create a new instance given valid attributes" do
-    Game.create!(@valid_attributes)
+    game = Game.new(@valid_attributes)
+    game.should be_valid
+    #Game.create!(@valid_attributes)
   end
 
   # validando as fixtures, pois são bem complexas
@@ -49,12 +48,12 @@ describe Game do
 
   it { should validate_inclusion_of(:group_game, :penalty, :tie, :in => [true, false]) }
 
-  subject { Game.new(@valid_attributes.merge(:tie => false, :played_at => 2.days.ago)) }
-  it {
-    subject.should_not be_tie
-    subject.should be_played
-    should validate_presence_of(:winner_id, :loser_id)
-  }
+#  subject { Game.new(@valid_attributes.merge(:tie => false, :played_at => 2.days.ago)) }
+#  it {
+#    subject.should_not be_tie
+#    subject.should be_played
+#    should validate_presence_of(:winner_id, :loser_id)
+#  }
 
   subject { Game.new(@valid_attributes.merge(:penalty => true, :played_at => 2.days.ago)) }
   it {
@@ -84,6 +83,95 @@ describe Game do
     game = Game.new(@valid_attributes.merge(:team_a_id => t1.id, :team_b_id => t2.id, :group_game => false))
     game.should be_valid
     game.should have(:no).error_on(:base)
+  end
+
+  # Defaults
+
+  describe "should figure out the winner and loser automagically" do
+    context "in group games" do
+      before(:each) do
+        @game = Game.new(@valid_attributes.merge(:group_game => true))
+      end
+      it "when team A wins" do
+        @game.goals_a = 2
+        @game.goals_b = 1
+        @game.penalty = false
+        @game.save!
+        @game.reload
+        @game.should_not be_tie
+        @game.winner_id.should == @game.team_a_id
+        @game.loser_id.should == @game.team_b_id
+      end
+      it "when team B wins" do
+        @game.goals_a = 1
+        @game.goals_b = 2
+        @game.penalty = false
+        @game.save!
+        @game.reload
+        @game.should_not be_tie
+        @game.winner_id.should == @game.team_b_id
+        @game.loser_id.should == @game.team_a_id
+      end
+      it "when it's a tie" do
+        @game.goals_a = 1
+        @game.goals_b = 1
+        @game.penalty = false
+        @game.save!
+        @game.reload
+        @game.should be_tie
+        @game.winner_id.should be_nil
+        @game.loser_id.should be_nil
+      end
+    end
+    context "in final games" do
+      before(:each) do
+        @game = Game.new(@valid_attributes.merge(:group_game => false))
+      end
+      it "when team A wins a final game" do
+        @game.goals_a = 2
+        @game.goals_b = 1
+        @game.penalty = false
+        @game.save!
+        @game.reload
+        @game.should_not be_tie
+        @game.winner_id.should == @game.team_a_id
+        @game.loser_id.should == @game.team_b_id
+      end
+      it "when team B wins a final game" do
+        @game.goals_a = 1
+        @game.goals_b = 2
+        @game.penalty = false
+        @game.save!
+        @game.reload
+        @game.should_not be_tie
+        @game.winner_id.should == @game.team_b_id
+        @game.loser_id.should == @game.team_a_id
+      end
+      it "when team A wins a final game on penaltys" do
+        @game.goals_a = 1
+        @game.goals_b = 1
+        @game.penalty = true
+        @game.penalty_goals_a = 4
+        @game.penalty_goals_b = 3
+        @game.save!
+        @game.reload
+        @game.should_not be_tie
+        @game.winner_id.should == @game.team_a_id
+        @game.loser_id.should == @game.team_b_id
+      end
+      it "when team B wins a final game on penaltys" do
+        @game.goals_a = 1
+        @game.goals_b = 1
+        @game.penalty = true
+        @game.penalty_goals_a = 3
+        @game.penalty_goals_b = 4
+        @game.save!
+        @game.reload
+        @game.should_not be_tie
+        @game.winner_id.should == @game.team_b_id
+        @game.loser_id.should == @game.team_a_id
+      end
+    end
   end
 
   # Métodos
