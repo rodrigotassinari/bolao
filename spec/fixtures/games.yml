@@ -5,8 +5,8 @@ group_win:
   city: Rio de Janeiro
   played_at: 2010-06-28 16:00:00
   group_game: true
-  team_a_id: 1
-  team_b_id: 2
+  team_a: bra
+  team_b: aus
   goals_a: 2
   goals_b: 1
   penalty: false
@@ -21,8 +21,8 @@ group_tie:
   city: São Paulo
   played_at: 2010-06-28 16:00:00
   group_game: true
-  team_a_id: 3
-  team_b_id: 4
+  team_a: mex
+  team_b: por
   goals_a: 0
   goals_b: 0
   penalty: false
@@ -37,8 +37,8 @@ final:
   city: Rio de Janeiro
   played_at: 2010-07-20 16:00:00
   group_game: false
-  team_a_id: 1
-  team_b_id: 3
+  team_a: bra
+  team_b: fra
   goals_a: 1
   goals_b: 1
   penalty: true
@@ -53,8 +53,8 @@ unplayed:
   city: Belo Horizonte
   played_at: <%= 6.months.from_now %>
   group_game: true
-  team_a_id: 1
-  team_b_id: 3
+  team_a: ned
+  team_b: civ
   goals_a:
   goals_b:
   penalty: false

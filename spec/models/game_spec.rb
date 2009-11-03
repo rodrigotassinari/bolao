@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Game do
-  fixtures :games
+  fixtures :games, :teams
   
   before(:each) do
     @valid_attributes = {
@@ -9,8 +9,8 @@ describe Game do
       :city => "Rio de Janeiro",
       :played_at => 4.months.from_now,
       :group_game => true,
-      :team_a_id => 1,
-      :team_b_id => 2,
+      :team_a_id => teams(:bra).id,
+      :team_b_id => teams(:aus).id,
       :goals_a => 1,
       :goals_b => 2,
       :penalty => false,
@@ -62,6 +62,29 @@ describe Game do
     subject.should be_played
     should validate_presence_of(:penalty_goals_a, :penalty_goals_b)
   }
+
+  it "should validate that teams are not the same" do
+    game = Game.new(@valid_attributes.merge(:team_a_id => teams(:bra).id, :team_b_id => teams(:bra).id))
+    game.should_not be_valid
+    game.should have(1).error_on(:base)
+  end
+
+  it "should validate that teams are from the same group if it is a group game" do
+    t1 = teams(:bra)
+    t2 = teams(:fra)
+    t1.group.should_not == t2.group
+    game = Game.new(@valid_attributes.merge(:team_a_id => t1.id, :team_b_id => t2.id, :group_game => true))
+    game.should_not be_valid
+    game.should have(1).error_on(:base)
+  end
+  it "should allow teams from different groups if it is not a group game" do
+    t1 = teams(:bra)
+    t2 = teams(:fra)
+    t1.group.should_not == t2.group
+    game = Game.new(@valid_attributes.merge(:team_a_id => t1.id, :team_b_id => t2.id, :group_game => false))
+    game.should be_valid
+    game.should have(:no).error_on(:base)
+  end
 
   # Métodos
 

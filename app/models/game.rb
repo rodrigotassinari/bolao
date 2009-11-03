@@ -8,7 +8,7 @@ class Game < ActiveRecord::Base
   belongs_to :winner, :class_name => "Team"
   belongs_to :loser,  :class_name => "Team"
 
-  #attr_accessible  :stadium, :city, :played_at, :team_a_id, :team_b_id, :goals_a, :goals_b, :group_game, :penalty, :tie
+  #attr_accessible :stadium, :city, :played_at, :team_a_id, :team_b_id, :goals_a, :goals_b, :group_game, :penalty, :tie
 
   validates_presence_of :stadium, :city, :played_at, :team_a_id, :team_b_id
 
@@ -23,6 +23,23 @@ class Game < ActiveRecord::Base
     Time.current >= self.played_at
   end
 
-  
+  validate :teams_must_be_different
+  validate :teams_must_be_on_the_same_group, :if => Proc.new { |game| game.group_game? }
+
+  protected
+
+    # validate
+    def teams_must_be_different
+      if team_a_id == team_b_id
+        errors.add_to_base("Times devem ser diferentes entre si")
+      end
+    end
+
+    # validate
+    def teams_must_be_on_the_same_group
+      if team_a_id && team_b_id
+        errors.add_to_base("Times devem ser do mesmo grupo") if group_game? && (team_a.group != team_b.group)
+      end
+    end
 
 end
