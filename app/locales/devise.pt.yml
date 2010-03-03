@@ -1,0 +1,41 @@
+pt:
+  devise:
+    sessions:
+      link: 'Login'
+      signed_in: 'Logado com sucesso.'
+      signed_out: 'Deslogado com sucesso.'
+      unauthenticated: 'Você precisa fazer login ou se cadastrar antes de continuar.'
+      unconfirmed: 'Você deve confirmar sua conta antes de continuar.'
+      locked: 'Sua conta está travada.'
+      invalid: 'Email ou senha inválidos.'
+      invalid_token: 'Token de autenticação inválido.'
+      timeout: 'Sua sessão expirou, por favor faça login novamente para continuar.'
+      inactive: 'Sua conta ainda não foi ativada.'
+      facebook_invalid: "Não foi possível fazer login. Conta inválida."
+      facebook_timeout: "Sua sessão no Facebook expirou, por favor faça login novamente para continuar."
+      facebook_authenticity_token: "Alguma coisa deu errado. Por segurança, faça login novamente por favor."
+      facebook_actions:
+        sign_in: "Login"
+        sign_out: "Sair"
+    passwords:
+      link: 'Esqueceu sua senha?'
+      send_instructions: 'Em alguns minutos, você receberá um email com instruções sobre como recuperar sua senha.'
+      updated: 'Sua senha foi alterada com sucesso. Você agora está logado.'
+    confirmations:
+      link: "Não recebeu as instruções de confirmação?"
+      send_instructions: 'Em alguns minutos, você receberá um email com instruções sobre como confirmar sua conta.'
+      confirmed: 'Sua conta foi confirmada com sucesso. Você agora está logado.'
+    registrations:
+      link: 'Cadastrar'
+      signed_up: 'Você se cadastrou com sucesso.'
+      updated: 'Você atualizou sua conta com sucesso.'
+      destroyed: 'Adeus! Sua conta foi cancelada com sucesso. Esperamos lhe ver novamente em breve.'
+    unlocks:
+      link: "Não recebeu as instruções de destravamento?"
+      send_instructions: 'Em alguns minutos, você receberá um email com instruções sobre como destravar sua conta.'
+      unlocked: 'Sua conta foi destravada com sucesso. Você agora está logado.'
+    mailer:
+      confirmation_instructions: 'Instruções de Confirmação de Conta'
+      reset_password_instructions: 'Instruções de Recuperação de Senha'
+      unlock_instructions: 'Instruções de Destravamento de Conta'
+

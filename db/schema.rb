@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100303184213) do
+ActiveRecord::Schema.define(:version => 20100303192659) do
 
   create_table "bets", :force => true do |t|
     t.integer  "user_id"
@@ -72,13 +72,23 @@ ActiveRecord::Schema.define(:version => 20100303184213) do
   add_index "teams", ["group"], :name => "index_teams_on_group"
 
   create_table "users", :force => true do |t|
+    t.integer  "facebook_uid",         :limit => 8
+    t.string   "facebook_session_key", :limit => 149
+    t.integer  "sign_in_count"
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
     t.string   "name"
-    t.boolean  "admin",        :default => false
+    t.string   "email"
+    t.boolean  "admin",                               :default => false
     t.text     "preferences"
+    t.datetime "paid_at"
+    t.integer  "points_cache",                        :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.datetime "paid_at"
-    t.integer  "points_cache", :default => 0
   end
+
+  add_index "users", ["facebook_uid"], :name => "index_users_on_facebook_uid", :unique => true
 
 end

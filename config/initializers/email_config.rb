@@ -5,6 +5,7 @@ if Rails.env.production? || Rails.env.staging?
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.raise_delivery_errors = true
   ActionMailer::Base.default_charset = 'utf-8'
+  ActionMailer::Base.default_url_options = { :host => Settings.email.host }
 
   ActionMailer::Base.smtp_settings = {
     :address => Settings.email.server,

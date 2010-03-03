@@ -8,6 +8,7 @@ defaults: &defaults
     port: 25
     login: "login"
     password: "password"
+    host: "localhost:3000"
 
 development:
   <<: *defaults

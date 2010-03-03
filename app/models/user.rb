@@ -1,5 +1,12 @@
 class User < ActiveRecord::Base
 
+  # Include default devise modules. Others available are:
+  # :registerable, :authenticatable, :rememberable, :validatable, :http_authenticatable, :token_authenticatable, :lockable, :timeoutable, :activatable, :confirmable, :recoverable
+  devise :facebook_connectable, :trackable
+
+  # Setup accessible (or protected) attributes for your model
+  attr_accessible :email, :password, :password_confirmation
+
   DEFAULT_PREFERENCES = {
     :receive_newsletter => true
   }
