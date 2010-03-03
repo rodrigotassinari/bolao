@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   devise :facebook_connectable, :trackable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation
+  #attr_accessible :email, :name
 
   DEFAULT_PREFERENCES = {
     :receive_newsletter => true

@@ -1,6 +1,9 @@
 # app/config/application.yml
 defaults: &defaults
-  google_analytics_id:
+  site:
+    name: "Bolão Pittlândia"
+    copyright: "Bla bla bla"
+    google_analytics_id:
   email:
     from: "noreply@example.com"
     server: "smtp.example.com"
@@ -20,4 +23,4 @@ test:
 
 production:
   <<: *defaults
-  google_analytics_id: "UA-1234567-8"
+

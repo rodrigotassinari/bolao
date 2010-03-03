@@ -1,4 +1,7 @@
-- if logged_in?
-  = link_to current_user.login, user_path(current_user)
+- if user_signed_in?
+  Logado
   |
-  = link_to 'logout', logout_path
+  = facebook_sign_out_link :user
+- else
+  = facebook_sign_in_link :user    
+
