@@ -21,8 +21,6 @@ Rails::Initializer.run do |config|
   # config.gem "aws-s3", :lib => "aws/s3"
   config.gem 'settingslogic', :version => '2.0.6'
   config.gem 'haml', :version => '2.2.20'
-  config.gem 'authlogic', :version => '2.1.3'
-  config.gem 'recaptcha', :version => '0.2.3', :lib => 'recaptcha/rails'
   config.gem 'whenever', :version => '0.4.1', :lib => false
   
   # Only load the plugins named here, in the order given (default is alphabetical).

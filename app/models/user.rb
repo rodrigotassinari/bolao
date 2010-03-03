@@ -4,8 +4,6 @@ class User < ActiveRecord::Base
     :receive_newsletter => true
   }
 
-  acts_as_authentic
-
   serialize :preferences, Hash
 
   has_one :bet
