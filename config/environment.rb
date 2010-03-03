@@ -19,11 +19,11 @@ Rails::Initializer.run do |config|
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
-  config.gem 'settingslogic', :version => '2.0.3'
-  config.gem 'haml', :version => '2.2.9'
-  config.gem 'authlogic', :version => '2.1.2'
-  config.gem 'ambethia-recaptcha', :version => '0.2.2', :lib => 'recaptcha/rails', :source => 'http://gems.github.com'
-  config.gem 'whenever', :version => '0.4.0', :lib => false, :source => 'http://gemcutter.org/'
+  config.gem 'settingslogic', :version => '2.0.6'
+  config.gem 'haml', :version => '2.2.20'
+  config.gem 'authlogic', :version => '2.1.3'
+  config.gem 'recaptcha', :version => '0.2.3', :lib => 'recaptcha/rails'
+  config.gem 'whenever', :version => '0.4.1', :lib => false
   
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
