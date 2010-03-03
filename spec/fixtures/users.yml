@@ -2,13 +2,6 @@
 
 paid_user:
   name: "Fulano de Tal"
-  login: "fulano"
-  email: "fulano@exemplo.com.br"
-  password_salt: <%= salt_paid_user = Authlogic::Random.hex_token %>
-  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("123456" + salt_paid_user) %>
-  persistence_token: <%= Authlogic::Random.hex_token %>
-  perishable_token: <%= Authlogic::Random.friendly_token %>
-  single_access_token: <%= Authlogic::Random.friendly_token %>
   admin: false
   preferences: {:receive_newsletter => true}
   paid_at: <%= 1.week.ago %>
@@ -16,13 +9,6 @@ paid_user:
 
 unpaid_user:
   name:
-  login: "beltrano"
-  email: "beltrano@exemplo.com.br"
-  password_salt: <%= salt_unpaid_user = Authlogic::Random.hex_token %>
-  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("123456" + salt_unpaid_user) %>
-  persistence_token: <%= Authlogic::Random.hex_token %>
-  perishable_token: <%= Authlogic::Random.friendly_token %>
-  single_access_token: <%= Authlogic::Random.friendly_token %>
   admin: false
   preferences: {:receive_newsletter => true}
   paid_at:
@@ -30,14 +16,8 @@ unpaid_user:
 
 admin:
   name: "Administrador da Silva"
-  login: "mestre_dos_magos"
-  email: "mestre_dos_magos@exemplo.com.br"
-  password_salt: <%= salt_admin = Authlogic::Random.hex_token %>
-  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("123456" + salt_admin) %>
-  persistence_token: <%= Authlogic::Random.hex_token %>
-  perishable_token: <%= Authlogic::Random.friendly_token %>
-  single_access_token: <%= Authlogic::Random.friendly_token %>
   admin: true
   preferences: {:receive_newsletter => false}
   paid_at: <%= 2.weeks.ago %>
   points_cache: 0
+

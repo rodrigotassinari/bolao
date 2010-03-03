@@ -5,10 +5,7 @@ describe User do
 
   before(:each) do
     @valid_attributes = {
-      :login => 'ciclano',
-      :email => 'ciclano@exemplo.com.br',
-      :password => '123456',
-      :password_confirmation => '123456'
+      :name => 'ciclano da silva'
     }
   end
 
@@ -27,7 +24,7 @@ describe User do
 
   # Opções
 
-  it { should allow_mass_assignment_of(:login, :email, :name, :password, :password_confirmation) }
+  it { should allow_mass_assignment_of(:name) }
 
   # Associações
 
@@ -35,9 +32,9 @@ describe User do
 
   # Validações
 
-  it { should validate_presence_of(:email, :login, :preferences) }
+  it { should validate_presence_of(:name) }
 
-  it { should validate_uniqueness_of(:email, :login) }
+  it { should validate_uniqueness_of(:name) }
 
   # Defaults
 
@@ -46,7 +43,7 @@ describe User do
     u.preferences.should == User::DEFAULT_PREFERENCES
   end
   it "should not initialize default values if not new record" do
-    u = User.find_by_login('mestre_dos_magos')
+    u = User.find_by_name('Administrador da Silva')
     u.preferences.should_not == User::DEFAULT_PREFERENCES
   end
 

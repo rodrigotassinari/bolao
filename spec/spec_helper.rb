@@ -8,8 +8,6 @@ require 'spec/rails'
 # Uncomment the next line to use webrat's matchers
 #require 'webrat/integrations/rspec-rails'
 
-require 'authlogic/test_case'
-
 # Adicionando o Remarkable
 require 'remarkable_rails'
 # tradução dos textos dos exemplos, via 'ruby spec/models/super_user_spec.rb -cfs' por exemplo

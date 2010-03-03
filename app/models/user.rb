@@ -8,11 +8,11 @@ class User < ActiveRecord::Base
 
   has_one :bet
 
-  validates_presence_of :email, :login, :preferences
+  validates_presence_of :name
+  
+  validates_uniqueness_of :name
 
-  validates_uniqueness_of :email, :login
-
-  attr_accessible :login, :email, :name, :password, :password_confirmation
+  attr_accessible :name
 
   # default attribute values
   def after_initialize
@@ -23,3 +23,4 @@ class User < ActiveRecord::Base
   end
 
 end
+
