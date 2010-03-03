@@ -19,6 +19,10 @@ Rails::Initializer.run do |config|
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
+  config.gem 'warden', :version => '0.9.5'
+  config.gem 'devise', :version => '1.0.3'
+  config.gem 'facebooker', :version => '1.0.64'
+  config.gem 'devise_facebook_connectable', :version => '0.1.9'
   config.gem 'settingslogic', :version => '2.0.6'
   config.gem 'haml', :version => '2.2.20'
   config.gem 'whenever', :version => '0.4.1', :lib => false
