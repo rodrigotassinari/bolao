@@ -1,14 +1,31 @@
 .game_bet{:id => "game_#{bet.game.id}_bet"}
   .bet
-    - remote_form_for(bet) do |f|
+    - remote_form_for(bet, :html => {:id => "game_#{bet.game.id}_bet_form"}) do |f|
       = f.hidden_field :game_id
       = f.hidden_field :user_id
-      %span.team_a #{bet.game.team_a.name} #{team_flag(bet.game.team_a)}
-      = f.text_field :goals_a, :size => 1
-      x
-      = f.text_field :goals_b, :size => 1
-      %span.team_b #{team_flag(bet.game.team_b)} #{bet.game.team_b.name}
-      = f.submit
+      
+      %p.goals
+        %span.team_a #{bet.game.team_a.name} #{team_flag(bet.game.team_a)}
+        = f.text_field :goals_a, :size => 1, :onchange => "submit_bet(this);", :disabled => (bet.locked? ? true : false)
+        x
+        = f.text_field :goals_b, :size => 1, :onchange => "submit_bet(this);", :disabled => (bet.locked? ? true : false)
+        %span.team_b #{team_flag(bet.game.team_b)} #{bet.game.team_b.name}
+      
+      - if !bet.game.group_game? && bet.penalty?
+        %p.penalty_goals
+          Penaltys:
+          %span.team_a #{bet.game.team_a.name} #{team_flag(bet.game.team_a)}
+          = f.text_field :penalty_goals_a, :size => 1, :onchange => "submit_penalty_bet(this);", :disabled => (bet.locked? ? true : false)
+          x
+          = f.text_field :penalty_goals_b, :size => 1, :onchange => "submit_penalty_bet(this);", :disabled => (bet.locked? ? true : false)
+          %span.team_b #{team_flag(bet.game.team_b)} #{bet.game.team_b.name}
+      
+      = image_tag 'spinner.gif', :alt => 'loading', :style => 'display: none;', :class => "spinner"
+  
   .info
-    Jogo #{link_to "##{bet.game.id}", game_path(bet.game)}, #{bet.game.group_game? ? "Grupo #{bet.game.team_a.group}" : "Finais"}, #{l bet.game.played_at, :format => :game}, #{bet.game.stadium}, #{bet.game.city}
+    %p Jogo #{link_to "##{bet.game.id}", game_path(bet.game)}, #{bet.game.group_game? ? "Grupo #{bet.game.team_a.group}" : "Finais"}, #{l bet.game.played_at, :format => :game}, #{bet.game.stadium}, #{bet.game.city}
+
+  - if bet.game.played? && bet.game.scored?
+    .result
+      %p= pluralize bet.points, 'ponto', 'pontos'
 

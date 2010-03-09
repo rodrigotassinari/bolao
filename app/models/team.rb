@@ -40,7 +40,7 @@ class Team < ActiveRecord::Base
   end
   
   def self.for_select
-    Team.order('name ASC').all.map { |t| ["#{t.name} (#{t.group})", t.id] }
+    Team.all(:order => 'name ASC').map { |t| ["#{t.name} (#{t.group})", t.id] }
   end
 
 end

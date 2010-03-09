@@ -4,6 +4,7 @@ class BetsController < ApplicationController
   
   # GET /bets
   # GET /bets.xml
+  # TODO
   def index
     @bets = Bet.all
 
@@ -15,6 +16,7 @@ class BetsController < ApplicationController
 
   # GET /bets/1
   # GET /bets/1.xml
+  # TODO
   def show
     @bet = Bet.find(params[:id])
 
@@ -31,13 +33,9 @@ class BetsController < ApplicationController
 
     respond_to do |format|
       if @bet.save
-        #format.html { redirect_to(@bet, :notice => 'Bet was successfully created.') }
-        #format.xml  { render :xml => @bet, :status => :created, :location => @bet }
-        format.js # create.js.rjs
+        format.js { render :action => 'update_bet' } # update_bet.js.rjs
       else
-        #format.html { render :action => "new" }
-        #format.xml  { render :xml => @bet.errors, :status => :unprocessable_entity }
-        format.js
+        format.js { render :action => 'update_bet' }
       end
     end
   end
@@ -49,27 +47,12 @@ class BetsController < ApplicationController
 
     respond_to do |format|
       if @bet.update_attributes(params[:bet])
-        #format.html { redirect_to(@bet, :notice => 'Bet was successfully updated.') }
-        #format.xml  { head :ok }
-        format.js
+        format.js { render :action => 'update_bet' }
       else
-        #format.html { render :action => "edit" }
-        #format.xml  { render :xml => @bet.errors, :status => :unprocessable_entity }
-        format.js
+        format.js { render :action => 'update_bet' }
       end
     end
   end
 
-  # DELETE /bets/1
-  # DELETE /bets/1.xml
-  def destroy
-    @bet = Bet.find(params[:id])
-    @bet.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(bets_url) }
-      format.xml  { head :ok }
-    end
-  end
 end
 

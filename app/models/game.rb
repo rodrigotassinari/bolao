@@ -25,6 +25,11 @@ class Game < ActiveRecord::Base
   
   validates_presence_of :played_at
   
+  validates_numericality_of :goals_a, :goals_b, :penalty_goals_a, :penalty_goals_b, 
+    :allow_blank => true,
+    :only_integer => true,
+    :greater_than_or_equal_to => 0
+  
   #validates_presence_of :team_a_id
   
   #validates_presence_of :team_b_id
@@ -44,6 +49,8 @@ class Game < ActiveRecord::Base
   validate :teams_must_be_different
 
   validate :teams_must_be_on_the_same_group, :if => Proc.new { |game| game.group_game? }
+  
+  validate :penalty_must_have_winner, :if => Proc.new { |game| game.played? && game.penalty? }
 
   # Callbacks
 
@@ -55,6 +62,10 @@ class Game < ActiveRecord::Base
   
   # Methods
   
+  def bettable?
+    !played? && Time.current < Game.minimum(:played_at, :conditions => {:stage => self.stage})
+  end
+  
   def group_game?
     stage == 'Grupos'
   end
@@ -62,6 +73,10 @@ class Game < ActiveRecord::Base
   def played?
     return false if self.played_at.nil?
     Time.current >= self.played_at
+  end
+  
+  def scored?
+    goals_a && goals_b
   end
   
   def self.stages
@@ -114,12 +129,21 @@ class Game < ActiveRecord::Base
         errors.add_to_base("Times devem ser do mesmo grupo") if team_a.group != team_b.group
       end
     end
+    
+    # validate
+    def penalty_must_have_winner
+      if penalty_goals_a && penalty_goals_b
+        errors.add_to_base("Deve haver um vencedor na disputa de pênaltis") if penalty_goals_a == penalty_goals_b
+      end
+    end
 
     # before_validation
     # TODO: optimize
+    # TOSPEC
     def figure_out_winner_and_loser
       if self.goals_a && self.goals_b
         if self.group_game?
+          self.penalty = false
           if self.goals_a > self.goals_b
             self.winner_id = self.team_a_id
             self.loser_id  = self.team_b_id
@@ -138,13 +162,20 @@ class Game < ActiveRecord::Base
             self.winner_id = self.team_a_id
             self.loser_id  = self.team_b_id
             self.tie = false
+            self.penalty = false
+            self.penalty_goals_a = nil
+            self.penalty_goals_b = nil
           elsif self.goals_a < self.goals_b
             self.winner_id = self.team_b_id
             self.loser_id  = self.team_a_id
             self.tie = false
+            self.penalty = false
+            self.penalty_goals_a = nil
+            self.penalty_goals_b = nil
           else
             self.tie = false
-            if self.penalty? && self.penalty_goals_a && self.penalty_goals_b
+            self.penalty = true
+            if self.penalty_goals_a && self.penalty_goals_b
               if self.penalty_goals_a > self.penalty_goals_b
                 self.winner_id = self.team_a_id
                 self.loser_id  = self.team_b_id
