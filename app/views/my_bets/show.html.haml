@@ -1,5 +1,9 @@
 %h2 Minha Aposta
 
+%p Horários dos jogos de acordo com a hora de Brasília.
+
+%p Ordenação: #{link_to 'ascendente', my_bet_path} ou #{link_to 'descendente', my_bet_path(:order => 'DESC')}
+
 - @games.each do |game|
   - bet = Bet.find_or_initialize_for(@user, game)
   = render :partial => 'game_bet', :locals => {:bet => bet}

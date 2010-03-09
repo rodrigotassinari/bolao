@@ -5,7 +5,8 @@ class MyBetsController < ApplicationController
   # GET /my_bet
   def show
     @user = current_user
-    @games = Game.all(:order => 'played_at ASC')
+    suborder = params[:order] || 'ASC'
+    @games = Game.all(:order => "played_at #{suborder}")
 
     respond_to do |format|
       format.html # show.html.erb

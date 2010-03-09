@@ -30,7 +30,7 @@ class BetsController < ApplicationController
   # POST /bets.xml
   def create
     @bet = Bet.new(params[:bet])
-
+    
     respond_to do |format|
       if @bet.save
         format.js { render :action => 'update_bet' } # update_bet.js.rjs
@@ -44,7 +44,7 @@ class BetsController < ApplicationController
   # PUT /bets/1.xml
   def update
     @bet = Bet.find(params[:id])
-
+    
     respond_to do |format|
       if @bet.update_attributes(params[:bet])
         format.js { render :action => 'update_bet' }
