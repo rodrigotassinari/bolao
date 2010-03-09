@@ -1,0 +1,18 @@
+admin:
+  name: Administrador
+  email: admin@example.com
+  admin: true
+  paid_at: <%= 2.weeks.ago %>
+  
+user:
+  name: Usuário
+  email: user@example.com
+  admin: false
+  paid_at: <%= 1.week.ago %>
+  
+unpaid_user:
+  name: Usuário que ainda não pagou
+  email: unpaid_user@example.com
+  admin: false
+  paid_at:
+

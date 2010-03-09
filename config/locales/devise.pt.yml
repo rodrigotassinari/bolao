@@ -1,10 +1,4 @@
 pt:
-  errors:
-    messages:
-      not_found: "não encontrado"
-      already_confirmed: "já confirmado"
-      not_locked: "não foi trancado"
-
   devise:
     sessions:
       link: 'Login'

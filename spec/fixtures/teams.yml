@@ -1,0 +1,162 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+rsa:
+  name: África do Sul
+  acronym: RSA
+  group: A
+
+mex:
+  name: México
+  acronym: MEX
+  group: A
+
+uru:
+  name: Uruguai
+  acronym: URU
+  group: A
+
+fra:
+  name: França
+  acronym: FRA
+  group: A
+
+arg:
+  name: Argentina
+  acronym: ARG
+  group: B
+
+nga:
+  name: Nigéria
+  acronym: NGA
+  group: B
+
+kor:
+  name: Coréia do Sul
+  acronym: KOR
+  group: B
+
+gre:
+  name: Grécia
+  acronym: GRE
+  group: B
+
+eng:
+  name: Inglaterra
+  acronym: ENG
+  group: C
+
+usa:
+  name: Estados Unidos
+  acronym: USA
+  group: C
+
+alg:
+  name: Algéria
+  acronym: ALG
+  group: C
+
+svn:
+  name: Eslovência
+  acronym: SVN
+  group: C
+
+ger:
+  name: Alemanha
+  acronym: GER
+  group: D
+
+aus:
+  name: Austrália
+  acronym: AUS
+  group: D
+
+srb:
+  name: Sérvia
+  acronym: SRB
+  group: D
+
+gha:
+  name: Gana
+  acronym: GHA
+  group: D
+
+ned:
+  name: Holanda
+  acronym: NED
+  group: E
+
+den:
+  name: Dinamarca
+  acronym: DEN
+  group: E
+
+jpn:
+  name: Japão
+  acronym: JPN
+  group: E
+
+cmr:
+  name: Camarões
+  acronym: CMR
+  group: E
+
+ita:
+  name: Itália
+  acronym: ITA
+  group: F
+
+par:
+  name: Paraguai
+  acronym: PAR
+  group: F
+
+nzl:
+  name: Nova Zelândia
+  acronym: NZL
+  group: F
+
+svk:
+  name: Eslováquia
+  acronym: SVK
+  group: F
+
+bra:
+  name: Brasil
+  acronym: BRA
+  group: G
+
+prk:
+  name: Coréia do Norte
+  acronym: PRK
+  group: G
+
+civ:
+  name: Costa do Marfim
+  acronym: CIV
+  group: G
+
+por:
+  name: Portugal
+  acronym: POR
+  group: G
+
+esp:
+  name: Espanha
+  acronym: ESP
+  group: H
+
+sui:
+  name: Suíça
+  acronym: SUI
+  group: H
+
+hon:
+  name: Honduras
+  acronym: HON
+  group: H
+
+chi:
+  name: Chile
+  acronym: CHI
+  group: H
+
