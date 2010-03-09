@@ -1,3 +1,4 @@
+.bundle
 config/application.yml
 config/database.yml
 coverage
@@ -12,9 +13,5 @@ nbproject
 .project
 public/stylesheets/application.css
 public/uploads/**/*
-tmp/cache/*
-tmp/pids/*
-tmp/sass-cache/*
-tmp/sessions/*
-tmp/sockets/*
+tmp/**/*
 
