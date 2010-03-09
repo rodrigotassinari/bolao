@@ -1,7 +1,6 @@
 .game_bet{:id => "game_#{bet.game.id}_bet"}
   .bet
-    - form_for(bet, :remote => true) do |f|
-      = f.error_messages
+    - remote_form_for(bet) do |f|
       = f.hidden_field :game_id
       = f.hidden_field :user_id
       %span.team_a #{bet.game.team_a.name} #{team_flag(bet.game.team_a)}

@@ -4,6 +4,7 @@
     = stylesheet_link_tag 'scaffold'
     = stylesheet_link_tag 'application'
     = javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js'
+    = javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js'
     = javascript_include_tag 'jrails'
     = javascript_include_tag 'application'
     %title #{ controller.controller_name }: #{ controller.action_name }
@@ -34,7 +35,7 @@
                 = link_to 'Apostar!', my_bet_path
       
       #flash
-        %p.notice= notice
+        = display_flashes
       
       #content
         = yield

@@ -1,2 +1,3 @@
 page.replace "#game_#{@bet.game.id}_bet", :partial => 'my_bets/game_bet', :locals => {:bet => @bet}
+page.visual_effect :highlight, "#game_#{@bet.game.id}_bet", :duration => 1.0
 

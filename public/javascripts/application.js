@@ -13,3 +13,7 @@ $(document).ready(function(){
   });
 });
 
+function submit_bet(bet_form_id) {
+  // TODO
+}
+
