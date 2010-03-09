@@ -1,8 +1,11 @@
 %h2 Minha Aposta
 
-%p Horários dos jogos de acordo com a hora de Brasília.
+%p
+  %b Pontuação Total: #{pluralize Bet.sum(:points, :conditions => {:user_id => @user.id}), 'ponto', 'pontos'}
 
 %p Ordenação: #{link_to 'ascendente', my_bet_path} ou #{link_to 'descendente', my_bet_path(:order => 'DESC')}
+
+%p.small Horários dos jogos de acordo com a hora de Brasília.
 
 - @games.each do |game|
   - bet = Bet.find_or_initialize_for(@user, game)

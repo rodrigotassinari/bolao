@@ -25,9 +25,10 @@
           %ul
             - if admin_signed_in?
               %li= link_to 'Times', teams_path
+              %li= link_to 'Apostas', bets_path
+              |
             %li= link_to 'Jogos', games_path
             %li= link_to 'Usuários', users_path
-            %li= link_to 'Apostas', bets_path
             %li.highlight
               - if user_signed_in? && current_user.has_bets?
                 = link_to 'Minha Aposta', my_bet_path

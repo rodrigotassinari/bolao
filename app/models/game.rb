@@ -56,6 +56,9 @@ class Game < ActiveRecord::Base
 
   before_validation :figure_out_winner_and_loser
   
+  # TODO testar
+  after_save :score_bets!, :if => Proc.new { |game| game.played? && game.scored? }
+  
   # Scopes
   
   named_scope :bet_ordered, :order => "games.played_at ASC"
@@ -77,6 +80,13 @@ class Game < ActiveRecord::Base
   
   def scored?
     goals_a && goals_b
+  end
+  
+  def score_bets!
+    bets = self.bets
+    bets.each do |bet|
+      bet.score!
+    end
   end
   
   def self.stages
