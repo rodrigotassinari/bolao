@@ -1,0 +1,44 @@
+%p
+  %strong Stadium:
+  = @game.stadium
+%p
+  %strong City:
+  = @game.city
+%p
+  %strong Played at:
+  = @game.played_at
+%p
+  %strong Stage:
+  = @game.stage
+%p
+  %strong Team a:
+  = @game.team_a_id
+%p
+  %strong Team b:
+  = @game.team_b_id
+%p
+  %strong Goals a:
+  = @game.goals_a
+%p
+  %strong Goals b:
+  = @game.goals_b
+%p
+  %strong Penalty:
+  = @game.penalty
+%p
+  %strong Penalty goals a:
+  = @game.penalty_goals_a
+%p
+  %strong Penalty goals b:
+  = @game.penalty_goals_b
+%p
+  %strong Winner:
+  = @game.winner_id
+%p
+  %strong Loser:
+  = @game.loser_id
+%p
+  %strong Tie:
+  = @game.tie
+
+== #{ link_to 'Edit', edit_game_path(@game) } | #{ link_to 'Back', games_path }

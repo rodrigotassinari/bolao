@@ -1,0 +1,6 @@
+%h2 Minha Aposta
+
+- @games.each do |game|
+  - bet = Bet.find_or_initialize_for(@user, game)
+  = render :partial => 'game_bet', :locals => {:bet => bet}
+

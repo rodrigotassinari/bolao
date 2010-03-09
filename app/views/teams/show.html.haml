@@ -1,0 +1,11 @@
+%p
+  %strong Name:
+  = @team.name
+%p
+  %strong Acronym:
+  = @team.acronym
+%p
+  %strong Group:
+  = @team.group
+
+== #{ link_to 'Edit', edit_team_path(@team) } | #{ link_to 'Back', teams_path }

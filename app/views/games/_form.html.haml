@@ -1,0 +1,73 @@
+- form_for(@game) do |f|
+  = f.error_messages
+  
+  .field
+    = f.label :played_at
+    %br
+    = f.datetime_select :played_at
+
+  .field
+    = f.label :city
+    %br
+    = f.select :city, Game.cities
+
+  .field
+    = f.label :stadium
+    %br
+    = f.select :stadium, Game.stadiums
+
+  .field
+    = f.label :stage
+    %br
+    = f.select :stage, Game.stages
+
+  .field
+    = f.label :team_a_id
+    %br
+    = f.select :team_a_id, Team.for_select
+
+  .field
+    = f.label :goals_a
+    %br
+    = f.text_field :goals_a
+
+  .field
+    = f.label :team_b_id
+    %br
+    = f.select :team_b_id, Team.for_select
+
+  .field
+    = f.label :goals_b
+    %br
+    = f.text_field :goals_b
+
+  .field
+    = f.check_box :tie
+    = f.label :tie
+
+  .field
+    = f.check_box :penalty
+    = f.label :penalty
+
+  .field
+    = f.label :penalty_goals_a
+    %br
+    = f.text_field :penalty_goals_a
+
+  .field
+    = f.label :penalty_goals_b
+    %br
+    = f.text_field :penalty_goals_b
+
+  .field
+    = f.label :winner_id
+    %br
+    = f.text_field :winner_id, :disabled => true
+
+  .field
+    = f.label :loser_id
+    %br
+    = f.text_field :loser_id, :disabled => true
+
+  .actions
+    = f.submit

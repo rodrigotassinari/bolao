@@ -1,0 +1,15 @@
+.game_bet{:id => "game_#{bet.game.id}_bet"}
+  .bet
+    - form_for(bet, :remote => true) do |f|
+      = f.error_messages
+      = f.hidden_field :game_id
+      = f.hidden_field :user_id
+      %span.team_a #{bet.game.team_a.name} #{team_flag(bet.game.team_a)}
+      = f.text_field :goals_a, :size => 1
+      x
+      = f.text_field :goals_b, :size => 1
+      %span.team_b #{team_flag(bet.game.team_b)} #{bet.game.team_b.name}
+      = f.submit
+  .info
+    Jogo #{link_to "##{bet.game.id}", game_path(bet.game)}, #{bet.game.group_game? ? "Grupo #{bet.game.team_a.group}" : "Finais"}, #{l bet.game.played_at, :format => :game}, #{bet.game.stadium}, #{bet.game.city}
+

@@ -1,0 +1,44 @@
+!!!
+%html
+  %head
+    = stylesheet_link_tag 'scaffold'
+    = stylesheet_link_tag 'application'
+    = javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js'
+    = javascript_include_tag 'jrails'
+    = javascript_include_tag 'application'
+    %title #{ controller.controller_name }: #{ controller.action_name }
+  %body
+    #loading(style='display: none;') Carregando...
+    .content
+      #header
+        %h1= link_to 'Bolão PiTTlândia Copa do Mundo 2010', root_path
+        
+        #info
+          %p
+            - if user_signed_in?
+              Logado como #{link_to current_user.name, current_user} | #{link_to 'sair', destroy_user_session_path}
+            - else
+              #{link_to 'Entrar', new_user_session_path} | #{link_to 'Cadastrar', new_user_registration_path}
+          
+        #menu
+          %ul
+            - if admin_signed_in?
+              %li= link_to 'Times', teams_path
+            %li= link_to 'Jogos', games_path
+            %li= link_to 'Usuários', users_path
+            %li= link_to 'Apostas', bets_path
+            %li.highlight
+              - if user_signed_in? && current_user.has_bets?
+                = link_to 'Minha Aposta', my_bet_path
+              - else
+                = link_to 'Apostar!', my_bet_path
+      
+      #flash
+        %p.notice= notice
+      
+      #content
+        = yield
+      
+      #footer
+        %p powered by #{link_to 'PiTTlândia', 'http://pittlandia.net'}
+

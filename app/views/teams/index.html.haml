@@ -1,0 +1,24 @@
+%h2 Times
+
+%p= link_to 'Novo Time', new_team_path
+
+%table
+  %thead
+    %tr
+      %th Time
+      %th Sigla
+      %th Grupo
+      %th{ :colspan => 3 }
+  
+  %tbody
+    - for team in @teams
+      %tr{ :class => cycle(:odd, :even) }
+        %td
+          = team_flag(team)
+          = team.name
+        %td= team.acronym
+        %td= team.group
+        %td= link_to 'Ver', team
+        %td= link_to 'Editar', edit_team_path(team)
+        %td= link_to 'Apagar', team, :confirm => 'Tem certeza?', :method => :delete
+

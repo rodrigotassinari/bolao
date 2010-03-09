@@ -1,0 +1,61 @@
+- form_for(@bet) do |f|
+  = f.error_messages
+  
+  .field
+    = f.label :user_id
+    %br
+    = f.text_field :user_id
+
+  .field
+    = f.label :game_id
+    %br
+    = f.text_field :game_id
+
+  .field
+    = f.label :goals_a
+    %br
+    = f.text_field :goals_a
+
+  .field
+    = f.label :goals_b
+    %br
+    = f.text_field :goals_b
+
+  .field
+    = f.label :penalty
+    %br
+    = f.check_box :penalty
+
+  .field
+    = f.label :penalty_goals_a
+    %br
+    = f.text_field :penalty_goals_a
+
+  .field
+    = f.label :penalty_goals_b
+    %br
+    = f.text_field :penalty_goals_b
+
+  .field
+    = f.label :winner_id
+    %br
+    = f.text_field :winner_id
+
+  .field
+    = f.label :loser_id
+    %br
+    = f.text_field :loser_id
+
+  .field
+    = f.label :tie
+    %br
+    = f.check_box :tie
+
+  .field
+    = f.label :points
+    %br
+    = f.text_field :points
+
+  .actions
+    = f.submit
+

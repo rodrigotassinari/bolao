@@ -1,0 +1,21 @@
+- form_for(@team) do |f|
+  = f.error_messages
+  
+  .field
+    = f.label :name
+    %br
+    = f.text_field :name
+
+  .field
+    = f.label :acronym
+    %br
+    = f.text_field :acronym
+
+  .field
+    = f.label :group
+    %br
+    = f.select :group, Team.groups
+
+  .actions
+    = f.submit
+
