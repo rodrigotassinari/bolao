@@ -46,10 +46,12 @@ class Bet < ActiveRecord::Base
   
   # Methods
   
+  # TOSPEC
   def locked?
     !game.bettable?
   end
   
+  # TOSPEC
   def self.find_or_initialize_for(user, game)
     bet = Bet.find_by_user_id_and_game_id(user.id, game.id)
     return bet unless bet.nil?
@@ -57,9 +59,53 @@ class Bet < ActiveRecord::Base
     bet
   end
   
+  # TOSPEC
+  def calculate_points
+    return unless bet.game && bet.game.played? && bet.game.scored?
+    score = if bet.game.group_game?
+      group_game_score
+    else
+      finals_score
+    end
+    #self.scored_at = Time.current # TODO
+    self.points = score
+    score
+  end
+  
+  # TOSPEC
+  def score!
+    calculate_points
+    save
+  end
+  
   protected
   
+    # TOSPEC
+    def group_game_score
+      score = 0
+      score += 1 if self.winner_id == self.game.winner_id
+      score += 1 if self.loser_id  == self.game.loser_id
+      score += 1 if self.goals_a   == self.game.goals_a
+      score += 1 if self.goals_b   == self.game.goals_b
+      score
+    end
+
+    # TOSPEC
+    def group_game_score
+      score = 0
+      score += 1 if self.winner_id == self.game.winner_id
+      score += 1 if self.loser_id  == self.game.loser_id
+      score += 1 if self.goals_a   == self.game.goals_a
+      score += 1 if self.goals_b   == self.game.goals_b
+      if self.game.penalty?
+        score += 1 if self.penalty_goals_a == self.game.penalty_goals_a
+        score += 1 if self.penalty_goals_b == self.game.penalty_goals_b
+      end
+      score
+    end
+  
     # validate
+    # TOSPEC
     def penalty_must_have_winner
       if penalty_goals_a && penalty_goals_b
         if penalty_goals_a == penalty_goals_b
