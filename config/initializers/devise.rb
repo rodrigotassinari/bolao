@@ -5,7 +5,7 @@ Devise.setup do |config|
   config.mailer_sender = "no-reply@bolao.pittlandia.net"
   
   # Configure the content type of DeviseMailer mails (defaults to text/html")
-  config.mailer_content_type = "text/plain"
+  # config.mailer_content_type = "text/plain"
 
   # ==> Configuration for :authenticatable
   # Invoke `rake secret` and use the printed value to setup a pepper to generate

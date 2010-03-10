@@ -1,23 +1,24 @@
-%h2 Sign up
+%h2 Cadastro
 
 - form_for resource_name, resource, :url => registration_path(resource_name) do |f|
   = f.error_messages
   
-  %p= f.label :name
+  %p= f.label :name, 'Nome'
   %p= f.text_field :name
   
   %p= f.label :email
   %p= f.text_field :email
 
-  %p= f.label :password
+  %p= f.label :password, 'Senha'
   %p= f.password_field :password
 
-  %p= f.label :password_confirmation
+  %p= f.label :password_confirmation, 'Senha (confirmação)'
   %p= f.password_field :password_confirmation
   
+  %p Se és humano, digite na caixinha o que está escrito na imagem:
   = recaptcha_tags
 
-  %p= f.submit "Sign up"
+  %p= f.submit "Enviar"
 
 = render :partial => "shared/devise_links"
 

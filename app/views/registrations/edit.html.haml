@@ -1,32 +1,32 @@
-%h2 Edit #{resource_name.to_s.humanize}
+%h2 Editar sua conta
 
 - form_for resource_name, resource, :url => registration_path(resource_name), :html => { :method => :put } do |f|
   = f.error_messages
   
-  %p= f.label :name
+  %p= f.label :name, 'Nome'
   %p= f.text_field :name
   
-  %p= f.label :email
+  %p= f.label :email, 'Email'
   %p= f.text_field :email
 
   %p
-    = f.label :password
-    %i (leave blank if you don't want to change it)
+    = f.label :password, 'Senha'
+    %i (deixe em branco caso não deseje alterá-la)
   %p= f.password_field :password
 
-  %p= f.label :password_confirmation
+  %p= f.label :password_confirmation, 'Senha (confirmação)'
   %p= f.password_field :password_confirmation
 
   %p
-    = f.label :current_password
-    %i (we need your current password to confirm your changes)
+    = f.label :current_password, 'Senha Atual'
+    %i (precisamos da sua senha atual para confirmar as alterações)
   %p= f.password_field :current_password
 
-  %p= f.submit "Update"
+  %p= f.submit "Enviar"
 
-%h3 Cancel my account
+%h3 Cancelar minha conta
 
-%p Unhappy? #{link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete}.
+%p Insatisfeito? #{link_to "Cancele sua conta", registration_path(resource_name), :confirm => "Tem certeza?", :method => :delete}.
 
 = render :partial => "shared/devise_links"
 
