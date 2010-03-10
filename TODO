@@ -1,3 +1,5 @@
+* points cache em user
+* ordenar usuários por pontos
 * (testar) disparar cálculo de pontuação de aposta ao fornecer placar de um jogo
 * avisar usuários por email quando um novo jogo estiver disponível para apostar
 * avisar usuários por email quando uma aposta sua for pontuada (quantos pontos ele fez)
