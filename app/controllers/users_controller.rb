@@ -15,6 +15,7 @@ class UsersController < ApplicationController
   # GET /users/1.xml
   def show
     @user = User.find(params[:id])
+    @bets = @user.bets.all(:include => :game, :order => 'games.played_at ASC')
 
     respond_to do |format|
       format.html # show.html.erb

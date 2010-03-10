@@ -1,55 +1,38 @@
-- title "Jogo ##{@game.id}"
+- title "Usuário #{@user.name}"
 
-%h2 Jogo ##{@game.id}
-
-%h3
-  = @game.team_a.name
-  = team_flag(@game.team_a)
-  = @game.goals_a
-  x
-  = @game.goals_b
-  = team_flag(@game.team_b)
-  = @game.team_b.name
-
-- if !@game.group_game? && @game.penalty?
-  %h4
-    Pênaltis:
-    = @game.team_a.name
-    = team_flag(@game.team_a)
-    = @game.penalty_goals_a
-    x
-    = @game.penalty_goals_b
-    = team_flag(@game.team_b)
-    = @game.team_b.name
+%h2 Usuário #{@user.name}
 
 %p
-  %strong Fase:
-  = @game.stage
+  %strong Palpites:
+  #{@user.bets.count} / #{Game.count}
 
 %p
-  %strong Data:
-  = l @game.played_at, :format => :game
+  %strong Pontos:
+  = @user.bets.sum(:points)
 
 %p
-  %strong Local:
-  #{@game.stadium}, #{@game.city}
+  %strong Já pagou a aposta?
+  = yes_or_no @user.paid?
 
 %p.links
   - if admin_signed_in?
-    = link_to('Editar', edit_game_path(@game)), '|'
-  = link_to 'Voltar', games_path
+    = link_to('Editar', edit_user_path(@user)), '|'
+  = link_to 'Voltar', users_path
 
 %h2 Apostas
 
 %table.nice
   %thead
     %tr
-      %th Usuário
+      %th Jogo
       %th{:colspan => 5} Palpite
   %tbody
     - for bet in @bets
       %tr{:class => cycle(:odd, :even)}
-        %td= link_to bet.user.name, bet.user
+        %td.small
+          #{link_to "##{bet.game.id}", bet.game}, 
+          #{bet.game.stage}, 
+          #{l bet.game.played_at, :format => :game}
         %td.right
           #{bet.game.team_a.name} #{team_flag(bet.game.team_a)}
           - if !bet.game.group_game? && bet.penalty?
