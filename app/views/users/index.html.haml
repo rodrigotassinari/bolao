@@ -1,0 +1,23 @@
+%h2 Usuários
+
+%table.nice
+  %thead
+    %tr
+      %th Nome
+      %th Apostas
+      %th Pontos
+      %th Pagou?
+      %th{ :colspan => 3 }
+  
+  %tbody
+    - for user in @users
+      %tr{ :class => cycle(:odd, :even) }
+        %td= link_to user.name, user
+        %td= user.bets.count
+        %td= user.bets.sum(:points)
+        %td.center= yes_or_no(user.paid?)
+        %td.small= link_to 'Mais informações', user
+        - if admin_signed_in?
+          %td.small= link_to 'Editar', edit_user_path(user)
+          %td.small= link_to 'Apagar', user, :confirm => 'Tem certeza?', :method => :delete
+

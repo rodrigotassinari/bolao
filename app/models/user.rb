@@ -24,5 +24,9 @@ class User < ActiveRecord::Base
     bets.count > 0
   end
   
+  def paid?
+    !paid_at.nil?
+  end
+  
 end
 

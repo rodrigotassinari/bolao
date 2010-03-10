@@ -2,12 +2,14 @@
 
 %p Todos os horários são referentes à hora de Brasília.
 
-%p= link_to 'Novo jogo', new_game_path
+- if admin_signed_in?
+  %p= link_to 'Novo jogo', new_game_path
 
-%table
+%table.nice
   %thead
     %tr
       %th Código
+      %th Fase
       %th Data
       %th Time A
       %th Gols A
@@ -15,28 +17,28 @@
       %th Gols B
       %th Time B
       %th Empate?
-      %th Fase
       %th Pênaltis?
       %th{ :colspan => 3 }
   
   %tbody
     - for game in @games
       %tr{ :class => cycle(:odd, :even) }
-        %td= game.id
-        %td= l game.played_at, :format => :game
-        %td
-          = team_flag(game.team_a)
-          = link_to game.team_a.name, game.team_a
-        %td= game.goals_a
-        %td x
-        %td= game.goals_b
-        %td
-          = team_flag(game.team_b)
-          = link_to game.team_b.name, game.team_b
-        %td= yes_or_no(game.tie?)
+        %td= link_to game.id, game
         %td= game.stage
-        %td= yes_or_no(game.penalty?)
-        %td= link_to 'Ver', game
-        %td= link_to 'Editar', edit_game_path(game)
-        %td= link_to 'Apagar', game, :confirm => 'Tem certeza?', :method => :delete
+        %td= l game.played_at, :format => :game
+        %td.right
+          = game.team_a.name
+          = team_flag(game.team_a)
+        %td.center= game.goals_a
+        %td.center x
+        %td.center= game.goals_b
+        %td.left
+          = team_flag(game.team_b)
+          = game.team_b.name
+        %td.center= yes_or_no(game.tie?)
+        %td.center= yes_or_no(game.penalty?)
+        %td.small= link_to 'Mais informações', game
+        - if admin_signed_in?
+          %td.small= link_to 'Editar', edit_game_path(game)
+          %td.small= link_to 'Apagar', game, :confirm => 'Tem certeza?', :method => :delete
 
