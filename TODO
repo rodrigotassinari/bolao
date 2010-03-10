@@ -1,4 +1,4 @@
-* usar captcha no cadastro
+* traduzir páginas do devise
 * atualizar contador de apostas ao criar nova aposta
 * (testar) disparar cálculo de pontuação de aposta ao fornecer placar de um jogo
 * criar página de 1 jogo, mostrando dados do jogo e todas as apostas sobre esse jogo
