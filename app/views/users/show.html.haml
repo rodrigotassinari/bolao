@@ -16,7 +16,7 @@
 
 %p.links
   - if admin_signed_in?
-    = link_to('Editar', edit_user_path(@user)), '|'
+    = link_to 'Editar', edit_user_path(@user)
   = link_to 'Voltar', users_path
 
 %h2 Apostas

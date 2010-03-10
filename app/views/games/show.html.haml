@@ -36,7 +36,7 @@
 
 %p.links
   - if admin_signed_in?
-    = link_to('Editar', edit_game_path(@game)), '|'
+    = link_to 'Editar', edit_game_path(@game)
   = link_to 'Voltar', games_path
 
 %h2 Apostas
