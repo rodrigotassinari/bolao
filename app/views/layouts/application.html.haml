@@ -7,7 +7,7 @@
     = javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js'
     = javascript_include_tag 'jrails'
     = javascript_include_tag 'application'
-    %title #{ controller.controller_name }: #{ controller.action_name }
+    %title= h(yield(:title) || 'Bolão PiTTlândia Copa do Mundo 2010')
   %body
     #loading(style='display: none;') Carregando...
     .content

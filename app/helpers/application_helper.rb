@@ -1,6 +1,10 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
 
+  def title(page_title)
+    @content_for_title = "#{page_title} :: Bolão PiTTlândia Copa 2010"
+  end
+
   # Retorna divs para o flash especificado, com a mensagem do flash como
   # conteúdo do div e classes no div de acordo com o tipo do flash.
   #
