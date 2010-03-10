@@ -1,2 +1,37 @@
-%h1 Pages#index
-%p Find me in app/views/pages/index.html.haml
+%h3 Regras
+
+%ul
+
+  %li
+    %b Palpites & Prazos
+    %ul
+      %li Os palpites podem ser feitos e alterados até imediatamente antes do início do primeiro jogo de cada fase.
+      %li Os jogos que ainda não foram determinados (das fases finais) só poderão ser palpitados depois de cadastrados nos sistema, o que ocorrerá tão logo as equipes dos jogos sejam determinadas.
+
+  %li
+    %b Pontuação
+    %ul
+      %li Acertou o vencedor: 1 ponto.
+      %li Acertou o perdedor: 1 ponto.
+      %li Acertou os gols da seleção A: 1 ponto.
+      %li Acertou os gols da seleção B: 1 ponto.
+      %li Acertou os gols de pênalty da seleção A (se houver desempate por disputa de pêntaltys): 1 ponto.
+      %li Acertou os gols de pênalty da seleção B (se houver desempate por disputa de pêntaltys): 1 ponto.
+      %li Máximo de pontos por partida na fase de grupos: #{(1+1+1+1)} pontos.
+      %li Máximo de pontos por partida nas fases de finais: #{(1+1+1+1+1+1)} pontos.
+      %li Máximo de pontos possíveis: #{ ((1+1+1+1)*48) + ((1+1+1+1+1+1)*16) } pontos.
+
+  %li
+    %b Pagamento
+    %ul
+      %li Uma aposta por email.
+      %li Valor de cada aposta: R$ 20,00.
+      %li A aposta deve ser paga até o dia 20/Junho.
+      %li Pagamento pode ser feito em dinheiro ou via depósito bancário para Rodrigo (PiTT) (entre em #{mail_to 'rodrigo@pittlandia.net', 'contato'} para detalhes).
+
+  %li
+    %b Premiação
+    %ul
+      %li O total arrecadado será dado ao apostador que somar mais pontos ao final da competição.
+      %li Em caso de empate de pontos, o prêmio será dividido entre os apostadores empatados.
+
