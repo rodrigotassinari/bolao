@@ -29,6 +29,7 @@
               |
             %li= link_to 'Jogos', games_path
             %li= link_to 'Usuários', users_path
+            %li= link_to 'Dúvidas?', faq_path
             %li.highlight
               - if user_signed_in? && current_user.has_bets?
                 = link_to 'Minha Aposta', my_bet_path

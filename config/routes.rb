@@ -51,6 +51,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :teams
   
+  map.faq 'faq', :controller => 'pages', :action => 'faq'
+  
   map.root :controller => "pages", :action => "index"
   
   #map.connect ':controller/:action/:id'

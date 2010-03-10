@@ -1,9 +1,16 @@
 %h2 Minha Aposta
 
-%p
-  %b Pontuação Total: #{pluralize Bet.sum(:points, :conditions => {:user_id => @user.id}), 'ponto', 'pontos'}
+%p <b>#{@user.bets.count}</b> / #{Game.count} jogos apostados.
 
-%p Ordenação: #{link_to 'ascendente', my_bet_path} ou #{link_to 'descendente', my_bet_path(:order => 'DESC')}
+%p
+  Pontuação Total: 
+  %b #{pluralize Bet.sum(:points, :conditions => {:user_id => @user.id}), 'ponto', 'pontos'}
+
+- unless @user.paid?
+  %p
+    %b Você ainda não pagou sua aposta!
+
+%p.small Ordenação: #{link_to 'ascendente', my_bet_path} ou #{link_to 'descendente', my_bet_path(:order => 'DESC')}
 
 %p.small Horários dos jogos de acordo com a hora de Brasília.
 
