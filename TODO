@@ -1,7 +1,7 @@
-* atualizar contador de apostas ao criar nova aposta
-* (testar) disparar cálculo de pontuação de aposta ao fornecer placar de um jogo
+* configurar envio de email
 * criar página de 1 jogo, mostrando dados do jogo e todas as apostas sobre esse jogo
 * criar página de 1 usuário, mostrando dados do usuário e todas as apostas deste usuário
+* (testar) disparar cálculo de pontuação de aposta ao fornecer placar de um jogo
 * avisar usuários por email quando um novo jogo estiver disponível para apostar
 * avisar usuários por email quando uma aposta sua for pontuada (quantos pontos ele fez)
 * escrever dúvidas
