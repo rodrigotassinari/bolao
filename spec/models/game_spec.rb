@@ -52,12 +52,16 @@ describe Game do
       game.should be_valid
     end
     
-    # FIXME
-    xit "should not allow a tie between penaltys" do
-      game = games(:finals_unplayed)
+    it "should not allow a tie between penaltys" do
+      game = Game.new(
+        :stage => 'Quartas',
+        :played_at => 1.week.ago,
+        :team_a => teams(:bra), 
+        :team_b => teams(:por),
+        :goals_a => 1,
+        :goals_b => 1
+      )
       game.should_not be_group_game
-      game.goals_a = 1
-      game.goals_b = 1
       game.penalty_goals_a = 4
       game.penalty_goals_b = 4
       game.should_not be_valid
