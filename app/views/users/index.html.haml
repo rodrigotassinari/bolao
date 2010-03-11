@@ -14,8 +14,8 @@
     - for user in @users
       %tr{ :class => cycle(:odd, :even) }
         %td= link_to user.name, user
-        %td= user.bets.count
-        %td= user.bets.sum(:points)
+        %td= user.bets_count
+        %td= user.points_cache
         %td.center= yes_or_no(user.paid?)
         %td.small= link_to 'Mais informações', user
         - if admin_signed_in?

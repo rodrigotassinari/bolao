@@ -1,4 +1,3 @@
-* ordenar usuários por pontos
 * disparar cálculo de pontuação de aposta ao fornecer placar de um jogo (testar)
 * criar aposta default de 0 a 0 caso usuário perca prazo de criar aposta
 * avisar usuários por email quando um novo jogo estiver disponível para apostar

@@ -6,9 +6,9 @@ class Bet < ActiveRecord::Base
   
   # Associations
   
-  belongs_to :user
+  belongs_to :user, :counter_cache => true
 
-  belongs_to :game
+  belongs_to :game, :counter_cache => true
 
   belongs_to :winning_team, :class_name => "Team", :foreign_key => "winner_id"
   belongs_to :losing_team,  :class_name => "Team", :foreign_key => "loser_id"

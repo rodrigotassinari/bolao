@@ -18,6 +18,10 @@ class User < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :name
   
+  # Scopes
+  
+  named_scope :by_points, :order => 'users.points_cache DESC, users.name ASC'
+  
   # Methods
   
   def has_bets?

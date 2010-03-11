@@ -15,6 +15,8 @@ class CreateGames < ActiveRecord::Migration
       t.integer :winner_id
       t.integer :loser_id
       t.boolean :tie, :default => false
+      
+      t.integer  "bets_count", :default => 0
 
       t.timestamps
     end

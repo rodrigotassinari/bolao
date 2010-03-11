@@ -7,6 +7,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string "payment_code"
       t.integer  "points_cache", :default => 0
       
+      t.integer  "bets_count", :default => 0
+      
       t.authenticatable :encryptor => :sha1, :null => false
       t.recoverable
       t.rememberable
