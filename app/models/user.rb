@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   
   # Associations
   
-  has_many :bets
+  has_many :bets, :dependent => :destroy
   
   # Validations
   
@@ -26,6 +26,11 @@ class User < ActiveRecord::Base
   
   def paid?
     !paid_at.nil?
+  end
+  
+  def update_points_cache!
+    self.points_cache = self.bets.sum(:points)
+    self.save!
   end
   
 end

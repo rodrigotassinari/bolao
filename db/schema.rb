@@ -22,7 +22,8 @@ ActiveRecord::Schema.define(:version => 20100309140912) do
     t.integer  "winner_id"
     t.integer  "loser_id"
     t.boolean  "tie",             :default => false
-    t.integer  "points",          :default => 0
+    t.integer  "points"
+    t.datetime "scored_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -78,6 +79,7 @@ ActiveRecord::Schema.define(:version => 20100309140912) do
     t.string   "name",                                                  :null => false
     t.boolean  "admin",                              :default => false
     t.datetime "paid_at"
+    t.string   "payment_code"
     t.integer  "points_cache",                       :default => 0
     t.string   "email",                                                 :null => false
     t.string   "encrypted_password",   :limit => 40,                    :null => false

@@ -3,16 +3,19 @@ admin:
   email: admin@example.com
   admin: true
   paid_at: <%= 2.weeks.ago %>
+  payment_code: blabla
   
 user:
   name: Usuário
   email: user@example.com
   admin: false
   paid_at: <%= 1.week.ago %>
+  payment_code: bleble
   
 unpaid_user:
   name: Usuário que ainda não pagou
   email: unpaid_user@example.com
   admin: false
   paid_at:
+  payment_code:
 

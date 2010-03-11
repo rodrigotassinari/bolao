@@ -28,7 +28,7 @@ class Bet < ActiveRecord::Base
     :only_integer => true,
     :greater_than_or_equal_to => 0
   
-  validates_presence_of :points
+  validates_presence_of :points, :unless => Proc.new { |bet| bet.scored_at.nil? }
   
   validates_presence_of :winner_id, :unless => Proc.new { |bet| bet.tie? }
   
@@ -43,6 +43,8 @@ class Bet < ActiveRecord::Base
   # Callbacks
   
   before_validation :figure_out_winner_and_loser
+  
+  after_save :update_user_points_cache
   
   # Methods
   
@@ -65,17 +67,20 @@ class Bet < ActiveRecord::Base
     score = if bet.game.group_game?
       group_game_score
     else
-      finals_score
+      finals_game_score
     end
-    #self.scored_at = Time.current # TODO
-    self.points = score
     score
   end
   
   # TOSPEC
   def score!
-    calculate_points
-    save
+    self.scored_at = Time.current
+    self.points = calculate_points
+    save!
+  end
+  
+  def scored?
+    self.points && !self.scored_at.nil?
   end
   
   protected
@@ -91,13 +96,9 @@ class Bet < ActiveRecord::Base
     end
 
     # TOSPEC
-    def group_game_score
-      score = 0
-      score += 1 if self.winner_id == self.game.winner_id
-      score += 1 if self.loser_id  == self.game.loser_id
-      score += 1 if self.goals_a   == self.game.goals_a
-      score += 1 if self.goals_b   == self.game.goals_b
-      if self.game.penalty?
+    def finals_game_score
+      score = group_game_score
+      if !self.game.group_game? && self.game.penalty?
         score += 1 if self.penalty_goals_a == self.game.penalty_goals_a
         score += 1 if self.penalty_goals_b == self.game.penalty_goals_b
       end
@@ -113,6 +114,15 @@ class Bet < ActiveRecord::Base
           errors.add(:penalty_goals_b, "Deve haver um vencedor na disputa de pênaltis")
         end
       end
+    end
+    
+    # after_save
+    # TOSPEC
+    def update_user_points_cache
+      if self.user && self.scored?
+        self.user.update_points_cache!
+      end
+      true
     end
   
     # before_validation

@@ -12,6 +12,7 @@ one:
   loser_id: 1
   tie: false
   points: 1
+  scored_at:
 
 two:
   user_id: 1
@@ -25,4 +26,5 @@ two:
   loser_id: 1
   tie: false
   points: 1
+  scored_at:
 

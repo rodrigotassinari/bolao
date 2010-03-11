@@ -1,17 +1,18 @@
 class CreateBets < ActiveRecord::Migration
   def self.up
     create_table :bets do |t|
-      t.integer :user_id, :null => false
-      t.integer :game_id, :null => false
-      t.integer :goals_a
-      t.integer :goals_b
-      t.boolean :penalty, :default => false
-      t.integer :penalty_goals_a
-      t.integer :penalty_goals_b
-      t.integer :winner_id
-      t.integer :loser_id
-      t.boolean :tie, :default => false
-      t.integer :points, :default => 0
+      t.integer  :user_id, :null => false
+      t.integer  :game_id, :null => false
+      t.integer  :goals_a
+      t.integer  :goals_b
+      t.boolean  :penalty, :default => false
+      t.integer  :penalty_goals_a
+      t.integer  :penalty_goals_b
+      t.integer  :winner_id
+      t.integer  :loser_id
+      t.boolean  :tie, :default => false
+      t.integer  :points
+      t.datetime :scored_at
 
       t.timestamps
     end

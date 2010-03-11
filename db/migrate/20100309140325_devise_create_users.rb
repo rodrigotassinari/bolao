@@ -4,6 +4,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :name, :null => false
       t.boolean  "admin", :default => false
       t.datetime "paid_at"
+      t.string "payment_code"
       t.integer  "points_cache", :default => 0
       
       t.authenticatable :encryptor => :sha1, :null => false

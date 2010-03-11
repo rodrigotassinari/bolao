@@ -10,7 +10,7 @@ class Game < ActiveRecord::Base
   
   # Associations
   
-  has_many :bets
+  has_many :bets, :dependent => :destroy
 
   belongs_to :team_a, :class_name => "Team"
   belongs_to :team_b, :class_name => "Team"
@@ -57,7 +57,7 @@ class Game < ActiveRecord::Base
   before_validation :figure_out_winner_and_loser
   
   # TODO testar
-  after_save :score_bets!, :if => Proc.new { |game| game.played? && game.scored? }
+  after_save :score_bets!, :if => Proc.new { |game| game.played? && game.has_goals? }
   
   # Scopes
   
@@ -78,10 +78,11 @@ class Game < ActiveRecord::Base
     Time.current >= self.played_at
   end
   
-  def scored?
+  def has_goals?
     goals_a && goals_b
   end
   
+  # TODO modificar para gerar bet de 0x0 para usuários que não palpitaram
   def score_bets!
     bets = self.bets
     bets.each do |bet|
