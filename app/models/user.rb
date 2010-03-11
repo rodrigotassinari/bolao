@@ -31,10 +31,9 @@ class User < ActiveRecord::Base
   
   # TOSPEC
   def paid?
-    !paid_at.nil?
+    !paid_at.nil? && !payment_code.nil?
   end
   
-  # TOSPEC
   def update_points_cache!
     self.points_cache = self.bets.sum(:points)
     self.save!

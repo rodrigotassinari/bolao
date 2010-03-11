@@ -1,9 +1,9 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 group_win:
-  stadium: Maracanã
-  city: Rio de Janeiro
-  played_at: 2010-06-28 16:00:00
+  stadium:
+  city:
+  played_at: <%= 1.week.ago %>
   stage: Grupos
   team_a: bra
   team_b: aus
@@ -12,14 +12,14 @@ group_win:
   penalty: false
   penalty_goals_a:
   penalty_goals_b:
-  winner_id: 1
-  loser_id: 2
+  winner: bra
+  loser: aus
   tie: false
 
 group_tie:
-  stadium: Morumbi
-  city: São Paulo
-  played_at: 2010-06-28 16:00:00
+  stadium:
+  city:
+  played_at: <%= 1.week.ago %>
   stage: Grupos
   team_a: mex
   team_b: por
@@ -28,14 +28,30 @@ group_tie:
   penalty: false
   penalty_goals_a:
   penalty_goals_b:
-  winner_id:
-  loser_id:
+  winner:
+  loser:
   tie: true
 
+semi:
+  stadium:
+  city:
+  played_at: <%= 4.days.ago %>
+  stage: Semis
+  team_a: bra
+  team_b: arg
+  goals_a: 2
+  goals_b: 1
+  penalty: false
+  penalty_goals_a:
+  penalty_goals_b:
+  winner: bra
+  loser: arg
+  tie: false
+
 final:
-  stadium: Maracanã
-  city: Rio de Janeiro
-  played_at: 2010-07-20 16:00:00
+  stadium:
+  city:
+  played_at: <%= 3.days.ago %>
   stage: Finais
   team_a: bra
   team_b: fra
@@ -44,14 +60,14 @@ final:
   penalty: true
   penalty_goals_a: 4
   penalty_goals_b: 3
-  winner_id: 1
-  loser_id: 3
+  winner: bra
+  loser: fra
   tie: false
 
-unplayed:
-  stadium: Mineirão
-  city: Belo Horizonte
-  played_at: <%= 6.months.from_now %>
+group_unplayed:
+  stadium:
+  city:
+  played_at: <%= 1.week.from_now %>
   stage: Grupos
   team_a: ned
   team_b: civ
@@ -60,7 +76,23 @@ unplayed:
   penalty: false
   penalty_goals_a:
   penalty_goals_b:
-  winner_id:
-  loser_id:
+  winner:
+  loser:
+  tie: false
+
+finals_unplayed:
+  stadium:
+  city:
+  played_at: <%= 2.weeks.from_now %>
+  stage: Quartas
+  team_a: usa
+  team_b: civ
+  goals_a:
+  goals_b:
+  penalty: false
+  penalty_goals_a:
+  penalty_goals_b:
+  winner:
+  loser:
   tie: false
 

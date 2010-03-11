@@ -7,7 +7,7 @@ describe Team do
     }
   end
 
-  it "should create a new instance given valid attributes" do
+  xit "should create a new instance given valid attributes" do
     Team.create!(@valid_attributes)
   end
 end

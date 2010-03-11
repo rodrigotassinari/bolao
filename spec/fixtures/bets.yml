@@ -1,7 +1,7 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  user_id: 1
+  user: user
   game_id: 1
   goals_a: 1
   goals_b: 1
@@ -15,7 +15,7 @@ one:
   scored_at:
 
 two:
-  user_id: 1
+  user: user
   game_id: 1
   goals_a: 1
   goals_b: 1

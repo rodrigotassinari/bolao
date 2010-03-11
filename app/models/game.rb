@@ -6,7 +6,7 @@ class Game < ActiveRecord::Base
   
   # Options
   
-  #attr_accessible :stadium, :city, :played_at, :team_a_id, :team_b_id, :goals_a, :goals_b, :group_game, :penalty # TODO
+  #attr_accessible :stadium, :city, :played_at, :team_a_id, :team_b_id, :goals_a, :goals_b, :stage, :penalty_goals_a, :penalty_goals_b # TODO
   
   # Associations
   
@@ -30,9 +30,9 @@ class Game < ActiveRecord::Base
     :only_integer => true,
     :greater_than_or_equal_to => 0
   
-  #validates_presence_of :team_a_id
+  validates_presence_of :team_a_id
   
-  #validates_presence_of :team_b_id
+  validates_presence_of :team_b_id
   
   validates_inclusion_of :penalty, :in => [true, false]
   
@@ -42,9 +42,9 @@ class Game < ActiveRecord::Base
   
   validates_presence_of :loser_id, :if => Proc.new { |game| game.played? && !game.tie? }
 
-  validates_presence_of :penalty_goals_a, :if => Proc.new { |game| game.played? && game.penalty? }
+  validates_presence_of :penalty_goals_a, :penalty_goals_b, :if => Proc.new { |game| game.played? && game.penalty? }
   
-  validates_presence_of :penalty_goals_b, :if => Proc.new { |game| game.played? && game.penalty? }
+  validates_presence_of :goals_a, :goals_b, :if => Proc.new { |game| game.played? }
 
   validate :teams_must_be_different
 
