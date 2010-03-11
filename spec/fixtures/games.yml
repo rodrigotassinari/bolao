@@ -5,15 +5,15 @@ group_win:
   city:
   played_at: <%= 1.week.ago %>
   stage: Grupos
-  team_a: bra
-  team_b: aus
+  team_a: rsa
+  team_b: mex
   goals_a: 2
   goals_b: 1
   penalty: false
   penalty_goals_a:
   penalty_goals_b:
-  winner: bra
-  loser: aus
+  winner: rsa
+  loser: mex
   tie: false
 
 group_tie:
@@ -21,8 +21,8 @@ group_tie:
   city:
   played_at: <%= 1.week.ago %>
   stage: Grupos
-  team_a: mex
-  team_b: por
+  team_a: arg
+  team_b: kor
   goals_a: 0
   goals_b: 0
   penalty: false
@@ -69,16 +69,16 @@ group_unplayed:
   city:
   played_at: <%= 1.week.from_now %>
   stage: Grupos
-  team_a: ned
-  team_b: civ
+  team_a: eng
+  team_b: usa
   goals_a:
   goals_b:
-  penalty: false
+  penalty:
   penalty_goals_a:
   penalty_goals_b:
   winner:
   loser:
-  tie: false
+  tie:
 
 finals_unplayed:
   stadium:
@@ -89,10 +89,10 @@ finals_unplayed:
   team_b: civ
   goals_a:
   goals_b:
-  penalty: false
+  penalty:
   penalty_goals_a:
   penalty_goals_b:
   winner:
   loser:
-  tie: false
+  tie:
 

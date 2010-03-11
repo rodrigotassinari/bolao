@@ -34,10 +34,10 @@ class Game < ActiveRecord::Base
   
   validates_presence_of :team_b_id
   
-  validates_inclusion_of :penalty, :in => [true, false]
+  validates_inclusion_of :penalty, :tie, 
+    :in => [true, false],
+    :if => Proc.new { |game| game.has_goals? }
   
-  validates_inclusion_of :tie, :in => [true, false]
-
   validates_presence_of :winner_id, :if => Proc.new { |game| game.played? && !game.tie? }
   
   validates_presence_of :loser_id, :if => Proc.new { |game| game.played? && !game.tie? }
@@ -132,7 +132,6 @@ class Game < ActiveRecord::Base
   protected
 
     # validate
-    # TOSPEC
     def teams_must_be_different
       if team_a_id == team_b_id
         errors.add_to_base("Times devem ser diferentes entre si")
@@ -140,7 +139,6 @@ class Game < ActiveRecord::Base
     end
 
     # validate
-    # TOSPEC
     def teams_must_be_on_the_same_group
       if team_a_id && team_b_id && group_game?
         errors.add_to_base("Times devem ser do mesmo grupo") if team_a.group != team_b.group
@@ -157,7 +155,6 @@ class Game < ActiveRecord::Base
 
     # before_validation
     # TODO: optimize
-    # TOSPEC
     def figure_out_winner_and_loser
       if self.goals_a && self.goals_b
         if self.group_game?
@@ -197,7 +194,7 @@ class Game < ActiveRecord::Base
               if self.penalty_goals_a > self.penalty_goals_b
                 self.winner_id = self.team_a_id
                 self.loser_id  = self.team_b_id
-              else
+              elsif self.penalty_goals_a < self.penalty_goals_b
                 self.winner_id = self.team_b_id
                 self.loser_id  = self.team_a_id
               end

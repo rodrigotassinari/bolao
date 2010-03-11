@@ -168,7 +168,7 @@ class Bet < ActiveRecord::Base
               if self.penalty_goals_a > self.penalty_goals_b
                 self.winner_id = self.game.team_a_id
                 self.loser_id  = self.game.team_b_id
-              else
+              elsif self.penalty_goals_a < self.penalty_goals_b
                 self.winner_id = self.game.team_b_id
                 self.loser_id  = self.game.team_a_id
               end
