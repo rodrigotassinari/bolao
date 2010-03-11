@@ -3,41 +3,41 @@
 #
 # Examples:
 #   
-#   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
-#   Major.create(:name => 'Daley', :city => cities.first)
+#   cities = City.create!([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
+#   Major.create!(:name => 'Daley', :city => cities.first)
 
-rsa = Team.create(:name => 'África do Sul',   :acronym => 'RSA', :group => 'A')
-mex = Team.create(:name => 'México',          :acronym => 'MEX', :group => 'A')
-uru = Team.create(:name => 'Uruguai',         :acronym => 'URU', :group => 'A')
-fra = Team.create(:name => 'França',          :acronym => 'FRA', :group => 'A')
-arg = Team.create(:name => 'Argentina',       :acronym => 'ARG', :group => 'B')
-nga = Team.create(:name => 'Nigéria',         :acronym => 'NGA', :group => 'B')
-kor = Team.create(:name => 'Coréia do Sul',   :acronym => 'KOR', :group => 'B')
-gre = Team.create(:name => 'Grécia',          :acronym => 'GRE', :group => 'B')
-eng = Team.create(:name => 'Inglaterra',      :acronym => 'ENG', :group => 'C')
-usa = Team.create(:name => 'Estados Unidos',  :acronym => 'USA', :group => 'C')
-alg = Team.create(:name => 'Algéria',         :acronym => 'ALG', :group => 'C')
-svn = Team.create(:name => 'Eslovênia',       :acronym => 'SVN', :group => 'C')
-ger = Team.create(:name => 'Alemanha',        :acronym => 'GER', :group => 'D')
-aus = Team.create(:name => 'Austrália',       :acronym => 'AUS', :group => 'D')
-srb = Team.create(:name => 'Sérvia',          :acronym => 'SRB', :group => 'D')
-gha = Team.create(:name => 'Gana',            :acronym => 'GHA', :group => 'D')
-ned = Team.create(:name => 'Holanda',         :acronym => 'NED', :group => 'E')
-den = Team.create(:name => 'Dinamarca',       :acronym => 'DEN', :group => 'E')
-jpn = Team.create(:name => 'Japão',           :acronym => 'JPN', :group => 'E')
-cmr = Team.create(:name => 'Camarões',        :acronym => 'CMR', :group => 'E')
-ita = Team.create(:name => 'Itália',          :acronym => 'ITA', :group => 'F')
-par = Team.create(:name => 'Paraguai',        :acronym => 'PAR', :group => 'F')
-nzl = Team.create(:name => 'Nova Zelândia',   :acronym => 'NZL', :group => 'F')
-svk = Team.create(:name => 'Eslováquia',      :acronym => 'SVK', :group => 'F')
-bra = Team.create(:name => 'Brasil',          :acronym => 'BRA', :group => 'G')
-prk = Team.create(:name => 'Coréia do Norte', :acronym => 'PRK', :group => 'G')
-civ = Team.create(:name => 'Costa do Marfim', :acronym => 'CIV', :group => 'G')
-por = Team.create(:name => 'Portugal',        :acronym => 'POR', :group => 'G')
-esp = Team.create(:name => 'Espanha',         :acronym => 'ESP', :group => 'H')
-sui = Team.create(:name => 'Suíça',           :acronym => 'SUI', :group => 'H')
-hon = Team.create(:name => 'Honduras',        :acronym => 'HON', :group => 'H')
-chi = Team.create(:name => 'Chile',           :acronym => 'CHI', :group => 'H')
+rsa = Team.create!(:name => 'África do Sul',   :acronym => 'RSA', :group => 'A')
+mex = Team.create!(:name => 'México',          :acronym => 'MEX', :group => 'A')
+uru = Team.create!(:name => 'Uruguai',         :acronym => 'URU', :group => 'A')
+fra = Team.create!(:name => 'França',          :acronym => 'FRA', :group => 'A')
+arg = Team.create!(:name => 'Argentina',       :acronym => 'ARG', :group => 'B')
+nga = Team.create!(:name => 'Nigéria',         :acronym => 'NGA', :group => 'B')
+kor = Team.create!(:name => 'Coréia do Sul',   :acronym => 'KOR', :group => 'B')
+gre = Team.create!(:name => 'Grécia',          :acronym => 'GRE', :group => 'B')
+eng = Team.create!(:name => 'Inglaterra',      :acronym => 'ENG', :group => 'C')
+usa = Team.create!(:name => 'Estados Unidos',  :acronym => 'USA', :group => 'C')
+alg = Team.create!(:name => 'Algéria',         :acronym => 'ALG', :group => 'C')
+svn = Team.create!(:name => 'Eslovênia',       :acronym => 'SVN', :group => 'C')
+ger = Team.create!(:name => 'Alemanha',        :acronym => 'GER', :group => 'D')
+aus = Team.create!(:name => 'Austrália',       :acronym => 'AUS', :group => 'D')
+srb = Team.create!(:name => 'Sérvia',          :acronym => 'SRB', :group => 'D')
+gha = Team.create!(:name => 'Gana',            :acronym => 'GHA', :group => 'D')
+ned = Team.create!(:name => 'Holanda',         :acronym => 'NED', :group => 'E')
+den = Team.create!(:name => 'Dinamarca',       :acronym => 'DEN', :group => 'E')
+jpn = Team.create!(:name => 'Japão',           :acronym => 'JPN', :group => 'E')
+cmr = Team.create!(:name => 'Camarões',        :acronym => 'CMR', :group => 'E')
+ita = Team.create!(:name => 'Itália',          :acronym => 'ITA', :group => 'F')
+par = Team.create!(:name => 'Paraguai',        :acronym => 'PAR', :group => 'F')
+nzl = Team.create!(:name => 'Nova Zelândia',   :acronym => 'NZL', :group => 'F')
+svk = Team.create!(:name => 'Eslováquia',      :acronym => 'SVK', :group => 'F')
+bra = Team.create!(:name => 'Brasil',          :acronym => 'BRA', :group => 'G')
+prk = Team.create!(:name => 'Coréia do Norte', :acronym => 'PRK', :group => 'G')
+civ = Team.create!(:name => 'Costa do Marfim', :acronym => 'CIV', :group => 'G')
+por = Team.create!(:name => 'Portugal',        :acronym => 'POR', :group => 'G')
+esp = Team.create!(:name => 'Espanha',         :acronym => 'ESP', :group => 'H')
+sui = Team.create!(:name => 'Suíça',           :acronym => 'SUI', :group => 'H')
+hon = Team.create!(:name => 'Honduras',        :acronym => 'HON', :group => 'H')
+chi = Team.create!(:name => 'Chile',           :acronym => 'CHI', :group => 'H')
 
 [
   [rsa, mex, "2010-06-11 11:00"],
@@ -89,11 +89,20 @@ chi = Team.create(:name => 'Chile',           :acronym => 'CHI', :group => 'H')
   [chi, esp, "2010-06-25 15:30"],
   [sui, hon, "2010-06-25 15:30"]
 ].each do |game_data|
-  Game.create(
+  Game.create!(
     :stage     => 'Grupos',
     :team_a    => game_data[0],
     :team_b    => game_data[1],
     :played_at => game_data[2]
   )
 end
+
+first_user = User.new(
+  :name => "Rodrigo (PiTT)",
+  :email => "rodrigo@pittlandia.net",
+  :password => "123456",
+  :password_confirmation => "123456"
+)
+first_user.admin = true
+first_user.save!
 
