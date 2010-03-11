@@ -24,14 +24,17 @@ class User < ActiveRecord::Base
   
   # Methods
   
+  # TOSPEC
   def has_bets?
     bets.count > 0
   end
   
+  # TOSPEC
   def paid?
     !paid_at.nil?
   end
   
+  # TOSPEC
   def update_points_cache!
     self.points_cache = self.bets.sum(:points)
     self.save!

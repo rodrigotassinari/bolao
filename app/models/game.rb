@@ -65,26 +65,30 @@ class Game < ActiveRecord::Base
   
   # Methods
   
+  # TOSPEC
   def bettable?
     !played? && Time.current < Game.minimum(:played_at, :conditions => {:stage => self.stage})
   end
   
+  # TOSPEC
   def group_game?
     stage == 'Grupos'
   end
 
+  # TOSPEC
   def played?
     return false if self.played_at.nil?
     Time.current >= self.played_at
   end
   
+  # TOSPEC
   def has_goals?
     goals_a && goals_b
   end
   
-  # TODO modificar para gerar bet de 0x0 para usuários que não palpitaram
+  # TOSPEC
   def score_bets!
-    bets = self.bets
+    bets = self.bets.all
     bets.each do |bet|
       bet.score!
     end
@@ -128,6 +132,7 @@ class Game < ActiveRecord::Base
   protected
 
     # validate
+    # TOSPEC
     def teams_must_be_different
       if team_a_id == team_b_id
         errors.add_to_base("Times devem ser diferentes entre si")
@@ -135,6 +140,7 @@ class Game < ActiveRecord::Base
     end
 
     # validate
+    # TOSPEC
     def teams_must_be_on_the_same_group
       if team_a_id && team_b_id && group_game?
         errors.add_to_base("Times devem ser do mesmo grupo") if team_a.group != team_b.group
@@ -142,6 +148,7 @@ class Game < ActiveRecord::Base
     end
     
     # validate
+    # TOSPEC
     def penalty_must_have_winner
       if penalty_goals_a && penalty_goals_b
         errors.add_to_base("Deve haver um vencedor na disputa de pênaltis") if penalty_goals_a == penalty_goals_b

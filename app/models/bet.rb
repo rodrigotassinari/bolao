@@ -79,6 +79,7 @@ class Bet < ActiveRecord::Base
     save!
   end
   
+  # TOSPEC
   def scored?
     self.points && !self.scored_at.nil?
   end
