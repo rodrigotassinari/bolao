@@ -17,8 +17,8 @@
     (aguardando confirmação de pagamento)
 
 %p.links
-  - if admin_signed_in?
-    = link_to 'Editar', edit_user_path(@user)
+  - if user_signed_in? && current_user == @user
+    = link_to 'Editar', edit_user_registration_path
   = link_to 'Voltar', users_path
 
 %h2 Apostas

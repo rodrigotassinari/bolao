@@ -8,7 +8,7 @@
   %p= f.text_field :name
   
   %p= f.label :email, 'Email'
-  %p= f.text_field :email
+  %p= f.text_field :email, :disabled => true
 
   %p
     = f.label :password, 'Senha'
@@ -23,7 +23,9 @@
     %i (precisamos da sua senha atual para confirmar as alterações)
   %p= f.password_field :current_password
 
-  %p= f.submit "Enviar"
+  %p
+    = f.submit "Enviar"
+    ou #{link_to 'cancelar', user_path(current_user)}
 
 %h3 Cancelar minha conta
 
