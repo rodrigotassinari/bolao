@@ -1,4 +1,5 @@
 page.replace "#game_#{@bet.game.id}_bet", :partial => 'my_bets/game_bet', :locals => {:bet => @bet}
 page.visual_effect :highlight, "#game_#{@bet.game.id}_bet", :duration => 1.0
 page.replace_html "#user_bet_count", @bet.user.bets.count
+page.remove "#game_#{@bet.game.id}_bet" if @remove_voted
 

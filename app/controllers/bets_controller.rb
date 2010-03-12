@@ -30,6 +30,7 @@ class BetsController < ApplicationController
   # POST /bets.xml
   def create
     @bet = Bet.new(params[:bet])
+    @remove_voted = params[:remove_voted] ? true : false
     
     respond_to do |format|
       if @bet.save
@@ -44,6 +45,7 @@ class BetsController < ApplicationController
   # PUT /bets/1.xml
   def update
     @bet = Bet.find(params[:id])
+    @remove_voted = params[:remove_voted] ? true : false
     
     respond_to do |format|
       if @bet.update_attributes(params[:bet])

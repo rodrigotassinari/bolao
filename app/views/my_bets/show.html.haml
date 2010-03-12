@@ -1,11 +1,11 @@
 - title "Minha Aposta"
 %h2 Minha Aposta
 
-%p <b id="user_bet_count">#{@user.bets.count}</b> / #{Game.count} jogos apostados.
-
-%p
-  Pontuação Total: 
-  %b #{pluralize Bet.sum(:points, :conditions => {:user_id => @user.id}), 'ponto', 'pontos'}
+%ul
+  %li <b id="user_bet_count">#{@user.bets.count}</b> / #{Game.count} jogos apostados.
+  %li
+    Pontuação Total: 
+    %b #{pluralize Bet.sum(:points, :conditions => {:user_id => @user.id}), 'ponto', 'pontos'}
 
 - unless @user.paid?
   - unless @user.paying?
@@ -17,9 +17,13 @@
       %b Aposta paga, aguardando confirmação...
       = link_to 'Mais informações', new_payment_path
 
-%p.small Ordenação: #{link_to 'ascendente', my_bet_path} ou #{link_to 'descendente', my_bet_path(:order => 'DESC')}
+%h3 Palpites
 
-%p.small Horários dos jogos de acordo com a hora de Brasília.
+%div.small
+  %ul
+    %li Ordenação: #{link_to 'ascendente', my_bet_path(params.merge(:desc => false))} ou #{link_to 'descendente', my_bet_path(params.merge(:desc => true))}
+    %li Mostrar: #{link_to 'todos os jogos', my_bet_path(params.merge(:empty => false))} ou #{link_to 'apenas os não preenchidos', my_bet_path(params.merge(:empty => true))}
+    %li Horários dos jogos de acordo com a hora de Brasília.
 
 - @games.each do |game|
   - bet = Bet.find_or_initialize_for(@user, game)

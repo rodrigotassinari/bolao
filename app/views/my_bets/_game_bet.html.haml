@@ -13,6 +13,8 @@
       = image_tag 'spinner.gif', :alt => 'loading', :style => 'display: none;', :class => "spinner"
       = f.hidden_field :game_id
       = f.hidden_field :user_id
+      - if params[:empty]
+        = hidden_field_tag :remove_voted, true
       
       %p.goals
         %span.team_a #{bet.game.team_a.name} #{team_flag(bet.game.team_a)}
