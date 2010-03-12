@@ -20,7 +20,9 @@
           %li Acertou os gols da seleção A: 1 ponto.
           %li Acertou os gols da seleção B: 1 ponto.
           %li
-            %i Máximo de pontos por partida: #{(1+1+1+1)} pontos.
+            %i Máximo de pontos por partida: #{ (1+1+1+1) } pontos.
+          %li
+            %i Máximo de pontos possíveis nesta fase: #{ (1+1+1+1) * 48 } pontos.
       %li
         Fase eliminatória (oitavas em diante)
         %ul
@@ -31,9 +33,11 @@
           %li Acertou os gols de pênalty da seleção A (se houver desempate por disputa de pênaltys): 1 ponto.
           %li Acertou os gols de pênalty da seleção B (se houver desempate por disputa de pênaltys): 1 ponto.
           %li
-            %i Máximo de pontos por partida: #{(2+2+1+1+1+1)} pontos.
+            %i Máximo de pontos por partida: #{ (2+2+1+1+1+1) } pontos.
+          %li
+            %i Máximo de pontos possíveis nesta fase: #{ (2+2+1+1+1+1) * 16 } pontos.
       %li
-        %i Máximo de pontos possíveis: #{ ((1+1+1+1)*48) + ((2+2+1+1+1+1)*16) } pontos.
+        %i Máximo de pontos possíveis: #{ ((1+1+1+1) * 48) + ((2+2+1+1+1+1) * 16) } pontos.
 
   %li
     %b Pagamento
@@ -50,7 +54,9 @@
         O total arrecadado, menos os custos de transação, será dado ao apostador que somar mais pontos ao final da competição.
         %ul
           %li
-            %i Na prática, isso significa que o prêmio será de #{number_to_currency Bet.net_value} vezes a quantidade de apostadores que pagarem (já temos #{User.paid.count} apostador pago, gerando um prêmio de #{number_to_currency Bet.prize} até o momento).
+            %i Na prática, isso significa que o prêmio será de #{number_to_currency Bet.net_value} vezes a quantidade de apostadores que pagarem.
+          %li
+            %i Já temos #{pluralize User.paid.count, 'apostador pagante', 'apostadores pagantes'}, gerando um prêmio de #{number_to_currency Bet.prize} até o momento).
       %li Em caso de empate de pontos, o prêmio será dividido entre os apostadores empatados.
 
 %h3 Dúvidas?

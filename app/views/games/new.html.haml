@@ -1,6 +1,42 @@
 - title "Novo Jogo"
-%h1 New game
+%h2 Novo Jogo
 
-= render 'form'
+- form_for(@game) do |f|
+  = f.error_messages
+  
+  .field
+    = f.label :played_at, 'Data'
+    %br
+    = f.datetime_select :played_at
 
-= link_to 'Back', games_path
+  .field
+    = f.label :stage, 'Fase'
+    %br
+    = f.select :stage, Game.stages
+
+  .field
+    = f.label :team_a_id, 'Time A'
+    %br
+    = f.select :team_a_id, Team.for_select, :include_blank => true
+
+  .field
+    = f.label :team_b_id, 'Time B'
+    %br
+    = f.select :team_b_id, Team.for_select, :include_blank => true
+
+  .field
+    = f.label :city, 'Cidade'
+    %br
+    = f.select :city, Game.cities
+
+  .field
+    = f.label :stadium, 'Estádio'
+    %br
+    = f.select :stadium, Game.stadiums
+
+  .actions
+    = f.submit 'Criar Jogo'
+
+
+= link_to 'Voltar', games_path
+

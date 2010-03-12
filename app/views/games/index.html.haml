@@ -19,7 +19,7 @@
       %th Time B
       %th Empate?
       %th Pênaltis?
-      %th{ :colspan => 3 }
+      %th{ :colspan => 2 }
   
   %tbody
     - for game in @games
@@ -41,5 +41,4 @@
         %td.small= link_to 'Mais informações', game
         - if admin_signed_in?
           %td.small= link_to 'Editar', edit_game_path(game)
-          %td.small= link_to 'Apagar', game, :confirm => 'Tem certeza?', :method => :delete
 

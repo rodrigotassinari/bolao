@@ -2,72 +2,73 @@
   = f.error_messages
   
   .field
-    = f.label :played_at
+    = f.label :played_at, 'Data'
     %br
     = f.datetime_select :played_at
 
   .field
-    = f.label :city
+    = f.label :city, 'Cidade'
     %br
     = f.select :city, Game.cities
 
   .field
-    = f.label :stadium
+    = f.label :stadium, 'Estádio'
     %br
     = f.select :stadium, Game.stadiums
 
   .field
-    = f.label :stage
+    = f.label :stage, 'Fase'
     %br
     = f.select :stage, Game.stages
 
   .field
-    = f.label :team_a_id
+    = f.label :team_a_id, 'Time A'
     %br
     = f.select :team_a_id, Team.for_select
 
   .field
-    = f.label :goals_a
+    = f.label :goals_a, 'Gols A'
     %br
     = f.text_field :goals_a
 
   .field
-    = f.label :team_b_id
+    = f.label :team_b_id, 'Time B'
     %br
     = f.select :team_b_id, Team.for_select
 
   .field
-    = f.label :goals_b
+    = f.label :goals_b, 'Gols B'
     %br
     = f.text_field :goals_b
 
   .field
     = f.check_box :tie
-    = f.label :tie
+    = f.label :tie, 'Empate?'
 
   .field
     = f.check_box :penalty
-    = f.label :penalty
+    = f.label :penalty, 'Penalty?'
 
   .field
-    = f.label :penalty_goals_a
+    = f.label :penalty_goals_a, 'Gols de Penalty A'
     %br
     = f.text_field :penalty_goals_a
 
   .field
-    = f.label :penalty_goals_b
+    = f.label :penalty_goals_b, 'Gols de Penalty B'
     %br
     = f.text_field :penalty_goals_b
 
   .field
-    = f.label :winner_id
+    = f.label :winner_id, 'Vencedor'
     %br
     = f.text_field :winner_id, :disabled => true
 
   .field
-    = f.label :loser_id
+    = f.label :loser_id, 'Perdedor'
     %br
     = f.text_field :loser_id, :disabled => true
 
   .actions
     = f.submit
+

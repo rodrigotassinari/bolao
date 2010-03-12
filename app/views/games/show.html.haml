@@ -34,9 +34,25 @@
   %strong Local:
   #{@game.stadium}, #{@game.city}
 
-%p.links
-  - if admin_signed_in?
+- if admin_signed_in?
+  %b Admin:
+  %ul
+    %li Fase de grupos? #{yes_or_no @game.group_game?}
+    %li Pode apostar ainda? #{yes_or_no @game.bettable?}
+    %li Já foi jogado? #{yes_or_no @game.played?}
+    %li Tem gols anotados? #{yes_or_no @game.has_goals?}
+    - if @game.has_goals?
+      %li Empate? #{yes_or_no @game.tie?}
+      %li Vencedor: #{@game.winner.try(:name)}
+      %li Perdedor: #{@game.loser.try(:name)}
+      %li Penaltys? #{yes_or_no @game.penalty?}
+
+- if admin_signed_in?
+  %p.admin_links
     = link_to 'Editar', edit_game_path(@game)
+    = link_to 'Apagar', @game, :confirm => 'Tem certeza?', :method => :delete
+
+%p.links
   = link_to 'Voltar', games_path
 
 %h2 Apostas

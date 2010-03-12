@@ -1,6 +1,50 @@
 - title "Editar jogo ##{@game.id}"
-%h1 Editing game
+%h2 Editar jogo ##{@game.id}
 
-= render 'form'
+- form_for(@game) do |f|
+  = f.error_messages
+  
+  .field
+    = f.label :played_at, 'Data'
+    %br
+    = f.datetime_select :played_at
 
-== #{ link_to 'Show', @game } | #{ link_to 'Back', games_path }
+  .field
+    = f.label :stage, 'Fase'
+    %br
+    = f.select :stage, Game.stages
+
+  .field
+    = f.label :city, 'Cidade'
+    %br
+    = f.select :city, Game.cities
+
+  .field
+    = f.label :stadium, 'Estádio'
+    %br
+    = f.select :stadium, Game.stadiums
+
+  .field
+    %b= @game.team_a.name
+    = team_flag(@game.team_a)
+    = f.text_field :goals_a, :size => 1
+    x
+    = f.text_field :goals_b, :size => 1
+    = team_flag(@game.team_b)
+    %b= @game.team_b.name
+
+  .field
+    %i Penaltys:
+    = team_flag(@game.team_a)
+    = f.text_field :penalty_goals_a, :size => 1
+    x
+    = f.text_field :penalty_goals_b, :size => 1
+    = team_flag(@game.team_b)
+
+
+  .actions
+    = f.submit 'Salvar Jogo'
+
+
+#{link_to 'Mais informações', @game} | #{link_to 'Voltar', games_path}
+

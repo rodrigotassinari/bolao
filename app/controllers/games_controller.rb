@@ -29,7 +29,7 @@ class GamesController < ApplicationController
   # GET /games/new
   # GET /games/new.xml
   def new
-    @game = Game.new(:played_at => Game.maximum(:played_at), :stage => 'Grupo')
+    @game = Game.new(:played_at => Game.maximum(:played_at), :stage => 'Oitavas')
 
     respond_to do |format|
       format.html # new.html.erb
