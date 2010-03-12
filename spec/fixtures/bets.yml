@@ -2,29 +2,85 @@
 
 one:
   user: user
-  game_id: 1
+  game: group_win
   goals_a: 1
   goals_b: 1
   penalty: false
-  penalty_goals_a: 1
-  penalty_goals_b: 1
-  winner_id: 1
-  loser_id: 1
-  tie: false
+  penalty_goals_a:
+  penalty_goals_b:
+  winning_team:
+  losing_team:
+  tie: true
   points: 1
-  scored_at:
+  scored_at: <%= 1.week.ago + 10.seconds %>
 
 two:
   user: user
-  game_id: 1
-  goals_a: 1
+  game: group_win
+  goals_a: 2
   goals_b: 1
   penalty: false
-  penalty_goals_a: 1
-  penalty_goals_b: 1
-  winner_id: 1
-  loser_id: 1
+  penalty_goals_a:
+  penalty_goals_b:
+  winning_team: rsa
+  losing_team: mex
   tie: false
-  points: 1
+  points: 4
+  scored_at: <%= 1.week.ago + 11.seconds %>
+
+three:
+  user: user
+  game: group_tie
+  goals_a: 0
+  goals_b: 0
+  penalty: false
+  penalty_goals_a:
+  penalty_goals_b:
+  winning_team:
+  losing_team:
+  tie: true
+  points: 4
+  scored_at: <%= 1.week.ago + 12.seconds %>
+
+four:
+  user: user
+  game: final
+  goals_a: 2
+  goals_b: 2
+  penalty: true
+  penalty_goals_a: 5
+  penalty_goals_b: 4
+  winning_team: bra
+  losing_team: fra
+  tie: false
+  points: 5
+  scored_at: <%= 3.days.ago + 10.seconds %>
+
+five:
+  user: user
+  game: group_unplayed
+  goals_a: 2
+  goals_b: 1
+  penalty: false
+  penalty_goals_a:
+  penalty_goals_b:
+  winning_team: eng
+  losing_team: usa
+  tie: false
+  points:
   scored_at:
+
+six:
+  user: user
+  game: semi
+  goals_a: 1
+  goals_b: 2
+  penalty: false
+  penalty_goals_a:
+  penalty_goals_b:
+  winning_team: arg
+  losing_team: bra
+  tie: false
+  points: 0
+  scored_at: <%= 4.days.ago + 10.seconds %>
 

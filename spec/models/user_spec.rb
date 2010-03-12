@@ -24,10 +24,10 @@ describe User do
       user = users(:user)
       user.points_cache.should == 0
       user.bets.should_not be_empty
-      user.bets.map(&:points).should == [1, 1]
+      user.bets.map(&:points).reject { |i| i.nil? }.sort.should == [0, 1, 4, 4, 5]
       user.update_points_cache!
       user.reload
-      user.points_cache.should == 2
+      user.points_cache.should == 14
     end
   end
   

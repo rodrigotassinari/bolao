@@ -6,7 +6,7 @@ class Bet < ActiveRecord::Base
   
   # Options
   
-  #attr_accessible :user_id, :game_id, :goals_a, :goals_b, :penalty_goals_a, :penalty_goals_b # TODO
+  attr_accessible :user_id, :user, :game_id, :game, :goals_a, :goals_b, :penalty_goals_a, :penalty_goals_b
   
   # Associations
   
@@ -61,10 +61,9 @@ class Bet < ActiveRecord::Base
     bet
   end
   
-  # TOSPEC
   def calculate_points
-    return unless bet.game && bet.game.played? && bet.game.scored?
-    score = if bet.game.group_game?
+    return unless self.game && self.game.played? && self.game.has_goals?
+    score = if self.game.group_game?
       group_game_score
     else
       finals_game_score
@@ -86,7 +85,6 @@ class Bet < ActiveRecord::Base
   
   protected
   
-    # TOSPEC
     def group_game_score
       score = 0
       score += 1 if self.winner_id == self.game.winner_id
@@ -96,9 +94,12 @@ class Bet < ActiveRecord::Base
       score
     end
 
-    # TOSPEC
     def finals_game_score
-      score = group_game_score
+      score = 0
+      score += 2 if self.winner_id == self.game.winner_id
+      score += 2 if self.loser_id  == self.game.loser_id
+      score += 1 if self.goals_a   == self.game.goals_a
+      score += 1 if self.goals_b   == self.game.goals_b
       if !self.game.group_game? && self.game.penalty?
         score += 1 if self.penalty_goals_a == self.game.penalty_goals_a
         score += 1 if self.penalty_goals_b == self.game.penalty_goals_b

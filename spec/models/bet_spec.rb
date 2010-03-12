@@ -20,7 +20,7 @@ describe Bet do
   
   describe "fixtures" do
     Bet.all.each do |bet|
-      xit "should have valid fixture: #{bet.id}" do
+      it "should have valid fixture: #{bet.id}" do
         bet.should be_valid
       end
     end
@@ -111,6 +111,239 @@ describe Bet do
         @bet.should_not be_valid
         @bet.should_not be_tie
         @bet.should be_penalty
+      end
+    end
+  end
+  
+  describe ".calculate_points" do
+    it "should return nil if bet's game has not been played yet" do
+      bet = bets(:five)
+      bet.game.should_not be_played
+      bet.calculate_points.should be_nil
+    end
+    it "should return nil if bet's game has not been scored yet" do
+      bet = bets(:five)
+      bet.game.should_not have_goals
+      bet.calculate_points.should be_nil
+    end
+    context "group games" do
+      context "simple win" do
+        before(:each) do
+          @bet = bets(:one)
+          @game = @bet.game
+          @game.should be_group_game
+          @game.should be_played
+          @game.should have_goals
+          @game.should_not be_tie
+        end
+        it "should give 0 points if nothing is right" do
+          @bet.winner_id = @game.loser.id
+          @bet.loser_id = @game.winner.id
+          @bet.goals_a = @game.goals_a + 1
+          @bet.goals_b = @game.goals_b + 1
+          @bet.calculate_points.should == 0
+          @bet.winner_id = nil
+          @bet.loser_id = nil
+          @bet.calculate_points.should == 0
+        end
+        it "should give 4 points if everything is right" do
+          @bet.winner_id = @game.winner.id
+          @bet.loser_id = @game.loser.id
+          @bet.goals_a = @game.goals_a
+          @bet.goals_b = @game.goals_b
+          @bet.calculate_points.should == 4
+        end
+        it "should give 2 points if winner (and loser) is right" do
+          @bet.winner_id = @game.winner.id
+          @bet.loser_id = @game.loser.id
+          @bet.goals_a = @game.goals_a + 1
+          @bet.goals_b = @game.goals_b + 1
+          @bet.calculate_points.should == 2
+        end
+        it "should give 1 point if goals_a is right" do
+          @bet.winner_id = @game.loser.id
+          @bet.loser_id = @game.winner.id
+          @bet.goals_a = @game.goals_a
+          @bet.goals_b = @game.goals_b + 1
+          @bet.calculate_points.should == 1
+        end
+        it "should give 1 point if goals_b is right" do
+          @bet.winner_id = @game.loser.id
+          @bet.loser_id = @game.winner.id
+          @bet.goals_a = @game.goals_a + 1
+          @bet.goals_b = @game.goals_b
+          @bet.calculate_points.should == 1
+        end
+      end
+      context "tie" do
+        before(:each) do
+          @bet = bets(:three)
+          @game = @bet.game
+          @game.should be_group_game
+          @game.should be_played
+          @game.should have_goals
+          @game.should be_tie
+        end
+        it "should give 0 points if nothing is right" do
+          @bet.winner_id = 2
+          @bet.loser_id = 4
+          @bet.goals_a = @game.goals_a + 1
+          @bet.goals_b = @game.goals_b + 1
+          @bet.calculate_points.should == 0
+        end
+        it "should give 4 points if everything is right" do
+          @bet.winner_id = nil
+          @bet.loser_id = nil
+          @bet.tie = true
+          @bet.goals_a = @game.goals_a
+          @bet.goals_b = @game.goals_b
+          @bet.calculate_points.should == 4
+        end
+        it "should give 2 points if tie is right (tie was expected)" do
+          @bet.winner_id = nil
+          @bet.loser_id = nil
+          @bet.should be_tie
+          @bet.goals_a = @game.goals_a + 1
+          @bet.goals_b = @game.goals_b + 1
+          @bet.calculate_points.should == 2
+        end
+        it "should give 1 point if goals_a is right" do
+          @bet.winner_id = @game.team_a.id
+          @bet.loser_id = @game.team_b.id
+          @bet.goals_a = @game.goals_a
+          @bet.goals_b = @game.goals_b + 1
+          @bet.calculate_points.should == 1
+        end
+        it "should give 1 point if goals_b is right" do
+          @bet.winner_id = @game.team_a.id
+          @bet.loser_id = @game.team_b.id
+          @bet.goals_a = @game.goals_a + 1
+          @bet.goals_b = @game.goals_b
+          @bet.calculate_points.should == 1
+        end
+      end
+    end
+    context "finals games" do
+      context "simple win" do
+        before(:each) do
+          @bet = bets(:six)
+          @game = @bet.game
+          @game.should_not be_group_game
+          @game.should be_played
+          @game.should have_goals
+          @game.should_not be_tie
+        end
+        it "should give 0 points if nothing is right" do
+          @bet.winner_id = @game.loser.id
+          @bet.loser_id = @game.winner.id
+          @bet.goals_a = @game.goals_a + 1
+          @bet.goals_b = @game.goals_b + 1
+          @bet.calculate_points.should == 0
+        end
+        it "should give 6 points if everything is right" do
+          @bet.winner_id = @game.winner.id
+          @bet.loser_id = @game.loser.id
+          @bet.goals_a = @game.goals_a
+          @bet.goals_b = @game.goals_b
+          @bet.calculate_points.should == 6
+        end
+        it "should give 4 points if winner (and loser) is right" do
+          @bet.winner_id = @game.winner.id
+          @bet.loser_id = @game.loser.id
+          @bet.goals_a = @game.goals_a + 1
+          @bet.goals_b = @game.goals_b + 1
+          @bet.calculate_points.should == 4
+        end
+        it "should give 1 point if goals_a is right" do
+          @bet.winner_id = @game.loser.id
+          @bet.loser_id = @game.winner.id
+          @bet.goals_a = @game.goals_a
+          @bet.goals_b = @game.goals_b + 1
+          @bet.calculate_points.should == 1
+        end
+        it "should give 1 point if goals_b is right" do
+          @bet.winner_id = @game.loser.id
+          @bet.loser_id = @game.winner.id
+          @bet.goals_a = @game.goals_a + 1
+          @bet.goals_b = @game.goals_b
+          @bet.calculate_points.should == 1
+        end
+      end
+      context "penalty win" do
+        before(:each) do
+          @bet = bets(:four)
+          @game = @bet.game
+          @game.should_not be_group_game
+          @game.should be_played
+          @game.should have_goals
+          @game.should have_penalty_goals
+          @game.should_not be_tie
+          @game.should be_penalty
+        end
+        it "should give 0 points if nothing is right" do
+          @bet.winner_id = @game.loser.id
+          @bet.loser_id = @game.winner.id
+          @bet.goals_a = @game.goals_a + 1
+          @bet.goals_b = @game.goals_b + 1
+          @bet.penalty_goals_a = @game.penalty_goals_a + 1
+          @bet.penalty_goals_b = @game.penalty_goals_b + 1
+          @bet.calculate_points.should == 0
+        end
+        it "should give 8 points if everything is right" do
+          @bet.winner_id = @game.winner.id
+          @bet.loser_id = @game.loser.id
+          @bet.goals_a = @game.goals_a
+          @bet.goals_b = @game.goals_b
+          @bet.penalty = true
+          @bet.penalty_goals_a = @game.penalty_goals_a
+          @bet.penalty_goals_b = @game.penalty_goals_b
+          @bet.calculate_points.should == 8
+        end
+        it "should give 4 points if winner (and loser) is right" do
+          @bet.winner_id = @game.winner.id
+          @bet.loser_id = @game.loser.id
+          @bet.goals_a = @game.goals_a + 1
+          @bet.goals_b = @game.goals_b + 1
+          @bet.penalty_goals_a = @game.penalty_goals_a + 1
+          @bet.penalty_goals_b = @game.penalty_goals_b + 1
+          @bet.calculate_points.should == 4
+        end
+        it "should give 1 point if goals_a is right" do
+          @bet.winner_id = @game.loser.id
+          @bet.loser_id = @game.winner.id
+          @bet.goals_a = @game.goals_a
+          @bet.goals_b = @game.goals_b + 1
+          @bet.penalty_goals_a = @game.penalty_goals_a + 1
+          @bet.penalty_goals_b = @game.penalty_goals_b + 1
+          @bet.calculate_points.should == 1
+        end
+        it "should give 1 point if goals_b is right" do
+          @bet.winner_id = @game.loser.id
+          @bet.loser_id = @game.winner.id
+          @bet.goals_a = @game.goals_a + 1
+          @bet.goals_b = @game.goals_b
+          @bet.penalty_goals_a = @game.penalty_goals_a + 1
+          @bet.penalty_goals_b = @game.penalty_goals_b + 1
+          @bet.calculate_points.should == 1
+        end
+        it "should give 1 point if penalty_goals_a is right" do
+          @bet.winner_id = @game.loser.id
+          @bet.loser_id = @game.winner.id
+          @bet.goals_a = @game.goals_a + 1
+          @bet.goals_b = @game.goals_b + 1
+          @bet.penalty_goals_a = @game.penalty_goals_a
+          @bet.penalty_goals_b = @game.penalty_goals_b + 1
+          @bet.calculate_points.should == 1
+        end
+        it "should give 1 point if penalty_goals_b is right" do
+          @bet.winner_id = @game.loser.id
+          @bet.loser_id = @game.winner.id
+          @bet.goals_a = @game.goals_a + 1
+          @bet.goals_b = @game.goals_b + 1
+          @bet.penalty_goals_a = @game.penalty_goals_a + 1
+          @bet.penalty_goals_b = @game.penalty_goals_b
+          @bet.calculate_points.should == 1
+        end
       end
     end
   end

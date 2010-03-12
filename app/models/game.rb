@@ -6,7 +6,7 @@ class Game < ActiveRecord::Base
   
   # Options
   
-  #attr_accessible :stadium, :city, :played_at, :team_a_id, :team_b_id, :goals_a, :goals_b, :stage, :penalty_goals_a, :penalty_goals_b # TODO
+  attr_accessible :stadium, :city, :played_at, :team_a_id, :team_a, :team_b_id, :team_b, :goals_a, :goals_b, :stage, :penalty_goals_a, :penalty_goals_b
   
   # Associations
   
@@ -56,7 +56,6 @@ class Game < ActiveRecord::Base
 
   before_validation :figure_out_winner_and_loser
   
-  # TODO testar
   after_save :score_bets!, :if => Proc.new { |game| game.played? && game.has_goals? }
   
   # Scopes
@@ -87,6 +86,10 @@ class Game < ActiveRecord::Base
   end
   
   # TOSPEC
+  def has_penalty_goals?
+    penalty_goals_a && penalty_goals_b
+  end
+  
   def score_bets!
     bets = self.bets.all
     bets.each do |bet|

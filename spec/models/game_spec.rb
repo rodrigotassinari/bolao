@@ -33,6 +33,51 @@ describe Game do
     game.errors.full_messages.should include("Times devem ser diferentes entre si")
   end
   
+  it "should score the related bets when fully filled and game has been played" do
+    game = Game.new(@valid_attributes)
+    game.goals_a = 1
+    game.goals_b = 2
+    game.played_at = 2.days.ago
+    game.should be_played
+    game.should have_goals
+    game.should_receive :score_bets!
+    game.save!
+  end
+  
+  it "should not score the related bets until fully filled" do
+    game = Game.new(@valid_attributes)
+    game.goals_a.should be_nil
+    game.goals_b.should be_nil
+    game.played_at.should > Time.current
+    game.should_not be_played
+    game.should_not_receive :score_bets!
+    game.save!
+  end
+  
+  it "should not score the related bets until after the game was played" do
+    game = Game.new(@valid_attributes)
+    game.goals_a = 1
+    game.goals_b = 2
+    game.played_at.should > Time.current
+    game.should_not be_played
+    game.should_not_receive :score_bets!
+    game.save!
+  end
+  
+  describe ".score_bets!" do
+    it "should call Bet#score! in each related bet" do
+      game = games(:group_win)
+      bets = game.bets.all
+      bets.size.should == 2
+      bet1 = bets.first
+      bet2 = bets.last
+      bet1.should_receive(:score!)
+      bet2.should_receive(:score!)
+      game.stub_chain(:bets, :all).and_return([bet1, bet2])
+      game.score_bets!
+    end
+  end
+  
   context "group games" do
     
     it "both teams should be from the same group" do
