@@ -1,0 +1,14 @@
+development: &development
+  developer: true
+  base: "http://localhost:3000"
+  return_to: "/payment/done"
+  email: "admin@bolao.pittlandia.net"
+
+test:
+  <<: *development
+
+production:
+  authenticity_token: "65DE472961344C718EF4790530CB10AB"
+  email: "rodrigo@pittlandia.net"
+  return_to: "/payment/done"
+

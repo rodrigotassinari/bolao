@@ -1,0 +1,25 @@
+%h2 Pagar Aposta
+
+- if @user.paying?
+  .warning
+    %p.alert
+      Parece que você já pagou sua aposta, porém ainda estamos aguardando a confirmação do PagSeguro. 
+    %p.light_alert
+      Sugiro FORTEMENTE que você aguarde mais uns dias e NÃO pague novamente sua aposta! 
+      Em caso de dúvidas, entre em contato por #{mail_to 'rodrigo@pittlandia.net', 'email'}.
+    %p
+      Assim que o PagSeguro confirmar o pagamento para nosso sistema, sua aposta aparecerá como "Paga". 
+      Esta confirmação pode demorar alguns segundos apenas (caso pagamento tenha sido feito via cartão de crédito) ou até 7 dias (caso pagamento tenha sido feito via boleto bancário).
+
+%p Clique no botão abaixo para pagar sua aposta, no valor de <b>#{number_to_currency Bet.full_value}</b>, através do PagSeguro.
+
+%p <b>IMPORTANTE:</b> Você deve informar ao PagSeguro o <b>mesmo email</b> usado aqui no Bolão! Caso contrário, não será possível confirmar o seu pagamento.
+
+= pagseguro_form @order, :submit => "Efetuar pagamento!"
+
+%p
+  %i Você pode pagar com cartão de crédito, boleto bancário ou transferência eletrônica. À sua escolha.
+
+%p
+  %i Não é obrigatório criar uma conta no PagSeguro para efetuar o pagamento.
+

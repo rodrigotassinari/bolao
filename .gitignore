@@ -13,5 +13,6 @@ nbproject
 .project
 public/stylesheets/application.css
 public/uploads/**/*
+tmp/*.yml
 tmp/**/*
 

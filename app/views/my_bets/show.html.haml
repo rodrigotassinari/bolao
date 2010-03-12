@@ -8,8 +8,14 @@
   %b #{pluralize Bet.sum(:points, :conditions => {:user_id => @user.id}), 'ponto', 'pontos'}
 
 - unless @user.paid?
-  %p
-    %b Você ainda não pagou sua aposta!
+  - unless @user.paying?
+    %p
+      %b Você ainda não pagou sua aposta!
+      %b= link_to 'Pagar agora?', new_payment_path
+  - else
+    %p
+      %b Aposta paga, aguardando confirmação...
+      = link_to 'Mais informações', new_payment_path
 
 %p.small Ordenação: #{link_to 'ascendente', my_bet_path} ou #{link_to 'descendente', my_bet_path(:order => 'DESC')}
 

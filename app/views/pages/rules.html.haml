@@ -39,14 +39,18 @@
     %b Pagamento
     %ul
       %li Uma aposta por email.
-      %li Valor de cada aposta: R$ 21,80.
-      %li A aposta deve ser paga até o dia 14/Junho.
+      %li Valor de cada aposta: <b>#{number_to_currency Bet.full_value}</b>.
+      %li A aposta deve ser paga até o dia <b>#{l Bet.payment_deadline, :format => :game}</b>.
       %li Pagamento será feito através do #{link_to 'PagSeguro', 'https://pagseguro.uol.com.br/'}, via boleto, transferência ou cartão de crédito. <b>Não</b> é necessário ter uma conta no PagSeguro para fazer o pagamento.
 
   %li
     %b Premiação
     %ul
-      %li O total arrecadado, menos os custos de transação, será dado ao apostador que somar mais pontos ao final da competição.
+      %li
+        O total arrecadado, menos os custos de transação, será dado ao apostador que somar mais pontos ao final da competição.
+        %ul
+          %li
+            %i Na prática, isso significa que o prêmio será de #{number_to_currency Bet.net_value} vezes a quantidade de apostadores que pagarem (já temos #{User.paid.count} apostador pago, gerando um prêmio de #{number_to_currency Bet.prize} até o momento).
       %li Em caso de empate de pontos, o prêmio será dividido entre os apostadores empatados.
 
 %h3 Dúvidas?

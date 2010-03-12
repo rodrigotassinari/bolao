@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Game do
-  fixtures :teams, :games
+  fixtures :teams, :games, :bets
   
   before(:each) do
     @valid_attributes = {

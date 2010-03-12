@@ -13,6 +13,8 @@
 %p
   %strong Já pagou a aposta?
   = yes_or_no @user.paid?
+  - if @user.paying?
+    (aguardando confirmação de pagamento)
 
 %p.links
   - if admin_signed_in?

@@ -51,6 +51,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :teams
   
+  map.resource :payment, :member => {:done => :any}
+  
   map.rules 'rules', :controller => 'pages', :action => 'rules'
   
   map.root :controller => "pages", :action => "index"

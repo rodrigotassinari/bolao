@@ -1,9 +1,5 @@
 class Bet < ActiveRecord::Base
   
-  # Constants
-  
-  NET_VALUE = 20.0
-  
   # Options
   
   attr_accessible :user_id, :user, :game_id, :game, :goals_a, :goals_b, :penalty_goals_a, :penalty_goals_b
@@ -49,6 +45,22 @@ class Bet < ActiveRecord::Base
   before_save :cant_change_if_locked
   
   # Methods
+  
+  def self.net_value
+    Rails.env.production? ? 20.0 : 1.0
+  end
+  
+  def self.full_value
+    Rails.env.production? ? 21.8 : 1.5
+  end
+  
+  def self.payment_deadline
+    Date.new(2010, 6, 15)
+  end
+  
+  def self.prize
+    Bet.net_value * User.paid.count
+  end
   
   # TOSPEC
   def locked?

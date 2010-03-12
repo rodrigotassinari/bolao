@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   
   named_scope :by_points, :order => 'users.points_cache DESC, users.name ASC'
   
-  named_scope :paid, :conditions => 'users.paid_at IS NOT NULL AND users.payment_code IS NOT NULL'
+  named_scope :paid, :conditions => 'users.paid_at IS NOT NULL AND users.payment_code IS NOT NULL AND users.payment_transaction_code IS NOT NULL'
   
   # Methods
   
@@ -33,7 +33,16 @@ class User < ActiveRecord::Base
   
   # TOSPEC
   def paid?
-    !paid_at.nil? && !payment_code.nil?
+    !paid_at.nil? && 
+      !payment_code.nil? && 
+      !payment_transaction_code.nil?
+  end
+  
+  # TOSPEC
+  def paying?
+    paid_at.nil? && 
+      !payment_code.nil? && 
+      !payment_transaction_code.nil?
   end
   
   def update_points_cache!

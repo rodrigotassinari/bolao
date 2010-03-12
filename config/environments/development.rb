@@ -19,3 +19,5 @@ config.action_mailer.raise_delivery_errors = false
 # para devise
 config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
+config.gem 'faker', :version => '>= 0.3.1'
+
