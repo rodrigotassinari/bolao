@@ -5,7 +5,7 @@ describe Bet do
   
   before(:each) do
     @valid_attributes = {
-      :game => games(:group_unplayed),
+      :game => games(:finals_unplayed),
       :user => users(:user),
       :goals_a => 2,
       :goals_b => 1
@@ -35,6 +35,7 @@ describe Bet do
       before(:each) do
         @game = games(:group_unplayed)
         @game.should be_group_game
+        @game.stub(:bettable?).and_return(true) # MARRETA!
         @bet.game = @game
       end
       it "should set A as the winner" do

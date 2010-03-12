@@ -46,6 +46,8 @@ class Bet < ActiveRecord::Base
   
   after_save :update_user_points_cache
   
+  before_save :cant_change_if_locked
+  
   # Methods
   
   # TOSPEC
@@ -73,8 +75,9 @@ class Bet < ActiveRecord::Base
   
   # TOSPEC
   def score!
-    self.scored_at = Time.current
     self.points = calculate_points
+    return if self.points.nil?
+    self.scored_at = Time.current
     save!
   end
   
@@ -125,6 +128,17 @@ class Bet < ActiveRecord::Base
         self.user.update_points_cache!
       end
       true
+    end
+    
+    # before_save
+    # TOSPEC (+ ou -)
+    def cant_change_if_locked
+      if self.locked?
+        errors.add_to_base("Aposta trancada, não pode mais ser alterada")
+        false
+      else
+        true
+      end
     end
   
     # before_validation
