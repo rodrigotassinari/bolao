@@ -2,7 +2,7 @@ class Bet < ActiveRecord::Base
   
   # Options
   
-  #attr_accessible :game_id, :goals_a, :goals_b, :penalty, :penalty_goals_a, :penalty_goals_b, :tie # TODO
+  #attr_accessible :user_id, :game_id, :goals_a, :goals_b, :penalty_goals_a, :penalty_goals_b # TODO
   
   # Associations
   
@@ -30,13 +30,9 @@ class Bet < ActiveRecord::Base
   
   validates_presence_of :points, :unless => Proc.new { |bet| bet.scored_at.nil? }
   
-  validates_presence_of :winner_id, :unless => Proc.new { |bet| bet.tie? }
+  validates_presence_of :winner_id, :loser_id, :unless => Proc.new { |bet| bet.tie? }
   
-  validates_presence_of :loser_id, :unless => Proc.new { |bet| bet.tie? }
-  
-  validates_inclusion_of :penalty, :in => [true, false]
-  
-  validates_inclusion_of :tie, :in => [true, false]
+  validates_inclusion_of :penalty, :tie, :in => [true, false]
   
   validate :penalty_must_have_winner #, :if => Proc.new { |bet| bet.penalty? }
   
@@ -128,7 +124,6 @@ class Bet < ActiveRecord::Base
   
     # before_validation
     # TODO: optimize
-    # TOSPEC
     def figure_out_winner_and_loser
       if self.goals_a && self.goals_b
         if self.game.group_game?
