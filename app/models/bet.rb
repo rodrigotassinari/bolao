@@ -1,5 +1,9 @@
 class Bet < ActiveRecord::Base
   
+  # Constants
+  
+  NET_VALUE = 20.0
+  
   # Options
   
   #attr_accessible :user_id, :game_id, :goals_a, :goals_b, :penalty_goals_a, :penalty_goals_b # TODO

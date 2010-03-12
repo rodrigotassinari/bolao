@@ -51,7 +51,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :teams
   
-  map.faq 'faq', :controller => 'pages', :action => 'faq'
+  map.rules 'rules', :controller => 'pages', :action => 'rules'
   
   map.root :controller => "pages", :action => "index"
   

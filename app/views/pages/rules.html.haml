@@ -1,0 +1,55 @@
+- title "Regras"
+%h2 Regras
+
+%ul
+
+  %li
+    %b Palpites & Prazos
+    %ul
+      %li Os palpites podem ser feitos e alterados até imediatamente antes do início do primeiro jogo de cada fase.
+      %li Os jogos que ainda não foram determinados (das fases finais) só poderão ser palpitados depois de cadastrados nos sistema, o que ocorrerá tão logo as equipes dos jogos sejam determinadas.
+
+  %li
+    %b Pontuação
+    %ul
+      %li
+        Fase de grupos
+        %ul
+          %li Acertou o vencedor: 1 ponto.
+          %li Acertou o perdedor: 1 ponto.
+          %li Acertou os gols da seleção A: 1 ponto.
+          %li Acertou os gols da seleção B: 1 ponto.
+          %li
+            %i Máximo de pontos por partida: #{(1+1+1+1)} pontos.
+      %li
+        Fase eliminatória (oitavas em diante)
+        %ul
+          %li Acertou o vencedor: 2 ponto.
+          %li Acertou o perdedor: 2 ponto.
+          %li Acertou os gols da seleção A: 1 ponto.
+          %li Acertou os gols da seleção B: 1 ponto.
+          %li Acertou os gols de pênalty da seleção A (se houver desempate por disputa de pênaltys): 1 ponto.
+          %li Acertou os gols de pênalty da seleção B (se houver desempate por disputa de pênaltys): 1 ponto.
+          %li
+            %i Máximo de pontos por partida: #{(2+2+1+1+1+1)} pontos.
+      %li
+        %i Máximo de pontos possíveis: #{ ((1+1+1+1)*48) + ((2+2+1+1+1+1)*16) } pontos.
+
+  %li
+    %b Pagamento
+    %ul
+      %li Uma aposta por email.
+      %li Valor de cada aposta: R$ 21,80.
+      %li A aposta deve ser paga até o dia 14/Junho.
+      %li Pagamento será feito através do #{link_to 'PagSeguro', 'https://pagseguro.uol.com.br/'}, via boleto, transferência ou cartão de crédito. <b>Não</b> é necessário ter uma conta no PagSeguro para fazer o pagamento.
+
+  %li
+    %b Premiação
+    %ul
+      %li O total arrecadado, menos os custos de transação, será dado ao apostador que somar mais pontos ao final da competição.
+      %li Em caso de empate de pontos, o prêmio será dividido entre os apostadores empatados.
+
+%h3 Dúvidas?
+
+%p Favor enviar suas dúvidas por #{mail_to 'rodrigo@pittlandia.net', 'email'}.
+
