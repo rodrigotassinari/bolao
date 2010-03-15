@@ -24,6 +24,9 @@
     %li Ordenação: #{link_to 'ascendente', my_bet_path(params.merge(:desc => false))} ou #{link_to 'descendente', my_bet_path(params.merge(:desc => true))}
     %li Mostrar: #{link_to 'todos os jogos', my_bet_path(params.merge(:empty => false))} ou #{link_to 'apenas os não preenchidos', my_bet_path(params.merge(:empty => true))}
     %li Horários dos jogos de acordo com a hora de Brasília.
+    - if Bet.random_createable_by?(@user)
+      %li= link_to 'Preencher com palpites aleatórios?', my_bet_path, :method => :post, :confirm => "Isto irá sortear palpites para todos os jogos não-preenchidos da fase de Grupos. Você poderá editar os palpites depois. Continuar?"
+    
 
 - @games.each do |game|
   - bet = Bet.find_or_initialize_for(@user, game)

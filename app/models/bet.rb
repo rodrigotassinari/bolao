@@ -77,6 +77,25 @@ class Bet < ActiveRecord::Base
     bet
   end
   
+  # TOSPEC
+  def self.create_random_bets_for!(user)
+    games = Game.all(:conditions => {:stage => 'Grupos'})
+    games.each do |game|
+      bet = Bet.find_or_initialize_for(user, game)
+      if bet.new_record?
+        bet.goals_a = [0, 1, 2, 3, 4].rand
+        bet.goals_b = [0, 1, 2, 3, 4].rand
+      end
+      bet.save!
+    end
+    user.bets.count
+  end
+  
+  # TOSPEC
+  def self.random_createable_by?(user)
+    user.bets.count < Game.count(:conditions => {:stage => 'Grupos'})
+  end
+  
   def calculate_points
     return unless self.game && self.game.played? && self.game.has_goals?
     score = if self.game.group_game?

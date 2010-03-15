@@ -18,6 +18,14 @@ class MyBetsController < ApplicationController
       format.html # show.html.erb
     end
   end
+  
+  # POST /my_bet
+  def create
+    user = current_user
+    Bet.create_random_bets_for!(user)
+    flash[:success] = "Palpites aleatórios criados com sucesso."
+    redirect_to my_bet_path
+  end
 
 end
 
