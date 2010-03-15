@@ -106,7 +106,7 @@ class Game < ActiveRecord::Base
   
   # TOSPEC
   def description
-    "#{team_a.name} #{goals_a} x #{goals_b} #{team_b.name}, #{I18n.l played_at, :format => :game} (#{stage})"
+    "#{team_a.name} #{goals_a} x #{goals_b} #{team_b.name}, #{played_at.strftime('%d/%m %H:%M')} (#{stage})"
   end
   
   def self.stages

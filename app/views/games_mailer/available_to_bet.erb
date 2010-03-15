@@ -13,7 +13,7 @@ Você pode dar seu palpite neste jogo em:
 
 ATENÇÃO: você deve dar seu palpite até o início da rodada do jogo!!
 
-Pare este jogo, a data-limite é: <%= I18n.l @game.bet_limit_date.in_time_zone(Time.zone), :format => :game %> (horário de Brasília)
+Pare este jogo, a data-limite é: <%= @game.bet_limit_date.in_time_zone(Time.zone).strftime('%d/%m %H:%M') %> (horário de Brasília)
 
 Boa sorte!
 

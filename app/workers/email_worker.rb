@@ -10,8 +10,9 @@ class EmailWorker < Workling::Base
   def bets_scored(options)
     user = User.find(options[:user_id])
     bet = Bet.find(options[:bet_id])
-    logger.info "Enviando BetsMailer#scored(#{user.id}, #{bet.id})..." 
-    BetsMailer.deliver_scored(user, bet)
+    game = Game.find(options[:game_id])
+    logger.info "Enviando BetsMailer#scored(#{user.id}, #{bet.id}, #{game.id})..." 
+    BetsMailer.deliver_scored(user, bet, game)
   end
   
 end

@@ -138,8 +138,8 @@ class Bet < ActiveRecord::Base
     # before_save
     # TOSPEC (+ ou -)
     def cant_change_if_locked
-      if self.locked?
-        errors.add_to_base("Aposta trancada, não pode mais ser alterada")
+      if self.locked? && (self.goals_a_changed? || self.goals_b_changed? || self.penalty_goals_a_changed? || self.penalty_goals_b_changed?)
+        errors.add_to_base("Aposta trancada, não pode mais ser alterada.")
         false
       else
         true
@@ -156,7 +156,7 @@ class Bet < ActiveRecord::Base
     # TOSPEC
     # after_save
     def send_emails
-      EmailWorker.asynch_bets_scored(:user_id => self.user.id, :bet_id => self.id)
+      EmailWorker.asynch_bets_scored(:user_id => self.user.id, :bet_id => self.id, :game_id => self.game.id)
       true
     end
   
