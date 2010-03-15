@@ -26,9 +26,21 @@
     %li Horários dos jogos de acordo com a hora de Brasília.
     - if Bet.random_createable_by?(@user)
       %li= link_to 'Preencher com palpites aleatórios?', my_bet_path, :method => :post, :confirm => "Isto irá sortear palpites para todos os jogos não-preenchidos da fase de Grupos. Você poderá editar os palpites depois. Continuar?"
-    
 
-- @games.each do |game|
-  - bet = Bet.find_or_initialize_for(@user, game)
-  = render :partial => 'game_bet', :locals => {:bet => bet}
+- @stages.each do |stage|
+  %h4= stage
+  - if @games[stage].empty?
+    %p Não há jogos cadastrados nesta fase ainda.
+  - else
+    - if stage == 'Grupos'
+      - @games[stage].each_with_index do |game, i|
+        - if i % 6 == 0
+          %h5 Grupo #{game.team_a.group}
+        - bet = Bet.find_or_initialize_for(@user, game)
+        = render :partial => 'game_bet', :locals => {:bet => bet}
+        - i += 1
+    - else
+      - @games[stage].each do |game|
+        - bet = Bet.find_or_initialize_for(@user, game)
+        = render :partial => 'game_bet', :locals => {:bet => bet}
 

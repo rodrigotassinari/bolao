@@ -109,6 +109,27 @@ class Game < ActiveRecord::Base
     "#{team_a.name} #{goals_a} x #{goals_b} #{team_b.name}, #{played_at.strftime('%d/%m %H:%M')} (#{stage})"
   end
   
+  def self.all_by_stage_and_groups(stages=Game.stages, groups=Team.groups, order="games.played_at ASC", scope="1=1")
+    games = {}
+    stages.each do |stage|
+      with_scope(:find => {:conditions => scope}) do
+        if stage == 'Grupos'
+          games[stage] = Game.all(
+            :order => "teams.group ASC, #{order}", 
+            :conditions => {:stage => stage},
+            :include => [:team_a]
+          )
+        else
+          games[stage] = Game.all(
+            :order => order, 
+            :conditions => {:stage => stage}
+          )
+        end
+      end
+    end
+    games
+  end
+  
   def self.stages
     STAGES
   end

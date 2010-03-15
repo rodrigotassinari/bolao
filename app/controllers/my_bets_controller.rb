@@ -7,13 +7,13 @@ class MyBetsController < ApplicationController
     @user = current_user
     
     suborder = params[:desc] ? 'DESC' : 'ASC'
-    conditions = params[:empty] ? ['games.id NOT IN (?)', @user.bets.all(:select => 'game_id').map(&:game_id)] : nil
+    conditions = params[:empty] ? ['games.id NOT IN (?)', @user.bets.all(:select => 'game_id').map(&:game_id)] : "1=1"
     
-    @games = Game.all(
-      :order => "played_at #{suborder}", 
-      :conditions => conditions
-    )
-
+    @stages = (suborder == 'ASC' ? Game.stages : Game.stages.reverse)
+    @groups = Team.groups
+    
+    @games = Game.all_by_stage_and_groups(@stages, @groups, "games.played_at #{suborder}", conditions)
+    
     respond_to do |format|
       format.html # show.html.erb
     end
