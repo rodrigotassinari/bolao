@@ -10,11 +10,11 @@ doc/app
 log/*.log
 log/*.log.*
 log/*.pid
-log/restart.txt
 nbproject
 .project
 public/stylesheets/application.css
 public/uploads/**/*
 tmp/*.yml
+tmp/restart.txt
 tmp/**/*
 
