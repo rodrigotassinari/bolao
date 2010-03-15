@@ -32,3 +32,4 @@ config.gem 'rspec', :lib => false, :version => '>= 1.3.0'
 config.gem 'rspec-rails', :lib => false, :version => '>= 1.3.2'
 config.gem 'remarkable_rails', :lib => false, :version => '>= 3.1.13'
 
+config.action_mailer.default_url_options = { :host => 'test.host' }
