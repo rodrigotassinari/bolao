@@ -8,7 +8,9 @@ doc/api
 doc/app
 .DS_Store
 log/*.log
+log/*.log.*
 log/*.pid
+log/restart.txt
 nbproject
 .project
 public/stylesheets/application.css
