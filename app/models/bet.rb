@@ -40,9 +40,11 @@ class Bet < ActiveRecord::Base
   
   before_validation :figure_out_winner_and_loser
   
-  after_save :update_user_points_cache
-  
   before_save :cant_change_if_locked
+  
+  after_save :update_user_points_cache, :if => Proc.new { |bet| bet.user && bet.scored? }
+  
+  after_save :send_emails, :if => Proc.new { |bet| bet.user && bet.scored? }
   
   # Methods
   
@@ -133,15 +135,6 @@ class Bet < ActiveRecord::Base
       end
     end
     
-    # after_save
-    # TOSPEC
-    def update_user_points_cache
-      if self.user && self.scored?
-        self.user.update_points_cache!
-      end
-      true
-    end
-    
     # before_save
     # TOSPEC (+ ou -)
     def cant_change_if_locked
@@ -151,6 +144,20 @@ class Bet < ActiveRecord::Base
       else
         true
       end
+    end
+    
+    # after_save
+    # TOSPEC
+    def update_user_points_cache
+      self.user.update_points_cache!
+      true
+    end
+    
+    # TOSPEC
+    # after_save
+    def send_emails
+      BetsMailer.deliver_scored(self.user, self) # FIXME passar pra assincrono
+      true
     end
   
     # before_validation

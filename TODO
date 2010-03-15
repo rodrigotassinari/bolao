@@ -1,5 +1,4 @@
-* avisar usuários por email quando um novo jogo estiver disponível para apostar
-* avisar usuários por email quando uma aposta sua for pontuada (quantos pontos ele fez)
+* enviar emails assincronamente
 * aposta randômica
 * cadastro de usuários apenas por convite (com exceção do primeiro) (ou não?)
 

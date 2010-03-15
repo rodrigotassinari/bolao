@@ -28,6 +28,7 @@
     %tr
       %th Jogo
       %th{:colspan => 5} Palpite
+      %th Pontos
   %tbody
     - for bet in @bets
       %tr{:class => cycle(:odd, :even)}
@@ -60,4 +61,9 @@
           - if !bet.game.group_game? && bet.penalty?
             %br
             &nbsp;
+        %td.center
+          - if bet.points
+            bet.points
+          - else
+            %i não calculado
 

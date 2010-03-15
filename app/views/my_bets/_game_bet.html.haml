@@ -32,7 +32,7 @@
           = f.text_field :penalty_goals_b, :size => 1, :onchange => "submit_penalty_bet(this);", :disabled => (bet.locked? ? true : false)
           %span.team_b #{team_flag(bet.game.team_b)}
     
-  - if bet.game.played? && bet.game.scored?
+  - if bet.game.played? && bet.game.has_goals?
     .result
       %p= pluralize bet.points, 'ponto', 'pontos'
 

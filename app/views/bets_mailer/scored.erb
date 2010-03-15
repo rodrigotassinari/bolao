@@ -1,0 +1,18 @@
+Olá <%= @recipient.name %>,
+
+Você marcou <%= pluralize @bet.points, 'ponto', 'pontos' %> no jogo:
+
+  <%= @bet.game.description %>
+
+Sua pontuação atual é de <%= pluralize @recipient.points_cache, 'ponto', 'pontos' %>.
+
+Veja sua colocação no ranking atual em:
+
+  <%= users_url %>
+
+Mais informações sobre este jogo:
+
+  <%= game_url(@bet.game) %>
+
+Boa sorte no resto do Bolão PiTTlândia Copa 2010!
+

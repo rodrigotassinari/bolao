@@ -1,0 +1,19 @@
+Olá <%= @recipient.name %>,
+
+Um novo jogo foi cadastrado no Bolão PiTTlândia Copa 2010, e você já pode dar 
+seu palpite sobre ele!
+
+Dados do jogo:
+
+  <%= @game.description %>
+
+Você pode dar seu palpite neste jogo em:
+
+  <%= my_bet_url(:desc => true) %>
+
+ATENÇÃO: você deve dar seu palpite até o início da rodada do jogo!!
+
+Pare este jogo, a data-limite é: <%= I18n.l @game.bet_limit_date, :format => :game %>
+
+Boa sorte!
+

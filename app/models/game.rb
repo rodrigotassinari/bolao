@@ -58,6 +58,8 @@ class Game < ActiveRecord::Base
   
   after_save :score_bets!, :if => Proc.new { |game| game.played? && game.has_goals? }
   
+  after_create :send_emails
+  
   # Scopes
   
   named_scope :bet_ordered, :order => "games.played_at ASC"
@@ -65,8 +67,13 @@ class Game < ActiveRecord::Base
   # Methods
   
   # TOSPEC
+  def bet_limit_date
+    Game.minimum(:played_at, :conditions => {:stage => self.stage})
+  end
+  
+  # TOSPEC
   def bettable?
-    !played? && Time.current < Game.minimum(:played_at, :conditions => {:stage => self.stage})
+    !played? && Time.current < bet_limit_date
   end
   
   # TOSPEC
@@ -95,6 +102,11 @@ class Game < ActiveRecord::Base
     bets.each do |bet|
       bet.score!
     end
+  end
+  
+  # TOSPEC
+  def description
+    "#{team_a.name} #{goals_a} x #{goals_b} #{team_b.name}, #{I18n.l played_at, :format => :game} (#{stage})"
   end
   
   def self.stages
@@ -155,7 +167,17 @@ class Game < ActiveRecord::Base
         errors.add_to_base("Deve haver um vencedor na disputa de pênaltis") if penalty_goals_a == penalty_goals_b
       end
     end
-
+    
+    # TOSPEC
+    # after_create
+    def send_emails
+      users = User.all
+      users.each do |user|
+        GamesMailer.deliver_available_to_bet(user, self) # FIXME passar pra assincrono
+      end
+      true
+    end
+    
     # before_validation
     # TODO: optimize
     def figure_out_winner_and_loser
