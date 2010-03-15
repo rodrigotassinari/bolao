@@ -173,7 +173,7 @@ class Game < ActiveRecord::Base
     def send_emails
       users = User.all
       users.each do |user|
-        GamesMailer.deliver_available_to_bet(user, self) # FIXME passar pra assincrono
+        EmailWorker.asynch_games_available_to_bet(:user_id => user.id, :game_id => self.id)
       end
       true
     end
