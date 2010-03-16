@@ -26,6 +26,10 @@ class User < ActiveRecord::Base
   
   # Methods
   
+  def to_param
+    "#{id}-#{email.split('@').first}"
+  end
+  
   # TOSPEC
   def has_bets?
     bets.count > 0

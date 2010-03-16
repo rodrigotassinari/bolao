@@ -66,6 +66,10 @@ class Game < ActiveRecord::Base
   
   # Methods
   
+  def to_param
+    "#{id}-#{team_a.acronym}-vs-#{team_b.acronym}"
+  end
+  
   # TOSPEC
   def bet_limit_date
     Game.minimum(:played_at, :conditions => {:stage => self.stage})
