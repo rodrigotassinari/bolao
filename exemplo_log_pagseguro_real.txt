@@ -1,0 +1,25 @@
+Processing PaymentsController#new (for 200.142.127.70 at 2010-03-16 19:20:45) [GET]
+  Parameters: {"action"=>"new", "controller"=>"payments"}
+Rendering template within layouts/application
+Rendering payments/new
+Completed in 117ms (View: 13, DB: 3) | 200 OK [http://bolao.pittlandia.net/payment/new]
+
+
+Processing PaymentsController#done (for 200.98.210.60 at 2010-03-16 19:25:23) [POST]
+  Parameters: {"CliEndereco"=>"RUA GENERAL GOES MONTEIRO", "ProdValor_1"=>"21,80", "VendedorEmail"=>"rodrigo@pittlandia.net", "ProdQuantidade_1"=>"1", "Extras"=>"0,00", "ProdExtras_1"=>"0,00", "action"=>"done", "TipoFrete"=>"FR", "Anotacao"=>"", "CliNome"=>"Rodrigo PiTT", "CliCEP"=>"22290080", "NumItens"=>"1", "ProdDescricao_1"=>"Aposta no Bolao PiTTlandia Copa 2010, por pitt@pittlandia.net", "DataTransacao"=>"16/03/2010 16:21:16", "TipoPagamento"=>"Pagamento Online", "CliBairro"=>"Botafogo", "controller"=>"payments", "ValorFrete"=>"0,00", "CliEmail"=>"pitt@pittlandia.net", "CliNumero"=>"8", "CliCidade"=>"RIO DE JANEIRO", "CliEstado"=>"RJ", "ProdID_1"=>"Aposta no Bolao", "Referencia"=>"2027be9b654fcfc394b0b49ddbecd1d9929d6be2", "CliComplemento"=>"G / 1903", "Parcelas"=>"1", "ProdFrete_1"=>"0,00", "TransacaoID"=>"00C134D95C8F4F98A780775C11B9DC5B", "StatusTransacao"=>"Aguardando Pagto", "CliTelefone"=>"21 98555110"}
+Completed in 1395ms (View: 0, DB: 28) | 200 OK [http://bolao.pittlandia.net/payment/done]
+
+
+Processing PaymentsController#done (for 200.98.210.60 at 2010-03-16 19:29:37) [POST]
+  Parameters: {"CliEndereco"=>"RUA GENERAL GOES MONTEIRO", "ProdValor_1"=>"21,80", "VendedorEmail"=>"rodrigo@pittlandia.net", "ProdQuantidade_1"=>"1", "Extras"=>"0,00", "ProdExtras_1"=>"0,00", "action"=>"done", "TipoFrete"=>"FR", "Anotacao"=>"", "CliNome"=>"Rodrigo PiTT", "CliCEP"=>"22290080", "NumItens"=>"1", "ProdDescricao_1"=>"Aposta no Bolao PiTTlandia Copa 2010, por pitt@pittlandia.net", "DataTransacao"=>"16/03/2010 16:21:16", "TipoPagamento"=>"Pagamento Online", "CliBairro"=>"Botafogo", "controller"=>"payments", "ValorFrete"=>"0,00", "CliEmail"=>"pitt@pittlandia.net", "CliNumero"=>"8", "CliCidade"=>"RIO DE JANEIRO", "CliEstado"=>"RJ", "ProdID_1"=>"Aposta no Bolao", "Referencia"=>"2027be9b654fcfc394b0b49ddbecd1d9929d6be2", "CliComplemento"=>"G / 1903", "Parcelas"=>"1", "ProdFrete_1"=>"0,00", "TransacaoID"=>"00C134D95C8F4F98A780775C11B9DC5B", "StatusTransacao"=>"Aprovado", "CliTelefone"=>"21 98555110"}
+Completed in 1036ms (View: 0, DB: 0) | 200 OK [http://bolao.pittlandia.net/payment/done]
+
+
+Processing PaymentsController#done (for 200.142.127.70 at 2010-03-16 19:30:22) [GET]
+  Parameters: {"action"=>"done", "controller"=>"payments"}
+Rendering template within layouts/application
+Rendering payments/done
+Completed in 4ms (View: 4, DB: 0) | 200 OK [http://bolao.pittlandia.net/payment/done]
+
+
+
