@@ -1,3 +1,6 @@
+* convidar usuários (propaganda-only)
+* rss de jogos cadastrados
+* rss de pontos por usuário
 * interface global para iphone
 * (testar em produção) envio de emails assincronamente
 * cadastro de usuários apenas por convite (com exceção do primeiro) (ou não?)
