@@ -1,0 +1,20 @@
+%h3 Menu
+
+#menu
+  %ul
+    %li.highlight
+      - if user_signed_in? && current_user.has_bets?
+        = link_to 'Minha Aposta', my_bet_path
+      - else
+        = link_to 'Apostar!', my_bet_path
+
+%h3 Estatísticas
+
+%ul
+  %li #{@games_count} jogos cadastrados
+  %li #{@users_count} apostadores (#{@paid_users_count} pagantes)
+  %li #{@bets_count} palpites preenchidos (de #{@possible_bets_count} possíveis)
+  %li #{@points_count} pontos marcados
+  %li
+    %b #{number_to_currency @total_prize} de premiação
+

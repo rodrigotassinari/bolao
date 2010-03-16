@@ -1,0 +1,44 @@
+- title "Minha Aposta"
+%h2 Minha Aposta
+
+%ul
+  %li <b id="user_bet_count">#{@user.bets.count}</b> / #{Game.count} jogos apostados.
+  %li
+    Pontuação Total: 
+    %b #{pluralize Bet.sum(:points, :conditions => {:user_id => @user.id}), 'ponto', 'pontos'}
+
+- unless @user.paid?
+  - unless @user.paying?
+    %p
+      %b Você ainda não pagou sua aposta!
+  - else
+    %p
+      %b Aposta paga, aguardando confirmação...
+
+%h3 Palpites
+
+%div.small
+  %ul
+    %li Ordenação: #{link_to 'ascendente', my_bet_path(params.merge(:desc => false))} ou #{link_to 'descendente', my_bet_path(params.merge(:desc => true))}
+    %li Mostrar: #{link_to 'todos os jogos', my_bet_path(params.merge(:empty => false))} ou #{link_to 'apenas os não preenchidos', my_bet_path(params.merge(:empty => true))}
+    %li Horários dos jogos de acordo com a hora de Brasília.
+    - if Bet.random_createable_by?(@user)
+      %li= link_to 'Preencher com palpites aleatórios?', my_bet_path, :method => :post, :confirm => "Isto irá sortear palpites para todos os jogos não-preenchidos da fase de Grupos. Você poderá editar os palpites depois. Continuar?"
+
+- @stages.each do |stage|
+  %h4= stage
+  - if @games[stage].empty?
+    %p Não há jogos cadastrados nesta fase ainda.
+  - else
+    - if stage == 'Grupos'
+      - @games[stage].each_with_index do |game, i|
+        - if i % 6 == 0
+          %h5 Grupo #{game.team_a.group}
+        - bet = Bet.find_or_initialize_for(@user, game)
+        = render :partial => 'game_bet', :locals => {:bet => bet}
+        - i += 1
+    - else
+      - @games[stage].each do |game|
+        - bet = Bet.find_or_initialize_for(@user, game)
+        = render :partial => 'game_bet', :locals => {:bet => bet}
+

@@ -1,0 +1,38 @@
+.game_bet{:id => "game_#{bet.game.id}_bet", :class => ("new" if bet.new_record?)}
+  .info
+    %p
+      Jogo #{link_to "##{bet.game.id}", game_path(bet.game), :tabindex => (100 + bet.game.id)}, 
+      #{l bet.game.played_at, :format => :game}, 
+      #{bet.game.stage}, 
+      #{bet.game.group_game? ? "Grupo #{bet.game.team_a.group}," : ""}
+      #{bet.game.stadium}, 
+      #{bet.game.city}
+
+  .bet
+    - remote_form_for(bet, :html => {:id => "game_#{bet.game.id}_bet_form"}) do |f|
+      = image_tag 'spinner.gif', :alt => 'loading', :style => 'display: none;', :class => "spinner"
+      = f.hidden_field :game_id
+      = f.hidden_field :user_id
+      - if params[:empty]
+        = hidden_field_tag :remove_voted, true
+      
+      %p.goals
+        %span.team_a #{bet.game.team_a.name} #{team_flag(bet.game.team_a)}
+        = f.text_field :goals_a, :size => 1, :onchange => "submit_bet(this);", :disabled => (bet.locked? ? true : false)
+        x
+        = f.text_field :goals_b, :size => 1, :onchange => "submit_bet(this);", :disabled => (bet.locked? ? true : false)
+        %span.team_b #{team_flag(bet.game.team_b)} #{bet.game.team_b.name}
+      
+      - if !bet.game.group_game? && bet.penalty?
+        %p.penalty_goals
+          %i Penaltys:
+          %span.team_a #{team_flag(bet.game.team_a)}
+          = f.text_field :penalty_goals_a, :size => 1, :onchange => "submit_penalty_bet(this);", :disabled => (bet.locked? ? true : false)
+          x
+          = f.text_field :penalty_goals_b, :size => 1, :onchange => "submit_penalty_bet(this);", :disabled => (bet.locked? ? true : false)
+          %span.team_b #{team_flag(bet.game.team_b)}
+    
+  - if bet.game.played? && bet.game.has_goals?
+    .result
+      %p= pluralize bet.points, 'ponto', 'pontos'
+

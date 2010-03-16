@@ -35,8 +35,10 @@ class BetsController < ApplicationController
     respond_to do |format|
       if @bet.save
         format.js { render :action => 'update_bet' } # update_bet.js.rjs
+        format.iphone_js { render :action => 'update_bet.js.rjs' }
       else
         format.js { render :action => 'update_bet' }
+        format.iphone_js { render :action => 'update_bet.js.rjs' }
       end
     end
   end
@@ -49,9 +51,11 @@ class BetsController < ApplicationController
     
     respond_to do |format|
       if @bet.update_attributes(params[:bet])
-        format.js { render :action => 'update_bet' }
+        format.js { render :action => 'update_bet' } # update_bet.js.rjs
+        format.iphone_js { render :action => 'update_bet.js.rjs' }
       else
         format.js { render :action => 'update_bet' }
+        format.iphone_js { render :action => 'update_bet.js.rjs' }
       end
     end
   end

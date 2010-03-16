@@ -1,0 +1,33 @@
+!!!Strict
+%html{:xmlns => "http://www.w3.org/1999/xhtml", 'xml:lang' => "en", :lang => "en"}
+  %head
+    %meta{'http-equiv' => "Content-type", :content => "text/html; charset=utf-8"}
+    %meta{'id' => "viewport", 'name' => "viewport", 'content' => "width=320; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"}
+    
+    = stylesheet_link_tag 'scaffold'
+    = stylesheet_link_tag 'application_iphone'
+    = javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js'
+    = javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js'
+    = javascript_include_tag 'jrails'
+    = javascript_include_tag 'application'
+    
+    %title= h(yield(:title) || 'Bolão PiTTlândia')
+  %body
+    .content
+      #header
+        %h2= link_to 'Bolão PiTTlândia Copa do Mundo 2010', root_path
+        
+        #info
+          %p
+            - if user_signed_in?
+              Logado como #{current_user.name} | #{link_to 'sair', destroy_user_session_path}
+            - else
+              #{link_to 'Entrar', new_user_session_path}
+          
+      #content
+        = yield
+      
+      #footer
+        %p voltar para o #{link_to 'site normal', 'http://bolao.pittlandia.net'}
+        %p powered by #{link_to 'PiTTlândia', 'http://pittlandia.net'}
+

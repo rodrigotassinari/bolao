@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
 
   # Scrub sensitive parameters from your log
   filter_parameter_logging :password, :password_confirmation
+  
+  before_filter :adjust_format_for_iphone
 
   protected
   
@@ -16,6 +18,18 @@ class ApplicationController < ActionController::Base
         flash[:notice] = "Acesso não permitido"
         redirect_to root_path
       end
+    end
+    
+    # before_filter
+    # Set iPhone format if request came from iphone subdomain
+    def adjust_format_for_iphone
+      request.format = :iphone if iphone_request?
+      request.format = :iphone_js if request.xhr? && iphone_request?
+    end
+    
+    # Return true for requests to m.bolao.pittlandia.net
+    def iphone_request?
+      return (request.subdomains.first == "m" || params[:format] == "iphone" || params[:format] == "iphone_js")
     end
 
 end

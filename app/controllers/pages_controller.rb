@@ -8,6 +8,11 @@ class PagesController < ApplicationController
     @possible_bets_count = @users_count * @games_count
     @points_count = Bet.sum(:points)
     @total_prize = Bet.prize
+    
+    respond_to do |format|
+      format.html   # index.html.erb
+      format.iphone # index.iphone.erb
+    end
   end
   
   def rules

@@ -13,6 +13,7 @@ log/*.pid
 nbproject
 .project
 public/stylesheets/application.css
+public/stylesheets/application_iphone.css
 public/uploads/**/*
 tmp/*.yml
 tmp/restart.txt

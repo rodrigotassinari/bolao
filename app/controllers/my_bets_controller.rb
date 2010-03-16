@@ -15,7 +15,8 @@ class MyBetsController < ApplicationController
     @games = Game.all_by_stage_and_groups(@stages, @groups, "games.played_at #{suborder}", conditions)
     
     respond_to do |format|
-      format.html # show.html.erb
+      format.html   # show.html.erb
+      format.iphone # show.iphone.erb
     end
   end
   

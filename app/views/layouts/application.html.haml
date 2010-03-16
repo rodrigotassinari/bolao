@@ -13,7 +13,10 @@
     = javascript_include_tag 'application'
     %title= h(yield(:title) || 'Bolão PiTTlândia Copa do Mundo 2010')
   %body
-    #loading(style='display: none;') Carregando...
+    - if iphone_user_agent?
+      #iphone_alert
+        %p Acesse a #{link_to 'versão otimizada para iPhone', 'http://m.bolao.pittlandia.net'}.
+
     .content
       #header
         %h1= link_to 'Bolão PiTTlândia Copa do Mundo 2010', root_path
