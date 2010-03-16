@@ -20,7 +20,7 @@ describe Bet do
   
   describe "fixtures" do
     Bet.all.each do |bet|
-      it "should have valid fixture: #{bet.id}" do
+      it "should have valid fixture: #{bet.description}" do
         bet.should be_valid
       end
     end
@@ -28,7 +28,7 @@ describe Bet do
   
   describe "figure_out_winner_and_loser" do
     before(:each) do
-      @user = users(:user)
+      @user = users(:admin)
       @bet = Bet.new(:user => @user)
     end
     context "group games" do

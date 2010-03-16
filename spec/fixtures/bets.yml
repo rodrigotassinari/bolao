@@ -1,7 +1,7 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  user: user
+  user: admin
   game: group_win
   goals_a: 1
   goals_b: 1

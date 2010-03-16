@@ -19,6 +19,8 @@ class Bet < ActiveRecord::Base
   
   validates_presence_of :game_id
   
+  validates_uniqueness_of :game_id, :scope => :user_id
+  
   validates_presence_of :goals_a, :goals_b
   
   validates_presence_of :penalty_goals_a, :penalty_goals_b, :if => Proc.new { |bet| bet.penalty? }
@@ -62,6 +64,11 @@ class Bet < ActiveRecord::Base
   
   def self.prize
     Bet.net_value * User.paid.count
+  end
+  
+  # TOSPEC
+  def description
+    "#{game.team_a.name} #{goals_a} x #{goals_b} #{game.team_b.name}, Jogo ##{game.id} (#{game.stage}), por #{user.name}"
   end
   
   # TOSPEC
