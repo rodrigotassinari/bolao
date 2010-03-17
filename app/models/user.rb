@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   # Methods
   
   def to_param
-    "#{id}-#{email.split('@').first}"
+    "#{id}-#{email.split('@').first.parameterize}"
   end
   
   # TOSPEC
