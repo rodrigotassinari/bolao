@@ -66,6 +66,10 @@ class Bet < ActiveRecord::Base
     Bet.net_value * User.paid.count
   end
   
+  def self.potential_prize
+    Bet.net_value * User.count
+  end
+  
   # TOSPEC
   def description
     "#{game.team_a.name} #{goals_a} x #{goals_b} #{game.team_b.name}, Jogo ##{game.id} (#{game.stage}), por #{user.name}"
