@@ -57,5 +57,31 @@ module ApplicationHelper
     eos
   end
   
+  def uservoice_javascript(key, forum_id)
+    #return unless Rails.env.production?
+    <<-eos
+      <script type="text/javascript">
+      var uservoiceOptions = {
+      key: '#{key}',
+      host: '#{key}.uservoice.com', 
+      forum: '#{forum_id}',
+      alignment: 'left',
+      background_color:'#858585', 
+      text_color: 'white',
+      hover_color: '#000000',
+      lang: 'pt_BR',
+      showTab: true
+      };
+      function _loadUserVoice() {
+      var s = document.createElement('script');
+      s.src = ("https:" == document.location.protocol ? "https://" : "http://") + "uservoice.com/javascripts/widgets/tab.js";
+      document.getElementsByTagName('head')[0].appendChild(s);
+      }
+      _loadSuper = window.onload;
+      window.onload = (typeof window.onload != 'function') ? _loadUserVoice : function() { _loadSuper(); _loadUserVoice(); };
+      </script>
+    eos
+  end
+  
 end
 
