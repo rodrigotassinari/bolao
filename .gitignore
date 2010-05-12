@@ -1,3 +1,4 @@
+.rvmrc
 .bundle
 config/application.yml
 config/database.yml
