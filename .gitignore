@@ -19,4 +19,5 @@ public/uploads/**/*
 tmp/*.yml
 tmp/restart.txt
 tmp/**/*
+.rvmrc
 
