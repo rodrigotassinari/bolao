@@ -37,14 +37,11 @@ class PaymentsController < ApplicationController
         user = User.find_by_payment_code(notification.params["Referencia"]) || User.find_by_email(notification.buyer[:email])
         raise if user.nil?
         user.update_attribute(:payment_transaction_code, notification.params["TransacaoID"])
-        case notification.status
-        when :completed
-          user.update_attribute(:paid_at, Time.current)
-        when :approved
-          user.update_attribute(:paid_at, Time.current)
-        else
-          user.update_attribute(:paid_at, nil)
-        end
+        user.update_attribute(:paid_at, nil)
+        user.update_attribute(:paid_at, Time.current) if notification.status == :completed
+        user.update_attribute(:paid_at, Time.current) if notification.status == :approved
+        user.update_attribute(:paid_at, Time.current) if notification.params["StatusTransacao"] == "Completo"
+        user.update_attribute(:paid_at, Time.current) if notification.params["StatusTransacao"] == "Aprovado"
       end
       render :nothing => true
     end
