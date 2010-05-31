@@ -1,10 +1,8 @@
-* mostrar percentuais de palpites na página de um jogo
-* rss de apostas novas
 * rss de jogos cadastrados
 * rss de pontos por usuário
 * rss global
+* rss de apostas novas
 * convidar usuários (propaganda-only)
 * interface global para iphone
 * (testar em produção) envio de emails assincronamente
 * cadastro de usuários apenas por convite (com exceção do primeiro) (ou não?)
-
