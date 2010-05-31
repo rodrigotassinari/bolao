@@ -23,6 +23,7 @@ Rails::Initializer.run do |config|
   config.gem "warden", :version => "0.9.6"
   config.gem "devise", :version => "1.0.4"
   config.gem "recaptcha", :lib => "recaptcha/rails", :version => '0.2.3'
+  config.gem "googlecharts", :version => "1.6.0"
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named

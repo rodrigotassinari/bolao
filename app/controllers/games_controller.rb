@@ -6,7 +6,7 @@ class GamesController < ApplicationController
   # GET /games
   # GET /games.xml
   def index
-    @games = Game.all
+    @games = Game.bet_ordered.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -19,6 +19,11 @@ class GamesController < ApplicationController
   def show
     @game = Game.find(params[:id])
     @bets = @game.bets.all(:include => :user, :order => 'users.name ASC')
+
+    @next_game = @game.next
+    @prev_game = @game.previous
+
+    @stats = Bet.statistics(@bets)
 
     respond_to do |format|
       format.html # show.html.erb

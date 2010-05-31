@@ -65,6 +65,18 @@ class Game < ActiveRecord::Base
   named_scope :bet_ordered, :order => "games.played_at ASC"
   
   # Methods
+
+  def next
+    self.class.find :first,
+      :conditions => ['id > ?', self.id],
+      :order => 'id ASC'
+  end
+
+  def previous
+    self.class.find :first,
+      :conditions => ['id < ?', self.id],
+      :order => 'id DESC'
+  end
   
   def to_param
     "#{id}-#{team_a.acronym}-vs-#{team_b.acronym}"

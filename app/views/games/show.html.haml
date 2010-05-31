@@ -2,6 +2,11 @@
 
 %h2 Jogo ##{@game.id}
 
+%p.navigation
+  = link_to '< Anterior', game_path(@prev_game)
+  |
+  = link_to 'Próximo >', game_path(@next_game)
+
 %h3
   = @game.team_a.name
   = team_flag(@game.team_a)
@@ -56,6 +61,15 @@
   = link_to 'Voltar', games_path
 
 %h3 Palpites
+
+%p
+  %strong Resumo
+  %ul
+    %li #{team_flag(@game.team_a)} #{@game.team_a.name}: <strong style="color: #FF0000;">#{number_to_percentage @stats[@game.team_a.id][:wins_pct], :precision => 0}</strong>
+    %li Empate: <strong style="color: #00FF00;">#{number_to_percentage @stats[@game.team_a.id][:ties_pct], :precision => 0}</strong>
+    %li #{team_flag(@game.team_b)} #{@game.team_b.name}: <strong style="color: #0000FF;">#{number_to_percentage @stats[@game.team_b.id][:wins_pct], :precision => 0}</strong>
+
+  = image_tag Gchart.pie(:labels => [@game.team_a.name, 'Empate', @game.team_b.name], :line_colors => "FF0000,00FF00,0000FF", :data => [@stats[@game.team_a.id][:wins], @stats[@game.team_a.id][:ties], @stats[@game.team_b.id][:wins]])
 
 %table.nice
   %thead

@@ -49,6 +49,41 @@ class Bet < ActiveRecord::Base
   after_save :send_emails, :if => Proc.new { |bet| bet.user && bet.scored? }
   
   # Methods
+
+  def self.statistics(bets)
+    stats = {}
+    game = bets.first.game
+    teams = [game.team_a_id, game.team_b_id]
+
+    total        = bets.size
+    team_a_wins  = bets.select { |b| b.winner_id == teams.first }.size
+    team_a_loses = bets.select { |b| b.loser_id == teams.first }.size
+    team_b_wins  = bets.select { |b| b.winner_id == teams.last }.size
+    team_b_loses = bets.select { |b| b.loser_id == teams.last }.size
+    ties         = bets.select { |b| b.tie? == true }.size
+
+    stats[:total] = total
+    stats[teams.first] = {
+      :position => :team_a,
+      :wins => team_a_wins,
+      :loses => team_a_loses,
+      :ties => ties,
+      :wins_pct => (team_a_wins / total.to_f) * 100.0,
+      :loses_pct => (team_a_loses / total.to_f) * 100.0,
+      :ties_pct => (ties / total.to_f) * 100.0
+    }
+    stats[teams.last] = {
+      :position => :team_b,
+      :wins => team_b_wins,
+      :loses => team_b_loses,
+      :ties => ties,
+      :wins_pct => (team_b_wins / total.to_f) * 100.0,
+      :loses_pct => (team_b_loses / total.to_f) * 100.0,
+      :ties_pct => (ties / total.to_f) * 100.0
+    }
+    
+    stats
+  end
   
   def self.net_value
     Rails.env.production? ? 20.0 : 1.0
