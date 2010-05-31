@@ -21,5 +21,9 @@ Rendering template within layouts/application
 Rendering payments/done
 Completed in 4ms (View: 4, DB: 0) | 200 OK [http://bolao.pittlandia.net/payment/done]
 
+# --------
 
+Processing PaymentsController#done (for 200.147.16.16 at 2010-05-30 22:47:41) [POST]
+  Parameters: {"CliEndereco"=>"RUA COMENDADOR QUEIROZ", "ProdValor_1"=>"21,80", "VendedorEmail"=>"rodrigo@pittlandia.net", "ProdQuantidade_1"=>"1", "Extras"=>"0,00", "ProdExtras_1"=>"0,00", "action"=>"done", "TipoFrete"=>"FR", "Anotacao"=>"", "CliNome"=>"gustavo de souza vellame", "CliCEP"=>"24230220", "NumItens"=>"1", "ProdDescricao_1"=>"Aposta no Bolao PiTTlandia Copa 2010, por gvellame@hotmail.com", "DataTransacao"=>"30/05/2010 19:45:16", "TipoPagamento"=>"Cart�o de Cr�dito", "CliBairro"=>"Icara\355", "controller"=>"payments", "ValorFrete"=>"0,00", "CliEmail"=>"gvellame@hotmail.com", "CliNumero"=>"49", "CliCidade"=>"NITEROI", "CliEstado"=>"RJ", "ProdID_1"=>"Aposta no Bolao", "Referencia"=>"05b541750b60bbf3412e470e5c1a787ed0a1e135", "CliComplemento"=>"", "Parcelas"=>"1", "ProdFrete_1"=>"0,00", "TransacaoID"=>"727CB09856194BD9A2F987FEE031A350", "StatusTransacao"=>"Aprovado", "CliTelefone"=>"21 78943572"}
+Completed in 1216ms (View: 0, DB: 0) | 200 OK [http://bolao.pittlandia.net/payment/done]
 
