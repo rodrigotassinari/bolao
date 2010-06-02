@@ -23,6 +23,11 @@
 
 %h3 Palpites
 
+%p
+  Apenas palpites de jogos com apostas encerradas são mostrados.
+  - if current_user && current_user == @user
+    Para ver os seus palpites vá em #{link_to 'Minha Aposta', my_bet_path}.
+
 %table.nice
   %thead
     %tr
@@ -31,6 +36,7 @@
       %th Pontos
   %tbody
     - for bet in @bets
+      - next if bet.game.bettable?
       %tr{:class => cycle(:odd, :even)}
         %td.small
           #{link_to "##{bet.game.id}", bet.game}, 

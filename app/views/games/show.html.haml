@@ -71,44 +71,47 @@
 
   = image_tag Gchart.pie(:labels => [@game.team_a.name, 'Empate', @game.team_b.name], :line_colors => "FF0000,00FF00,0000FF", :data => [@stats[@game.team_a.id][:wins], @stats[@game.team_a.id][:ties], @stats[@game.team_b.id][:wins]])
 
-%table.nice
-  %thead
-    %tr
-      %th Usuário
-      %th{:colspan => 5} Palpite
-      %th Pontos
-  %tbody
-    - for bet in @bets
-      %tr{:class => cycle(:odd, :even)}
-        %td= link_to bet.user.name, bet.user
-        %td.right
-          #{bet.game.team_a.name} #{team_flag(bet.game.team_a)}
-          - if !bet.game.group_game? && bet.penalty?
-            %br
-            %i Penaltys:
-        %td.center
-          = bet.goals_a
-          - if !bet.game.group_game? && bet.penalty?
-            %br
-            = bet.penalty_goals_a
-        %td.center
-          x
-          - if !bet.game.group_game? && bet.penalty?
-            %br
+- if @game.bettable?
+  Este jogo ainda pode ser apostado, por isso os palpites de cada usuário não são mostrados ainda.
+- else
+  %table.nice
+    %thead
+      %tr
+        %th Usuário
+        %th{:colspan => 5} Palpite
+        %th Pontos
+    %tbody
+      - for bet in @bets
+        %tr{:class => cycle(:odd, :even)}
+          %td= link_to bet.user.name, bet.user
+          %td.right
+            #{bet.game.team_a.name} #{team_flag(bet.game.team_a)}
+            - if !bet.game.group_game? && bet.penalty?
+              %br
+              %i Penaltys:
+          %td.center
+            = bet.goals_a
+            - if !bet.game.group_game? && bet.penalty?
+              %br
+              = bet.penalty_goals_a
+          %td.center
             x
-        %td.center
-          = bet.goals_b
-          - if !bet.game.group_game? && bet.penalty?
-            %br
-            = bet.penalty_goals_b
-        %td.left
-          #{team_flag(bet.game.team_b)} #{bet.game.team_b.name}
-          - if !bet.game.group_game? && bet.penalty?
-            %br
-            &nbsp;
-        %td.center
-          - if bet.points
-            = bet.points
-          - else
-            %i não calculado
+            - if !bet.game.group_game? && bet.penalty?
+              %br
+              x
+          %td.center
+            = bet.goals_b
+            - if !bet.game.group_game? && bet.penalty?
+              %br
+              = bet.penalty_goals_b
+          %td.left
+            #{team_flag(bet.game.team_b)} #{bet.game.team_b.name}
+            - if !bet.game.group_game? && bet.penalty?
+              %br
+              &nbsp;
+          %td.center
+            - if bet.points
+              = bet.points
+            - else
+              %i não calculado
 
