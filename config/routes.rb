@@ -54,10 +54,11 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :payment, :member => {:done => :any}
   
   map.rules 'rules', :controller => 'pages', :action => 'rules'
-  
+
+  map.invite 'invite', :controller => 'pages', :action => 'invite'
+
   map.root :controller => "pages", :action => "index"
   
   #map.connect ':controller/:action/:id'
   #map.connect ':controller/:action/:id.:format'
 end
-

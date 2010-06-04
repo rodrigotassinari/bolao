@@ -1,5 +1,8 @@
 class PagesController < ApplicationController
 
+  before_filter :authenticate_user!, :only => [:invite]
+  before_filter :require_admin!, :only => [:invite]
+
   def index
     @games_count = Game.count
     @users_count = User.count
@@ -19,5 +22,16 @@ class PagesController < ApplicationController
   def rules
   end
 
-end
+  def invite
+    if request.post?
+      if params[:name].present? && params[:email].present?
+        Resque.enqueue(MailJob, 'AdminMailer', 'deliver_ask_to_join', {'name' => params[:name], 'email' => params[:email]})
+        flash[:notice] = "Email enviado."
+      else
+        flash[:error] = "Dados incompletos, email NÃO foi enviado."
+      end
+      redirect_to invite_path
+    end
+  end
 
+end
