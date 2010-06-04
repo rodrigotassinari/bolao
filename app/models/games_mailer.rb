@@ -4,7 +4,7 @@ class GamesMailer < ActionMailer::Base
     recipient = User.find(options['user_id'])
     game      = Game.find(options['game_id'])
 
-    subject    "[#{Settings.email.subject_tag}] Novo jogo disponível para palpite"
+    subject    "[#{Settings.email.subject_tag}] Novo jogo disponível para palpite: #{game.short_description}"
     recipients "#{recipient.name} <#{recipient.email}>"
     from       Settings.email.from
     sent_on    Time.current

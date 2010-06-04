@@ -11,9 +11,10 @@ Você pode dar seu palpite neste jogo em:
 
   <%= my_bet_url(:desc => true) %>
 
-ATENÇÃO: você deve dar seu palpite até o início da rodada do jogo!!
+ATENÇÃO: você deve dar seu palpite até ANTES do início da rodada do jogo!!
 
-Pare este jogo, a data-limite é: <%= @game.bet_limit_date.in_time_zone(Time.zone).strftime('%d/%m %H:%M') %> (horário de Brasília)
+Pare este jogo, a data-hora limite é:
+
+  <%= @game.bet_limit_date.in_time_zone(Time.zone).strftime('%d/%m %H:%M') %> (horário de Brasília)
 
 Boa sorte!
-

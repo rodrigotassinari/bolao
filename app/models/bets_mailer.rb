@@ -5,7 +5,7 @@ class BetsMailer < ActionMailer::Base
     bet       = Bet.find(options['bet_id'])
     game      = Game.find(options['game_id'])
 
-    subject    "[#{Settings.email.subject_tag}] Você marcou pontos no bolão!"
+    subject    "[#{Settings.email.subject_tag}] Você marcou #{bet.points} pontos no jogo #{game.short_description}"
     recipients "#{recipient.name} <#{recipient.email}>"
     from       Settings.email.from
     sent_on    Time.current
