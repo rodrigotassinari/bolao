@@ -58,7 +58,7 @@ module ApplicationHelper
   end
   
   def uservoice_javascript(key, forum_id)
-    #return unless Rails.env.production?
+    return unless Rails.env.production?
     <<-eos
       <script type="text/javascript">
       var uservoiceOptions = {
@@ -84,4 +84,3 @@ module ApplicationHelper
   end
   
 end
-

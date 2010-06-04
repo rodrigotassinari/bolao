@@ -52,7 +52,6 @@
       #footer
         %p powered by #{link_to 'PiTTlândia', 'http://pittlandia.net'}
 
-    = uservoice_javascript('bolaopittlandia', '46355')
+    = uservoice_javascript(Settings.uservoice.key, Settings.uservoice.forum_id)
 
-    = google_analytics_javascript("UA-2436331-6")
-
+    = google_analytics_javascript(Settings.google_analytics.id)

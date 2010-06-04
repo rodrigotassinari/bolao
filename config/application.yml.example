@@ -1,6 +1,10 @@
 # app/config/application.yml
 defaults: &defaults
-  google_analytics_id: "UA-1234567-8"
+  google_analytics:
+    id: "UA-1234567-8"
+  uservoice:
+    key: "USERVOICE_KEY"
+    forum_id: "USERVOICE_FORUM_ID"
   recaptcha:
     public_key: "RECAPTCHA_PUBLIC_API_KEY"
     private_key: "RECAPTCHA_PRIVATE_API_KEY"
@@ -19,7 +23,11 @@ test:
 
 production:
   <<: *defaults
-  google_analytics_id: "UA-1234567-8"
+  google_analytics:
+    id: "UA-1234567-8"
+  uservoice:
+    key: "USERVOICE_KEY"
+    forum_id: "USERVOICE_FORUM_ID"
   recaptcha:
     public_key: "RECAPTCHA_PUBLIC_API_KEY"
     private_key: "RECAPTCHA_PRIVATE_API_KEY"

@@ -17,5 +17,5 @@ if ActionMailer::Base.delivery_method == :smtp
   }
 end
 
-ActionMailer::Base.perform_deliveries = true
-#ActionMailer::Base.perform_deliveries = Rails.env.production? ? true : false
+#ActionMailer::Base.perform_deliveries = true # DEBUG
+ActionMailer::Base.perform_deliveries = Rails.env.production? ? true : false
