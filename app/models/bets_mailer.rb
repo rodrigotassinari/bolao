@@ -1,6 +1,10 @@
 class BetsMailer < ActionMailer::Base
 
-  def scored(recipient, bet, game)
+  def scored(user_id, bet_id, game_id)
+    recipient = User.find(user_id)
+    bet = Bet.find(bet_id)
+    game = Game.find(game_id)
+
     subject    "[#{Settings.email.subject_tag}] Você marcou pontos no bolão!"
     recipients "#{recipient.name} <#{recipient.email}>"
     from       Settings.email.from

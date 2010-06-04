@@ -222,7 +222,7 @@ class Bet < ActiveRecord::Base
     # after_save
     def send_emails
       # TODO assincronar
-      BetsMailer.deliver_scored(self.user, self, self.game)
+      BetsMailer.deliver_scored(self.user_id, self.id, self.game_id)
       true
     end
   
