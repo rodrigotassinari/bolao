@@ -124,6 +124,11 @@ class Game < ActiveRecord::Base
   def description
     "#{team_a.name} #{goals_a} x #{goals_b} #{team_b.name}, #{played_at.strftime('%d/%m %H:%M')} (#{stage})"
   end
+
+  # TOSPEC
+  def short_description
+    "##{id} - #{team_a.acronym} #{goals_a} x #{goals_b} #{team_b.acronym}"
+  end
   
   def self.all_by_stage_and_groups(stages=Game.stages, groups=Team.groups, order="games.played_at ASC", scope="1=1")
     games = {}
@@ -210,8 +215,7 @@ class Game < ActiveRecord::Base
     def send_emails
       users = User.all(:select => 'id')
       users.each do |user|
-        # TODO assincronar
-        GamesMailer.deliver_available_to_bet(user.id, self.id)
+        Resque.enqueue(MailJob, 'GamesMailer', 'deliver_available_to_bet', {'user_id' => user.id, 'game_id' => self.id})
       end
       true
     end
@@ -269,4 +273,3 @@ class Game < ActiveRecord::Base
     end
       
 end
-

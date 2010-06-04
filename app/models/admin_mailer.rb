@@ -1,6 +1,8 @@
 class AdminMailer < ActionMailer::Base
 
-  def test(text = nil)
+  def test(options={})
+    text = options['text']
+
     subject    "[#{Settings.email.subject_tag}] Email de teste - #{Time.current.to_i}"
     recipients Settings.email.admin
     from       Settings.email.from

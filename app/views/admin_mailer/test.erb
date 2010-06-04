@@ -1,7 +1,9 @@
 AdminMailer#test
 
-<% if @text %>
+<% unless @text.blank? %>
   <%= @text %>
 <% end %>
+
+Foo Bar
 
 Find me in app/views/admin_mailer/test.erb

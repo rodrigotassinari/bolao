@@ -221,8 +221,7 @@ class Bet < ActiveRecord::Base
     # TOSPEC
     # after_save
     def send_emails
-      # TODO assincronar
-      BetsMailer.deliver_scored(self.user_id, self.id, self.game_id)
+      Resque.enqueue(MailJob, 'BetsMailer', 'deliver_scored', {'user_id' => self.user_id, 'bet_id' => self.id, 'game_id' => self.game_id})
       true
     end
   

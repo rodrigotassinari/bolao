@@ -1,8 +1,8 @@
 class GamesMailer < ActionMailer::Base
 
-  def available_to_bet(user_id, game_id)
-    recipient = User.find(user_id)
-    game = Game.find(game_id)
+  def available_to_bet(options={})
+    recipient = User.find(options['user_id'])
+    game      = Game.find(options['game_id'])
 
     subject    "[#{Settings.email.subject_tag}] Novo jogo disponível para palpite"
     recipients "#{recipient.name} <#{recipient.email}>"
