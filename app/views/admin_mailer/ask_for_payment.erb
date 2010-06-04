@@ -1,0 +1,11 @@
+Olá <%= @user.name %>,
+
+Você ainda não pagou sua aposta no Bolão PiTTlândia Copa do Mundo 2010.
+
+Lembre-se que você só tem até <%= I18n.l Bet.payment_deadline, :format => :game %> para pagar sua aposta.
+
+Para efetuar o pagamento, basta acessar o endereço abaixo e seguir as instruções na tela:
+
+  <%= new_payment_url %>
+
+Boa sorte!

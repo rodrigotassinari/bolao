@@ -48,6 +48,11 @@ class User < ActiveRecord::Base
       !payment_code.nil? && 
       !payment_transaction_code.nil?
   end
+
+  # TOSPEC
+  def all_betted?
+    bets.count == Game.count
+  end
   
   def update_points_cache!
     self.points_cache = self.bets.sum(:points)
@@ -55,4 +60,3 @@ class User < ActiveRecord::Base
   end
   
 end
-
