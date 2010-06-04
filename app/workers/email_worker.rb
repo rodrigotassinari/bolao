@@ -14,6 +14,11 @@ class EmailWorker < Workling::Base
     logger.info "Enviando BetsMailer#scored(#{user.id}, #{bet.id}, #{game.id})..." 
     BetsMailer.deliver_scored(user, bet, game)
   end
+
+  def test(options)
+    text = options[:text]
+    logger.info "Enviando AdminMailer#test(#{text})..."
+    AdminMailer.deliver_test(text)
+  end
   
 end
-

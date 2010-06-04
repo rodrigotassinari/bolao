@@ -19,11 +19,19 @@ Rails::Initializer.run do |config|
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
+
+  # frozen
   config.gem "haml", :version => "3.0.6"
   config.gem "warden", :version => "0.9.6"
   config.gem "devise", :version => "1.0.4"
   config.gem "recaptcha", :lib => "recaptcha/rails", :version => '0.2.3'
   config.gem "googlecharts", :version => "1.6.0"
+  config.gem "settingslogic", :version => "2.0.6"
+
+  # installed
+  config.gem "postmark-rails"
+
+  require 'postmark-rails'
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
@@ -43,8 +51,4 @@ Rails::Initializer.run do |config|
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   config.i18n.default_locale = :pt
-  
-  ENV['RECAPTCHA_PUBLIC_KEY']  = '6LdRuwsAAAAAAI1IWj8TQIErtqBzRjnYKLyuWhVc'
-  ENV['RECAPTCHA_PRIVATE_KEY'] = '6LdRuwsAAAAAAPLsyZEh_BNClM_alykje_upbXLE'
 end
-

@@ -1,0 +1,31 @@
+# app/config/application.yml
+defaults: &defaults
+  google_analytics_id: "UA-1234567-8"
+  recaptcha:
+    public_key: "RECAPTCHA_PUBLIC_API_KEY"
+    private_key: "RECAPTCHA_PRIVATE_API_KEY"
+  email:
+    delivery_method: :postmark
+    postmark_api_key: "POSTMARK_APY_KEY"
+    from: "From Address <from@address.com>"
+    subject_tag: "App Short Name"
+    admin: "admin@app.com"
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
+  google_analytics_id: "UA-1234567-8"
+  recaptcha:
+    public_key: "RECAPTCHA_PUBLIC_API_KEY"
+    private_key: "RECAPTCHA_PRIVATE_API_KEY"
+  email:
+    delivery_method: :postmark
+    postmark_api_key: "POSTMARK_APY_KEY"
+    from: "from@address.com"
+    subject_tag: "App Short Name"
+    admin: "admin@app.com"

@@ -221,7 +221,8 @@ class Bet < ActiveRecord::Base
     # TOSPEC
     # after_save
     def send_emails
-      EmailWorker.asynch_bets_scored(:user_id => self.user.id, :bet_id => self.id, :game_id => self.game.id)
+      #EmailWorker.asynch_bets_scored(:user_id => self.user.id, :bet_id => self.id, :game_id => self.game.id) # FIXME
+      BetsMailer.deliver_scored(self.user, self, self.game)
       true
     end
   

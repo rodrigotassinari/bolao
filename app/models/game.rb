@@ -208,9 +208,10 @@ class Game < ActiveRecord::Base
     # TOSPEC
     # after_create
     def send_emails
-      users = User.all
+      users = User.all # OPTIMIZE ????
       users.each do |user|
-        EmailWorker.asynch_games_available_to_bet(:user_id => user.id, :game_id => self.id)
+        #EmailWorker.asynch_games_available_to_bet(:user_id => user.id, :game_id => self.id) # FIXME
+        GamesMailer.deliver_available_to_bet(user, self)
       end
       true
     end

@@ -1,13 +1,13 @@
 class GamesMailer < ActionMailer::Base
 
   def available_to_bet(recipient, game)
-    subject    '[Bolão] Novo jogo disponível para palpite'
+    subject    "[#{Settings.email.subject_tag}] Novo jogo disponível para palpite"
     recipients "#{recipient.name} <#{recipient.email}>"
-    from       'Bolão PiTTlândia Copa 2010 <no-reply@bolao.pittlandia.net>'
+    from       Settings.email.from
     sent_on    Time.current
+    tag        "avaiable_to_bet"
     
     body       :recipient => recipient, :game => game
   end
 
 end
-
