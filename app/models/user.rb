@@ -25,6 +25,18 @@ class User < ActiveRecord::Base
   named_scope :paid, :conditions => 'users.paid_at IS NOT NULL AND users.payment_code IS NOT NULL AND users.payment_transaction_code IS NOT NULL'
   
   # Methods
+
+  def next
+    self.class.find :first,
+      :conditions => ['id <> ? AND points_cache <= ? AND name >= ?', self.id, self.points_cache, self.name],
+      :order => 'users.points_cache DESC, users.name ASC'
+  end
+
+  def previous
+    self.class.find :first,
+      :conditions => ['id <> ? AND points_cache >= ? AND name <= ?', self.id, self.points_cache, self.name],
+      :order => 'users.points_cache DESC, users.name ASC'
+  end
   
   def to_param
     "#{id}-#{email.split('@').first.parameterize}"

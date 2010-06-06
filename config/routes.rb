@@ -41,7 +41,8 @@ ActionController::Routing::Routes.draw do |map|
   
   map.devise_for :users, :path_names => { :sign_in => 'login', :sign_out => 'logout', :sign_up => 'register' }
   
-  map.resources :users
+  map.resources :users,
+    :member => {:ask_to_bet => :post, :ask_for_payment => :post}
   
   map.resource :my_bet
   

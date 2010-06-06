@@ -2,9 +2,16 @@
 
 %h2 Usuário #{@user.name}
 
+%p.navigation
+  = link_to '< Anterior', user_path(@prev_user)
+  |
+  = link_to 'Próximo >', user_path(@next_user)
+
 %p
   %strong Palpites:
   #{@user.bets.count} / #{Game.count}
+  - if admin_signed_in? && !@user.all_betted?
+    = link_to "Enviar email pedindo para terminar palpites", ask_to_bet_user_path(@user), :method => :post
 
 %p
   %strong Pontos:
@@ -15,6 +22,8 @@
   = yes_or_no @user.paid?
   - if @user.paying?
     (aguardando confirmação de pagamento)
+  - if admin_signed_in? && !@user.paid?
+    = link_to "Enviar email pedindo para pagar", ask_for_payment_user_path(@user), :method => :post
 
 %p.links
   - if user_signed_in? && current_user == @user
