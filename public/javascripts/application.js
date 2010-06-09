@@ -25,3 +25,12 @@ function submit_penalty_bet(field) {
   }
 }
 
+function submit_bonus_bet(field) {
+  element = $(field).parents("form");
+  answer = element.find("input#bonus_bet_answer").val();
+  if (answer != "") {
+    element.find('img.spinner').show();
+    $.post(element.attr("action"), $(element).serialize(), null, "script");
+    return false;
+  }
+}

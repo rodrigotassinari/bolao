@@ -1,0 +1,39 @@
+- title "Apostas"
+%h1 Listing bets
+
+%table
+  %thead
+    %tr
+      %th User
+      %th Game
+      %th Goals a
+      %th Goals b
+      %th Penalty
+      %th Penalty goals a
+      %th Penalty goals b
+      %th Winner
+      %th Loser
+      %th Tie
+      %th Points
+      %th{ :colspan => 3 }
+  
+  %tbody
+    - for bet in @bets
+      %tr{ :class => cycle(:odd, :even) }
+        %td= bet.user_id
+        %td= bet.game_id
+        %td= bet.goals_a
+        %td= bet.goals_b
+        %td= bet.penalty
+        %td= bet.penalty_goals_a
+        %td= bet.penalty_goals_b
+        %td= bet.winner_id
+        %td= bet.loser_id
+        %td= bet.tie
+        %td= bet.points
+        %td= link_to 'Show', bet
+        %td= link_to 'Edit', edit_bet_path(bet)
+        %td= link_to 'Destroy', bet, :confirm => 'Are you sure?', :method => :delete
+
+%br
+= link_to 'New bet', new_bet_path

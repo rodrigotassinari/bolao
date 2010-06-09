@@ -43,5 +43,9 @@ class Team < ActiveRecord::Base
     Team.all(:order => 'name ASC').map { |t| ["#{t.name} (#{t.group})", t.id] }
   end
 
-end
+  # TOSPEC
+  def self.for_select_as_acronym
+    [ ["", nil] ] + Team.all(:order => 'name ASC').map { |t| [t.name, t.acronym] }
+  end
 
+end

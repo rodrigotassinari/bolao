@@ -13,6 +13,8 @@ class MyBetsController < ApplicationController
     @groups = Team.groups
     
     @games = Game.all_by_stage_and_groups(@stages, @groups, "games.played_at #{suborder}", conditions)
+
+    @bonuses = Bonus.all
     
     respond_to do |format|
       format.html   # show.html.erb

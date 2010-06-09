@@ -1,0 +1,3 @@
+page.replace "#bonus_#{@bonus_bet.bonus.id}_bonus_bet", :partial => 'my_bets/bonus_bonus_bet', :locals => {:bonus_bet => @bonus_bet}
+page.visual_effect :highlight, "#bonus_#{@bonus_bet.bonus.id}_bonus_bet", :duration => 1.0
+page.replace_html "#user_bonus_bet_count", @bonus_bet.user.bonus_bets.count

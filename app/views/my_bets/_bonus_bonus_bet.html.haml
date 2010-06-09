@@ -1,0 +1,8 @@
+%li{:id => "bonus_#{bonus_bet.bonus.id}_bonus_bet", :class => ("new" if bonus_bet.new_record?)}
+  %span.question= bonus_bet.bonus.question
+  %span.info (responder até: #{l bonus_bet.bonus.answer_before, :format => :game})
+  - remote_form_for(bonus_bet, :html => {:id => "bonus_#{bonus_bet.bonus.id}_bonus_bet_form"}) do |f|
+    = f.hidden_field :bonus_id
+    = f.hidden_field :user_id
+    = f.select :answer, Team.for_select_as_acronym, {}, { :onchange => "submit_bonus_bet(this);", :disabled => (bonus_bet.locked? ? true : false) }
+    = image_tag 'spinner.gif', :alt => 'loading', :style => 'display: none;', :class => "spinner"

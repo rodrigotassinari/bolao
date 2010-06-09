@@ -1,0 +1,36 @@
+- title "Aposta ##{@bet.id}"
+%p
+  %strong User:
+  = @bet.user_id
+%p
+  %strong Game:
+  = @bet.game_id
+%p
+  %strong Goals a:
+  = @bet.goals_a
+%p
+  %strong Goals b:
+  = @bet.goals_b
+%p
+  %strong Penalty:
+  = @bet.penalty
+%p
+  %strong Penalty goals a:
+  = @bet.penalty_goals_a
+%p
+  %strong Penalty goals b:
+  = @bet.penalty_goals_b
+%p
+  %strong Winner:
+  = @bet.winner_id
+%p
+  %strong Loser:
+  = @bet.loser_id
+%p
+  %strong Tie:
+  = @bet.tie
+%p
+  %strong Points:
+  = @bet.points
+
+== #{ link_to 'Edit', edit_bet_path(@bet) } | #{ link_to 'Back', bets_path }

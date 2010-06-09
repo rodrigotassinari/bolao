@@ -3,6 +3,7 @@
 
 %ul
   %li <b id="user_bet_count">#{@user.bets.count}</b> / #{Game.count} jogos apostados.
+  %li <b id="user_bonus_bet_count">#{@user.bonus_bets.count}</b> / #{Bonus.count} perguntas bônus respondidas.
   %li
     Pontuação Total: 
     %b #{pluralize Bet.sum(:points, :conditions => {:user_id => @user.id}), 'ponto', 'pontos'}
@@ -16,6 +17,12 @@
     %p
       %b Aposta paga, aguardando confirmação...
       = link_to 'Mais informações', new_payment_path
+
+%h3 Pergunta Bônus
+%ul
+  - @bonuses.each do |bonus|
+    - bonus_bet = BonusBet.find_or_initialize_for(@user, bonus)
+    = render :partial => 'bonus_bonus_bet', :locals => {:bonus_bet => bonus_bet}
 
 %h3 Palpites
 

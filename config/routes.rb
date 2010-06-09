@@ -47,8 +47,12 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :my_bet
   
   map.resources :bets
+  
+  map.resources :bonus_bets
 
   map.resources :games
+
+  map.resources :bonus
 
   map.resources :teams
   
