@@ -2,8 +2,8 @@ class BonusBet < ActiveRecord::Base
 
   attr_accessible :user_id, :user, :bonus_id, :bonus, :answer
 
-  belongs_to :bonus
-  belongs_to :user
+  belongs_to :bonus, :counter_cache => true
+  belongs_to :user, :counter_cache => true
 
   validates_presence_of :user_id, :bonus_id, :answer
   validates_uniqueness_of :user_id, :scope => :bonus_id

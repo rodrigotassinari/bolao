@@ -19,6 +19,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @bets = @user.bets.all(:include => :game, :order => 'games.played_at ASC')
+    @bonus_bets = @user.bonus_bets.all(:include => :bonus)
 
     @prev_user = @user.previous
     @next_user = @user.next

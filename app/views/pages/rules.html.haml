@@ -8,6 +8,7 @@
     %ul
       %li Os palpites podem ser feitos e alterados até imediatamente antes do início do primeiro jogo de cada fase.
       %li Os jogos que ainda não foram determinados (das fases finais) só poderão ser palpitados depois de cadastrados nos sistema, o que ocorrerá tão logo as equipes dos jogos sejam determinadas.
+      %li A pergunta bônus têm data-limite específica, exibida ao lado da pergunta.
 
   %li
     %b Pontuação
@@ -35,7 +36,11 @@
           %li
             %i Máximo de pontos possíveis nesta fase: #{ (2+2+1+1+1+1) * 16 } pontos.
       %li
-        %i Máximo de pontos possíveis: #{ ((1+1+1+1) * 48) + ((2+2+1+1+1+1) * 16) } pontos.
+        Pergunta Bônus
+        %ul
+          %li Acertou a pergunta bônus: 15 pontos.
+      %li
+        %i Máximo de pontos possíveis: #{ ((1+1+1+1) * 48) + ((2+2+1+1+1+1) * 16) + 15 } pontos.
 
   %li
     %b Pagamento

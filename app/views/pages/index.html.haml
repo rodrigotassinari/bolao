@@ -4,6 +4,7 @@
   %li #{@games_count} jogos cadastrados
   %li #{@users_count} apostadores (#{@paid_users_count} pagantes)
   %li #{@bets_count} palpites preenchidos (de #{@possible_bets_count} possíveis)
+  %li #{@bonus_bets_count} pergunta bônus respondidas (de #{@possible_bonus_bets_count} possíveis)
   %li #{@points_count} pontos marcados
   %li
     %b #{number_to_currency @total_prize} de premiação
@@ -21,4 +22,3 @@
     %li= link_to 'JP Morgan', 'http://www.scribd.com/doc/31537878/JP-Morgan-Quantitative-Guide-to-World-Cup-2010'
     %li= link_to 'UBS', 'http://www.ubs.com/1/e/bank_for_banks/news/topical_stories/edition_10.html'
     %li= link_to 'Danske', 'http://www.scribd.com/doc/32112498/Danske-Bank-World-Cup-2010-Special'
-

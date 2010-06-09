@@ -7,6 +7,7 @@
       %th &nbsp;
       %th Nome
       %th Palpites
+      %th Perguntas
       %th Pontos
       %th Pagou?
       %th{ :colspan => 3 }
@@ -19,6 +20,7 @@
         %td #{count}º
         %td= link_to user.name, user
         %td= user.bets_count
+        %td= user.bonus_bets_count
         %td= user.points_cache
         %td.center= yes_or_no(user.paid?)
         %td.small= link_to 'Mais informações', user

@@ -9,13 +9,17 @@
 
 %p
   %strong Palpites:
-  #{@user.bets.count} / #{Game.count}
+  #{@user.bets_count} / #{Game.count}
   - if admin_signed_in? && !@user.all_betted?
     = link_to "Enviar email pedindo para terminar palpites", ask_to_bet_user_path(@user), :method => :post
 
 %p
+  %strong Perguntas Bônus:
+  #{@user.bonus_bets_count} / #{Bonus.count}
+
+%p
   %strong Pontos:
-  = @user.bets.sum(:points)
+  = @user.points_cache
 
 %p
   %strong Já pagou a aposta?
@@ -29,6 +33,15 @@
   - if user_signed_in? && current_user == @user
     = link_to 'Editar', edit_user_registration_path
   = link_to 'Voltar', users_path
+
+%h3 Pergunta Bônus
+%p Apenas perguntas com apostas encerradas são mostradas.
+%ul
+  - for bonus_bet in @bonus_bets
+    - next if bonus_bet.bonus.bettable?
+    %li
+      = bonus_bet.bonus.question
+      = Team.find_by_acronym(bonus_bet.answer).name
 
 %h3 Palpites
 

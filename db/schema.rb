@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100609001149) do
+ActiveRecord::Schema.define(:version => 20100609023535) do
 
   create_table "bets", :force => true do |t|
     t.integer  "user_id",                            :null => false
@@ -36,12 +36,13 @@ ActiveRecord::Schema.define(:version => 20100609001149) do
   add_index "bets", ["winner_id"], :name => "index_bets_on_winner_id"
 
   create_table "bonus", :force => true do |t|
-    t.string   "question",       :null => false
+    t.string   "question",                        :null => false
     t.string   "answer"
-    t.integer  "points_awarded", :null => false
-    t.datetime "answer_before",  :null => false
+    t.integer  "points_awarded",                  :null => false
+    t.datetime "answer_before",                   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "bonus_bets_count", :default => 0
   end
 
   create_table "bonus_bets", :force => true do |t|
@@ -120,6 +121,7 @@ ActiveRecord::Schema.define(:version => 20100609001149) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "payment_transaction_code"
+    t.integer  "bonus_bets_count",                       :default => 0
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

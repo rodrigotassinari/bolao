@@ -6,7 +6,7 @@
   %li <b id="user_bonus_bet_count">#{@user.bonus_bets.count}</b> / #{Bonus.count} perguntas bônus respondidas.
   %li
     Pontuação Total: 
-    %b #{pluralize Bet.sum(:points, :conditions => {:user_id => @user.id}), 'ponto', 'pontos'}
+    %b #{pluralize @user.points_cache, 'ponto', 'pontos'}
 
 - unless @user.paid?
   - unless @user.paying?
