@@ -130,6 +130,15 @@ class Game < ActiveRecord::Base
   def short_description
     "##{id} - #{team_a.acronym} #{goals_a} x #{goals_b} #{team_b.acronym}"
   end
+
+  # TOSPEC
+  def self.ids_for_history
+    Game.all(
+      :select => 'id',
+      :order => 'id ASC',
+      :conditions => 'goals_a IS NOT NULL AND goals_b IS NOT NULL'
+    ).map(&:id) + ['total']
+  end
   
   def self.all_by_stage_and_groups(stages=Game.stages, groups=Team.groups, order="games.played_at ASC", scope="1=1")
     games = {}

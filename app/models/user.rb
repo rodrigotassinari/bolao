@@ -82,5 +82,27 @@ class User < ActiveRecord::Base
     self.points_cache = bets_points + bonus_bets_points
     self.save!
   end
+
+  def points_for_history(game_ids)
+    points = []
+    integer_game_ids = game_ids.last == 'total' ? game_ids[0..-2] : game_ids
+    all_bets = self.bets.all(
+      :select => 'game_id, points',
+      :order => 'game_id ASC',
+      :conditions => ['game_id in (?)', integer_game_ids]
+    )
+    game_ids.each do |game_id|
+      if game_id.is_a?(Integer)
+        subpoint = 0
+        (1..game_id).to_a.each do |i|
+          subpoint += all_bets[i - 1].points.nil? ? 0 : all_bets[i - 1].points
+        end
+        points << subpoint
+      else
+        points << self.points_cache
+      end
+    end
+    points
+  end
   
 end
