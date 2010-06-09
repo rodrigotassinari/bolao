@@ -12,7 +12,8 @@ class User < ActiveRecord::Base
   # Associations
   
   has_many :bets, :dependent => :destroy
-  
+  has_many :bonus_bets, :dependent => :destroy
+
   # Validations
   
   validates_presence_of :name
@@ -46,6 +47,11 @@ class User < ActiveRecord::Base
   def has_bets?
     bets.count > 0
   end
+
+  # TOSPEC
+  def has_bonus_bets?
+    bonus_bets.count > 0
+  end
   
   # TOSPEC
   def paid?
@@ -63,11 +69,17 @@ class User < ActiveRecord::Base
 
   # TOSPEC
   def all_betted?
-    bets.count == Game.count
+    bets_kount = bets.count
+    bonus_bets_kount = bonus_bets.count
+    games_kount = Game.count
+    bonus_kount = Bonus.count
+    (bets_kount + bonus_bets_kount) == (games_kount + bonus_kount)
   end
   
   def update_points_cache!
-    self.points_cache = self.bets.sum(:points)
+    bets_points = self.bets.sum(:points)
+    bonus_bets_points = self.bonus_bets.sum(:points)
+    self.points_cache = bets_points + bonus_bets_points
     self.save!
   end
   

@@ -118,6 +118,7 @@ class Game < ActiveRecord::Base
     bets.each do |bet|
       bet.score!
     end
+    true
   end
   
   # TOSPEC

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100312153830) do
+ActiveRecord::Schema.define(:version => 20100609001149) do
 
   create_table "bets", :force => true do |t|
     t.integer  "user_id",                            :null => false
@@ -34,6 +34,29 @@ ActiveRecord::Schema.define(:version => 20100312153830) do
   add_index "bets", ["tie"], :name => "index_bets_on_tie"
   add_index "bets", ["user_id"], :name => "index_bets_on_user_id"
   add_index "bets", ["winner_id"], :name => "index_bets_on_winner_id"
+
+  create_table "bonus", :force => true do |t|
+    t.string   "question",       :null => false
+    t.string   "answer"
+    t.integer  "points_awarded", :null => false
+    t.datetime "answer_before",  :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "bonus_bets", :force => true do |t|
+    t.integer  "user_id",    :null => false
+    t.integer  "bonus_id",   :null => false
+    t.string   "answer",     :null => false
+    t.integer  "points"
+    t.datetime "scored_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "bonus_bets", ["answer"], :name => "index_bonus_bets_on_answer"
+  add_index "bonus_bets", ["bonus_id"], :name => "index_bonus_bets_on_bonus_id"
+  add_index "bonus_bets", ["user_id"], :name => "index_bonus_bets_on_user_id"
 
   create_table "games", :force => true do |t|
     t.string   "stadium"
