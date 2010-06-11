@@ -32,6 +32,22 @@ class Bonus < ActiveRecord::Base
     end
     true
   end
+  
+  def unique_answers
+    self.bonus_bets.map(&:answer).sort.uniq
+  end
+  
+  def histogram
+    self.bonus_bets.map(&:answer).sort.inject({}) { |a, x| a[x] = a[x].to_i + 1; a }
+  end
+  
+  def statistics
+    histogram = self.histogram
+    labels = self.unique_answers
+    data = []
+    labels.each { |l| data << histogram[l] }
+    {:data => data, :labels => labels}
+  end
 
   protected
 

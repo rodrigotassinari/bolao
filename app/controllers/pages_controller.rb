@@ -16,6 +16,8 @@ class PagesController < ApplicationController
     @total_prize = Bet.prize
     @potential_prize = Bet.potential_prize
     
+    @bonus_statistics = Bonus.first.statistics
+    
     respond_to do |format|
       format.html   # index.html.erb
       format.iphone # index.iphone.erb
