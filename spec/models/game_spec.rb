@@ -5,7 +5,7 @@ describe Game do
   
   before(:each) do
     @valid_attributes = {
-      :played_at => Time.parse('2010-06-11 15:30'),
+      :played_at => Time.parse("#{2.days.from_now.to_date} 15:30"),
       :stage => 'Grupos',
       :team_a => teams(:bra),
       :team_b => teams(:por)
