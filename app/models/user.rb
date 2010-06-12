@@ -22,7 +22,9 @@ class User < ActiveRecord::Base
   # Scopes
   
   named_scope :by_points, :order => 'users.points_cache DESC, users.name ASC'
-  
+
+  named_scope :by_name, :order => 'users.name ASC'
+
   named_scope :paid, :conditions => 'users.paid_at IS NOT NULL AND users.payment_code IS NOT NULL AND users.payment_transaction_code IS NOT NULL'
   
   # Methods

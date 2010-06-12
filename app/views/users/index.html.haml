@@ -1,6 +1,8 @@
 - title "Usuários"
 %h2 Usuários
 
+%h3 Ranking
+
 %table.nice
   %thead
     %tr
@@ -27,3 +29,8 @@
         - if user_signed_in? && current_user == user
           %td.small
             %b= link_to 'Editar', edit_user_registration_path
+
+%h3 Evolução
+
+#chart
+= users_evolution_graph(@game_ids, @users_by_name)

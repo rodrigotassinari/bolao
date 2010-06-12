@@ -8,6 +8,9 @@ class UsersController < ApplicationController
   def index
     @users = User.by_points.all
 
+    @game_ids = Game.ids_for_history[0..-2]
+    @users_by_name = User.by_name.all
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @users }
