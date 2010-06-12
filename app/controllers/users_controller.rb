@@ -30,6 +30,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    user = User.find(params[:id])
+    user.destroy
+    flash[:success] = "Usuário #{user.name} apagado!"
+    redirect_to users_path
+  end
+
   # POST /users/:id/ask_to_bet
   def ask_to_bet
     @user = User.find(params[:id])

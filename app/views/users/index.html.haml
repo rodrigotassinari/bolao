@@ -28,5 +28,4 @@
           %td.small
             %b= link_to 'Editar', edit_user_registration_path
         - if admin_signed_in?
-          %td.small= link_to 'Apagar', user_registration_path, :confirm => 'Tem certeza?', :method => :delete
-
+          %td.small= link_to 'Apagar', user_path(user), :confirm => 'Tem certeza?', :method => :delete
