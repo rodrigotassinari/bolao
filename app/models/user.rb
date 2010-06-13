@@ -97,6 +97,7 @@ class User < ActiveRecord::Base
       if game_id.is_a?(Integer)
         subpoint = 0
         (1..game_id).to_a.each do |i|
+          next if all_bets[i - 1].nil?
           subpoint += all_bets[i - 1].points.nil? ? 0 : all_bets[i - 1].points
         end
         points << subpoint
