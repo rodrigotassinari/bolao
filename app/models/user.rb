@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   
   has_many :bets, :dependent => :destroy
   has_many :bonus_bets, :dependent => :destroy
+  has_many :comments
 
   # Validations
   

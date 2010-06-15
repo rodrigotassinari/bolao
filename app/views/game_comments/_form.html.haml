@@ -1,0 +1,6 @@
+.new_comment
+  %h5 Deixe um comentário
+  - form_for @comment, :url => game_comments_path(game), :method => :post do |f|
+    = f.text_area :body, :cols => 40, :rows => 5
+    %br/
+    = f.submit 'Enviar', :disable_with => 'Enviando...'

@@ -31,4 +31,3 @@ class MyBetsController < ApplicationController
   end
 
 end
-

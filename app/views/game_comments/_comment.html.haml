@@ -1,0 +1,5 @@
+%a(name="comment_#{comment.id}")
+.comment(id="comment_#{comment.id}")
+  %p= h comment.body
+  %p.info
+    #{link_to comment.user.name, user_path(comment.user)}, <span title="#{comment.created_at}">#{time_ago_in_words comment.created_at} atrás</span>

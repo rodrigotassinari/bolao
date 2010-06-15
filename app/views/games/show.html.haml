@@ -7,111 +7,117 @@
   |
   = link_to 'Próximo >', game_path(@next_game)
 
-%h3
-  = @game.team_a.name
-  = team_flag(@game.team_a)
-  = @game.goals_a
-  x
-  = @game.goals_b
-  = team_flag(@game.team_b)
-  = @game.team_b.name
-
-- if !@game.group_game? && @game.penalty?
-  %h4
-    Pênaltis:
+.left_panel
+  %h3
     = @game.team_a.name
     = team_flag(@game.team_a)
-    = @game.penalty_goals_a
+    = @game.goals_a
     x
-    = @game.penalty_goals_b
+    = @game.goals_b
     = team_flag(@game.team_b)
     = @game.team_b.name
 
-%p
-  %strong Fase:
-  = @game.stage
+  - if !@game.group_game? && @game.penalty?
+    %h4
+      Pênaltis:
+      = @game.team_a.name
+      = team_flag(@game.team_a)
+      = @game.penalty_goals_a
+      x
+      = @game.penalty_goals_b
+      = team_flag(@game.team_b)
+      = @game.team_b.name
 
-%p
-  %strong Data:
-  = l @game.played_at, :format => :game
+  %p
+    %strong Fase:
+    = @game.stage
 
-%p
-  %strong Local:
-  #{@game.stadium}, #{@game.city}
+  %p
+    %strong Data:
+    = l @game.played_at, :format => :game
 
-- if admin_signed_in?
-  %b Admin:
-  %ul
-    %li Fase de grupos? #{yes_or_no @game.group_game?}
-    %li Pode apostar ainda? #{yes_or_no @game.bettable?}
-    %li Já foi jogado? #{yes_or_no @game.played?}
-    %li Tem gols anotados? #{yes_or_no @game.has_goals?}
-    - if @game.has_goals?
-      %li Empate? #{yes_or_no @game.tie?}
-      %li Vencedor: #{@game.winner.try(:name)}
-      %li Perdedor: #{@game.loser.try(:name)}
-      %li Penaltys? #{yes_or_no @game.penalty?}
+  %p
+    %strong Local:
+    #{@game.stadium}, #{@game.city}
 
-- if admin_signed_in?
-  %p.admin_links
-    = link_to 'Editar', edit_game_path(@game)
-    = link_to 'Apagar', @game, :confirm => 'Tem certeza?', :method => :delete
+  - if admin_signed_in?
+    %b Admin:
+    %ul
+      %li Fase de grupos? #{yes_or_no @game.group_game?}
+      %li Pode apostar ainda? #{yes_or_no @game.bettable?}
+      %li Já foi jogado? #{yes_or_no @game.played?}
+      %li Tem gols anotados? #{yes_or_no @game.has_goals?}
+      - if @game.has_goals?
+        %li Empate? #{yes_or_no @game.tie?}
+        %li Vencedor: #{@game.winner.try(:name)}
+        %li Perdedor: #{@game.loser.try(:name)}
+        %li Penaltys? #{yes_or_no @game.penalty?}
 
-%p.links
-  = link_to 'Voltar', games_path
+  - if admin_signed_in?
+    %p.admin_links
+      = link_to 'Editar', edit_game_path(@game)
+      = link_to 'Apagar', @game, :confirm => 'Tem certeza?', :method => :delete
 
-%h3 Palpites
+  %p.links
+    = link_to 'Voltar', games_path
 
-%p
-  %strong Resumo
-  %ul
-    %li #{team_flag(@game.team_a)} #{@game.team_a.name}: <strong style="color: #FF0000;">#{number_to_percentage @stats[@game.team_a.id][:wins_pct], :precision => 0}</strong>
-    %li Empate: <strong style="color: #00FF00;">#{number_to_percentage @stats[@game.team_a.id][:ties_pct], :precision => 0}</strong>
-    %li #{team_flag(@game.team_b)} #{@game.team_b.name}: <strong style="color: #0000FF;">#{number_to_percentage @stats[@game.team_b.id][:wins_pct], :precision => 0}</strong>
+  %h3 Palpites
 
-  = image_tag Gchart.pie(:labels => [@game.team_a.name, 'Empate', @game.team_b.name], :line_colors => "FF0000,00FF00,0000FF", :data => [@stats[@game.team_a.id][:wins], @stats[@game.team_a.id][:ties], @stats[@game.team_b.id][:wins]])
+  %p
+    %strong Resumo
+    %ul
+      %li #{team_flag(@game.team_a)} #{@game.team_a.name}: <strong style="color: #FF0000;">#{number_to_percentage @stats[@game.team_a.id][:wins_pct], :precision => 0}</strong>
+      %li Empate: <strong style="color: #00FF00;">#{number_to_percentage @stats[@game.team_a.id][:ties_pct], :precision => 0}</strong>
+      %li #{team_flag(@game.team_b)} #{@game.team_b.name}: <strong style="color: #0000FF;">#{number_to_percentage @stats[@game.team_b.id][:wins_pct], :precision => 0}</strong>
 
-- if @game.bettable?
-  Este jogo ainda pode ser apostado, por isso os palpites de cada usuário não são mostrados ainda.
-- else
-  %table.nice
-    %thead
-      %tr
-        %th Usuário
-        %th{:colspan => 5} Palpite
-        %th Pontos
-    %tbody
-      - for bet in @bets
-        %tr{:class => cycle(:odd, :even)}
-          %td= link_to bet.user.name, bet.user
-          %td.right
-            #{bet.game.team_a.name} #{team_flag(bet.game.team_a)}
-            - if !bet.game.group_game? && bet.penalty?
-              %br
-              %i Penaltys:
-          %td.center
-            = bet.goals_a
-            - if !bet.game.group_game? && bet.penalty?
-              %br
-              = bet.penalty_goals_a
-          %td.center
-            x
-            - if !bet.game.group_game? && bet.penalty?
-              %br
+    = image_tag Gchart.pie(:labels => [@game.team_a.name, 'Empate', @game.team_b.name], :line_colors => "FF0000,00FF00,0000FF", :data => [@stats[@game.team_a.id][:wins], @stats[@game.team_a.id][:ties], @stats[@game.team_b.id][:wins]])
+
+  - if @game.bettable?
+    Este jogo ainda pode ser apostado, por isso os palpites de cada usuário não são mostrados ainda.
+  - else
+    %table.nice
+      %thead
+        %tr
+          %th Usuário
+          %th{:colspan => 5} Palpite
+          %th Pontos
+      %tbody
+        - for bet in @bets
+          %tr{:class => cycle(:odd, :even)}
+            %td= link_to bet.user.name, bet.user
+            %td.right
+              #{bet.game.team_a.name} #{team_flag(bet.game.team_a)}
+              - if !bet.game.group_game? && bet.penalty?
+                %br
+                %i Penaltys:
+            %td.center
+              = bet.goals_a
+              - if !bet.game.group_game? && bet.penalty?
+                %br
+                = bet.penalty_goals_a
+            %td.center
               x
-          %td.center
-            = bet.goals_b
-            - if !bet.game.group_game? && bet.penalty?
-              %br
-              = bet.penalty_goals_b
-          %td.left
-            #{team_flag(bet.game.team_b)} #{bet.game.team_b.name}
-            - if !bet.game.group_game? && bet.penalty?
-              %br
-              &nbsp;
-          %td.center
-            - if bet.points
-              = bet.points
-            - else
-              %i não calculado
+              - if !bet.game.group_game? && bet.penalty?
+                %br
+                x
+            %td.center
+              = bet.goals_b
+              - if !bet.game.group_game? && bet.penalty?
+                %br
+                = bet.penalty_goals_b
+            %td.left
+              #{team_flag(bet.game.team_b)} #{bet.game.team_b.name}
+              - if !bet.game.group_game? && bet.penalty?
+                %br
+                &nbsp;
+            %td.center
+              - if bet.points
+                = bet.points
+              - else
+                %i não calculado
 
+
+.right_panel
+  %h4 Comentários (#{@game.comments_count})
+  = render :partial => 'game_comments/comment', :collection => @comments
+  = render :partial => 'game_comments/form', :locals => {:game => @game, :comment => @comment}

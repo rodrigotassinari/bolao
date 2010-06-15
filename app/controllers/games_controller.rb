@@ -25,6 +25,9 @@ class GamesController < ApplicationController
 
     @stats = Bet.statistics(@bets)
 
+    @comment = @game.comments.build
+    @comments = @game.comments.ordered.all(:include => [:user]) # paginação é para os fracos :)
+
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @game }

@@ -17,6 +17,9 @@ class PagesController < ApplicationController
     @potential_prize = Bet.potential_prize
     
     @bonus_statistics = Bonus.first.statistics
+
+    @comments_count = Comment.count
+    @last_comment = Comment.ordered.last(:include => [:commentable, :user])
     
     respond_to do |format|
       format.html   # index.html.erb

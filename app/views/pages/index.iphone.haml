@@ -19,4 +19,7 @@
   %li
     %b #{number_to_currency @total_prize} de premiação
     (potencialmente #{number_to_currency @potential_prize})
-
+  %li
+    #{@comments_count} comentários
+    - if @last_comment
+      (sendo o último por #{link_to @last_comment.user.name, user_path(@last_comment.user)} sobre o jogo #{link_to @last_comment.commentable.short_description, game_path(@last_comment.commentable)}, #{time_ago_in_words @last_comment.created_at} atrás)

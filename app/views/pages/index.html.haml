@@ -11,6 +11,10 @@
   %li
     %b #{number_to_currency @total_prize} de premiação
     (potencialmente #{number_to_currency @potential_prize})
+  %li
+    #{@comments_count} comentários
+    - if @last_comment
+      (sendo o último por #{link_to @last_comment.user.name, user_path(@last_comment.user)} sobre o jogo #{link_to @last_comment.commentable.short_description, game_path(@last_comment.commentable)}, #{time_ago_in_words @last_comment.created_at} atrás)
 
 %h3 Dicas
 
@@ -24,4 +28,3 @@
     %li= link_to 'JP Morgan', 'http://www.scribd.com/doc/31537878/JP-Morgan-Quantitative-Guide-to-World-Cup-2010'
     %li= link_to 'UBS', 'http://www.ubs.com/1/e/bank_for_banks/news/topical_stories/edition_10.html'
     %li= link_to 'Danske', 'http://www.scribd.com/doc/32112498/Danske-Bank-World-Cup-2010-Special'
-

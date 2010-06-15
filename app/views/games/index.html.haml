@@ -17,8 +17,8 @@
       %th vs.
       %th Gols B
       %th Time B
-      %th Empate?
       %th Pênaltis?
+      %th Comentários
       %th{ :colspan => 2 }
   
   %tbody
@@ -36,8 +36,8 @@
         %td.left
           = team_flag(game.team_b)
           = game.team_b.name
-        %td.center= yes_or_no(game.tie?)
         %td.center= yes_or_no(game.penalty?)
+        %td.center= game.comments_count
         %td.small= link_to 'Mais informações', game
         - if admin_signed_in?
           %td.small= link_to 'Editar', edit_game_path(game)

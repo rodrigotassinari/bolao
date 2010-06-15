@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100609023535) do
+ActiveRecord::Schema.define(:version => 20100615002218) do
 
   create_table "bets", :force => true do |t|
     t.integer  "user_id",                            :null => false
@@ -59,6 +59,19 @@ ActiveRecord::Schema.define(:version => 20100609023535) do
   add_index "bonus_bets", ["bonus_id"], :name => "index_bonus_bets_on_bonus_id"
   add_index "bonus_bets", ["user_id"], :name => "index_bonus_bets_on_user_id"
 
+  create_table "comments", :force => true do |t|
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.integer  "user_id"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["commentable_type", "commentable_id"], :name => "index_comments_on_commentable_type_and_commentable_id"
+  add_index "comments", ["created_at"], :name => "index_comments_on_created_at"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
+
   create_table "games", :force => true do |t|
     t.string   "stadium"
     t.string   "city"
@@ -77,6 +90,7 @@ ActiveRecord::Schema.define(:version => 20100609023535) do
     t.integer  "bets_count",      :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "comments_count",  :default => 0
   end
 
   add_index "games", ["loser_id"], :name => "index_games_on_loser_id"
@@ -122,6 +136,7 @@ ActiveRecord::Schema.define(:version => 20100609023535) do
     t.datetime "updated_at"
     t.string   "payment_transaction_code"
     t.integer  "bonus_bets_count",                       :default => 0
+    t.integer  "comments_count",                         :default => 0
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
