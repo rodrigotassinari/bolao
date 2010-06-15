@@ -1,0 +1,9 @@
+Olá <%= @recipient.name %>,
+
+<%= @author.name %> deixou um novo comentário sobre o jogo <%= @game.description %>:
+
+  "<%= @comment.body %>" (<%= @comment.created_at %>)
+
+Você pode responder à este comentário aqui:
+
+  <%= game_url(@game, :anchor => 'new_comment') %>
