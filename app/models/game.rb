@@ -137,7 +137,7 @@ class Game < ActiveRecord::Base
   def self.ids_for_history
     Game.all(
       :select => 'id',
-      :order => 'id ASC',
+      :order => 'played_at ASC, id ASC',
       :conditions => 'goals_a IS NOT NULL AND goals_b IS NOT NULL'
     ).map(&:id) + ['total']
   end
