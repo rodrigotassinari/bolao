@@ -21,4 +21,3 @@ tmp/*.yml
 tmp/restart.txt
 tmp/**/*
 .rvmrc
-

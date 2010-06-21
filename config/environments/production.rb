@@ -29,4 +29,3 @@ config.action_view.cache_template_loading            = true
 
 # para devise
 config.action_mailer.default_url_options = { :host => 'bolao.pittlandia.net' }
-

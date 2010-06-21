@@ -21,17 +21,6 @@ Rails::Initializer.run do |config|
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
 
-  # frozen
-  config.gem "haml", :version => "3.0.6"
-  config.gem "warden", :version => "0.9.6"
-  config.gem "devise", :version => "1.0.4"
-  config.gem "recaptcha", :lib => "recaptcha/rails", :version => '0.2.3'
-  config.gem "googlecharts", :version => "1.6.0"
-  config.gem "settingslogic", :version => "2.0.6"
-
-  # installed
-  config.gem "postmark-rails"
-
   require 'postmark-rails'
 
   # Only load the plugins named here, in the order given (default is alphabetical).
