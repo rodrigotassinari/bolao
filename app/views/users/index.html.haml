@@ -15,9 +15,8 @@
       %th{ :colspan => 3 }
   
   %tbody
-    - count = 0
-    - for user in @users
-      - count += 1
+    - count = 1
+    - @users.each_with_index do |user, i|
       %tr{ :class => cycle(:odd, :even) }
         %td #{count}º
         %td= link_to user.name, user
@@ -29,6 +28,7 @@
         - if user_signed_in? && current_user == user
           %td.small
             %b= link_to 'Editar', edit_user_registration_path
+      - count += 1 if @users[i + 1] && user.points_cache != @users[i + 1].points_cache      
 
 %h3 Evolução
 
