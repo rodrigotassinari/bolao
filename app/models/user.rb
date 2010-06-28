@@ -98,7 +98,7 @@ class User < ActiveRecord::Base
       (0..i).to_a.each do |j|
         current_game_id = integer_game_ids[j]
         current_bet = all_bets.find { |b| b.game_id == current_game_id }
-        subpoints += current_bet.points
+        subpoints += current_bet.points unless current_bet.nil?
       end
       points[i] = subpoints
     end
